@@ -6,13 +6,7 @@ const Footer: React.FC = () => {
     <footer>
       <div className="bg-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 
-            style={{ 
-              fontFamily: 'Gloock, serif',
-              fontWeight: 400
-            }} 
-            className="mb-6 leading-[1.4]"
-          >
+          <h2 className="font-gloock font-normal mb-6 leading-[1.4]">
             Hej, det är vi som är<br />Tres AImigos!
           </h2>
           {/* Rest of the component remains unchanged */}
@@ -32,5 +26,3 @@ const Footer: React.FC = () => {
     </footer>
   );
 };
-
-export default Footer;
