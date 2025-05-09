@@ -163,16 +163,28 @@ const QuizSection: React.FC = () => {
     <section className="py-32 px-8 bg-beach-pink" id="quiz-section">
       <div className="max-w-3xl mx-auto">
         <h2 
-          className="text-[3.75rem] mb-8 text-center leading-[1.2]"
           style={{
             fontFamily: 'Bricolage Grotesque, sans-serif',
             fontWeight: 600,
-            WebkitTextStroke: '1px black',
-            textStroke: '1px black',
+            WebkitTextStroke: '2px black',
+            textStroke: '2px black',
             color: 'transparent'
           }}
+          className="text-[3.75rem] mb-8 text-center leading-[1.2]"
         >
-          Testa er AI-fitness nivå på jobbet
+          Har ni AI-FOMO på jobbet?
+        </h2>
+        <h2 
+          style={{
+            fontFamily: 'Bricolage Grotesque, sans-serif',
+            fontWeight: 600,
+            WebkitTextStroke: '2px black',
+            textStroke: '2px black',
+            color: 'transparent'
+          }}
+          className="text-[3.75rem] mb-8 text-center leading-[1.2]"
+        >
+          Lungt, vi får er att komma igång!
         </h2>
         <h5 className="text-[1.4375rem] leading-relaxed mb-8 text-center">
           Kör vårt 2-minuters quiz och kolla vilket AI-nivå ni är på idag: Pappskalle, Nyfiken Nybörjare eller Beach Ready?
@@ -212,11 +224,11 @@ const QuizSection: React.FC = () => {
             {getResultIcon()}
             
             <h2 
-              className="text-[3.75rem] mb-8 text-center leading-[1.2]"
               style={{
                 fontFamily: 'Gloock, serif',
                 fontWeight: 400
               }}
+              className="text-[3.75rem] mb-8 text-center leading-[1.2]"
             >
               Din AI-fitness nivå: {quizResults.result_page_title}
             </h2>
