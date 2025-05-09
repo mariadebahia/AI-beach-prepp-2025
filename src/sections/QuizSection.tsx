@@ -162,28 +162,10 @@ const QuizSection: React.FC = () => {
   return (
     <section className="py-32 px-8 bg-beach-pink" id="quiz-section">
       <div className="max-w-3xl mx-auto">
-        <h2 
-          style={{
-            fontFamily: 'Bricolage Grotesque, sans-serif',
-            fontWeight: 600,
-            WebkitTextStroke: '2px black',
-            textStroke: '2px black',
-            color: 'transparent'
-          }}
-          className="text-[3.75rem] mb-8 text-center leading-[1.2]"
-        >
+        <h2 className="h2-quiz-outline mb-8 text-center leading-[1.2]">
           Har ni AI-FOMO på jobbet?
         </h2>
-        <h2 
-          style={{
-            fontFamily: 'Bricolage Grotesque, sans-serif',
-            fontWeight: 600,
-            WebkitTextStroke: '2px black',
-            textStroke: '2px black',
-            color: 'transparent'
-          }}
-          className="text-[3.75rem] mb-8 text-center leading-[1.2]"
-        >
+        <h2 className="h2-quiz-outline mb-8 text-center leading-[1.2]">
           Lungt, vi får er att komma igång!
         </h2>
         <h5 className="text-[1.4375rem] leading-relaxed mb-8 text-center">

@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './styles/custom.css';
+
 @layer base {
   h1 {
     @apply text-[6.25rem] font-black font-display leading-[1.2]; /* 100px */
