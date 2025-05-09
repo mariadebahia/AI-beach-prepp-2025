@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @import './styles/custom.css';
+/* src/index.css */
+@import './css/custom.css'; /* Justera sökvägen om din fil ligger någon annanstans */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ... resten av din CSS ... */
 
 @layer base {
   h1 {
