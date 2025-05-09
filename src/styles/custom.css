@@ -1,5 +1,6 @@
+/* src/styles/custom.css (eller där du valde att spara filen) */
 
-/* Anpassad klass för H2 i Quiz-sektionen med Bricolage Grotesque Outline */
+/* Anpassad klass för H2 i Quiz-sektionen med Bricolage Grotesque SemiBold 600 Outline */
 .h2-quiz-outline {
   /* Typsnitt och vikt */
   font-family: 'Bricolage Grotesque', sans-serif; /* Kontrollera exakt namn */
@@ -12,6 +13,54 @@
 
   /* Eventuella andra stilar som är specifika för dessa H2:or */
   /* text-align: center; */
+  /* @apply text-[3.75rem] leading-[1.2]; */ /* Om du vill flytta storlek etc. hit istället för till .tsx */
 }
+
+
+/* Dina anpassade klasser för quiz-resultat etc. */
+.quiz-result-heading {
+  @apply text-[4.5rem] font-display font-bold mb-12 text-[#2D1B69] leading-[1.2];
+}
+
+.quiz-metric-heading {
+  @apply text-[2.75rem] font-sans font-medium mb-6 leading-[1.2];
+}
+
+.quiz-metric-value {
+  @apply text-[7.5rem] font-sans font-bold text-[#2D1B69] mb-6 leading-none;
+}
+
+.quiz-percentile {
+  @apply text-2xl font-sans font-semibold text-[#2D1B69] leading-relaxed;
+}
+
+.quiz-recommendations {
+  @apply text-xl font-sans leading-relaxed;
+}
+
+.quiz-recommendations li {
+  @apply mb-6 text-gray-700;
+}
+
+.quiz-body-text {
+  @apply text-xl font-sans leading-relaxed text-gray-700;
+}
+
+.quiz-metric-card {
+  @apply bg-gray-50 p-10 rounded-lg flex flex-col items-center;
+}
+
+.metrics-container {
+  @apply flex flex-row gap-10 items-center mb-12;
+}
+
+.better-than-section {
+  @apply border-t border-gray-200 pt-10 mt-10;
+}
+
+.results-container {
+  @apply p-10;
+}
+
 
 /* Lägg till andra anpassade stilar nedan vid behov */
