@@ -15,6 +15,7 @@ export default {
         heading: ['Playfair Display', 'serif'],
         inter: ['Inter', 'sans-serif'],
         bitter: ['Bitter', 'serif'],
+        gloock: ['Gloock', 'serif'],
       },
       fontSize: {
         'h1': ['5rem', { lineHeight: '1.2' }], // 80px
