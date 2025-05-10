@@ -166,7 +166,7 @@ const QuizSection: React.FC = () => {
 
   return (
     <section className="py-32 px-8 bg-[#CDB4DB]" id="quiz-section">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-[700px] mx-auto">
         <h2 className="h2-quiz-outline mb-8 text-center leading-[1.2]">
          Hur är det egentligen med AI-formen? Ta vårt AI-fitness test och få det svart på vitt.
         </h2>
