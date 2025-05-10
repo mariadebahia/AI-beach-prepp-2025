@@ -1,52 +1,32 @@
-/* src/index.css - Rent uppdaterat innehåll */
+/* src/index.css */
 
-/* Importera dina anpassade stilar. KONTROLLERA SÖKVÄGEN! */
-/* Använd sökvägen som stämmer för DIN custom.css fil: */
+/* Import your custom styles */
 @import './styles/custom.css';
-/* ELLER om din custom.css ligger i src/css/: */
-/* @import './css/custom.css'; */
 
-
-/* Importera Tailwinds bas-, komponent- och utility-stilar - Endast EN GÅNG */
+/* Import Tailwind's base, components, and utility styles - ONLY ONCE */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 /*
-   Basstilar för HTML-element.
-   Här sätter du standardutseendet om ingen specifik klass eller inline-stil används.
-   Ta bort motstridiga font-family/font-weight/text-shadow härifrån.
+   Base styles for HTML elements.
+   Here you set the default appearance if no specific class or inline style is used.
+   Remove conflicting font-family/font-weight/text-shadow from here.
 */
 @layer base {
   h1 {
-    /* Exempel: Standard H1-stil. Om Gloock alltid ska vara H1, sätt det här. */
-    @apply text-[6.25rem] font-black font-display leading-[1.2]; /* Exempel från din gamla fil */
-    /* Om du vill att Gloock Regular ska vara standard H1 (om ingen klass override): */
-    /* font-family: 'Gloock', serif; */
-    /* font-weight: 400; */
+    @apply text-[6.25rem] font-black font-display leading-[1.2];
   }
 
   h2 {
-    /* Exempel: Standard H2-stil. Ta bort text-shadow härifrån. */
-    @apply text-[3.75rem] font-medium font-display leading-[1.2] text-black; /* Exempel från din gamla fil */
-    /* text-shadow: TAS BORT HÄRIFRÅN */
-    /* Ogiltig font-family som var här TAS BORT */
-    /* Om du vill att Playfair Display ska vara standard H2 (om ingen klass override): */
-    /* font-family: 'Playfair Display', serif; */
-    /* font-weight: 500; */
+    @apply text-[3.75rem] font-medium font-display leading-[1.2] text-black;
   }
 
   h3 {
-    @apply text-[2.5rem] font-bold font-sans leading-[1.2]; /* Exempel från din gamla fil */
+    @apply text-[2.5rem] font-bold font-sans leading-[1.2];
   }
 
   body {
-    @apply font-sans text-lg bg-gray-50; /* Exempel från din gamla fil */
+    @apply font-sans text-lg bg-gray-50;
   }
-
-  /* ... behåll andra @layer base regler om de finns och är korrekta ... */
 }
-
-/* Alla dina anpassade klasser (.quiz-result-heading, .h2-quiz-outline etc.) finns i custom.css */
-
