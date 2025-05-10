@@ -3,6 +3,7 @@ import { quizQuestions, QuizQuestion, QuizResult } from '../utils/quizData';
 import QuizOption from '../components/QuizOption';
 import ProgressBar from '../components/ProgressBar';
 import Button from '../components/Button';
+import AnimatedSection from '../components/AnimatedSection';
 import { Dumbbell, Brain, Rocket, TrendingUp, Users } from 'lucide-react';
 
 const MANUS_WEBHOOK_URL = 'https://29yhyi3c9q7y.manus.space/quiz_submit';
@@ -221,13 +222,17 @@ const QuizSection: React.FC = () => {
   return (
     <section className="py-32 px-8 bg-[#d8d355]" id="quiz-section">
       <div className="max-w-3xl mx-auto">
-        <h2 className="h2-quiz-outline mb-8 text-center leading-[1.2]">
-          Hur är det med AI-formen? Ta vårt AI-fitnesstest!
-        </h2>
+        <AnimatedSection animation="fade-up">
+          <h2 className="h2-quiz-outline mb-8 text-center leading-[1.2]">
+            Hur är det med AI-formen? Ta vårt AI-fitnesstest!
+          </h2>
+        </AnimatedSection>
 
-        <h5 className="text-[1.4375rem] leading-relaxed mb-8 text-center">
-          Kör vårt 2-minuters quiz och kolla vilket AI-nivå ni är på idag: Pappskalle, Nyfiken Nybörjare eller Beach Ready?
-        </h5>
+        <AnimatedSection animation="fade-up" delay="200">
+          <h5 className="text-[1.4375rem] leading-relaxed mb-8 text-center">
+            Kör vårt 2-minuters quiz och kolla vilket AI-nivå ni är på idag: Pappskalle, Nyfiken Nybörjare eller Beach Ready?
+          </h5>
+        </AnimatedSection>
 
         {error && (
           <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6">
@@ -236,153 +241,157 @@ const QuizSection: React.FC = () => {
         )}
 
         {!showResults ? (
-          <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl">
-            <ProgressBar
-              currentStep={currentQuestionIndex + 1}
-              totalSteps={quizQuestions.length}
-            />
+          <AnimatedSection animation="fade-up" delay="300">
+            <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl">
+              <ProgressBar
+                currentStep={currentQuestionIndex + 1}
+                totalSteps={quizQuestions.length}
+              />
 
-            {currentQuestion && (
-              <>
-                <h3 className="text-xl font-semibold mb-6">
-                  {currentQuestion.question}
-                </h3>
+              {currentQuestion && (
+                <>
+                  <h3 className="text-xl font-semibold mb-6">
+                    {currentQuestion.question}
+                  </h3>
 
-                {currentQuestion.type === 'multiple-choice' && Array.isArray(currentQuestion.options) && (
-                  <div className="space-y-4">
-                    {currentQuestion.options.map((option) => (
-                      <QuizOption
-                        key={option.id}
-                        id={option.id}
-                        text={option.text}
-                        isSelected={answers[currentQuestion.id] === option.id}
-                        onSelect={() => handleOptionSelect(option.id)}
-                      />
-                    ))}
-                  </div>
-                )}
+                  {currentQuestion.type === 'multiple-choice' && Array.isArray(currentQuestion.options) && (
+                    <div className="space-y-4">
+                      {currentQuestion.options.map((option) => (
+                        <QuizOption
+                          key={option.id}
+                          id={option.id}
+                          text={option.text}
+                          isSelected={answers[currentQuestion.id] === option.id}
+                          onSelect={() => handleOptionSelect(option.id)}
+                        />
+                      ))}
+                    </div>
+                  )}
 
-                {currentQuestion.type === 'dropdown' && Array.isArray(currentQuestion.options) && (
-                     <div className="mb-4">
-                         <select
-                             value={answers[currentQuestion.id] || ''}
-                             onChange={handleInputChange}
-                             className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                             disabled={isSubmitting}
-                         >
-                             <option value="" disabled>Välj...</option>
-                             {currentQuestion.options.map(option => (
-                                 <option key={option.id} value={option.id}>{option.text}</option>
-                             ))}
-                         </select>
-                     </div>
-                 )}
+                  {currentQuestion.type === 'dropdown' && Array.isArray(currentQuestion.options) && (
+                       <div className="mb-4">
+                           <select
+                               value={answers[currentQuestion.id] || ''}
+                               onChange={handleInputChange}
+                               className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                               disabled={isSubmitting}
+                           >
+                               <option value="" disabled>Välj...</option>
+                               {currentQuestion.options.map(option => (
+                                   <option key={option.id} value={option.id}>{option.text}</option>
+                               ))}
+                           </select>
+                       </div>
+                   )}
 
-                 {currentQuestion.type === 'text' && (
-                     <div className="mb-4">
-                         <input
-                             type="text"
-                             value={answers[currentQuestion.id] || ''}
-                             onChange={handleInputChange}
-                             placeholder={currentQuestion.placeholder || ''}
-                             className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                             disabled={isSubmitting}
-                         />
-                     </div>
-                 )}
+                   {currentQuestion.type === 'text' && (
+                       <div className="mb-4">
+                           <input
+                               type="text"
+                               value={answers[currentQuestion.id] || ''}
+                               onChange={handleInputChange}
+                               placeholder={currentQuestion.placeholder || ''}
+                               className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                               disabled={isSubmitting}
+                           />
+                       </div>
+                   )}
 
-                {(currentQuestion.type !== 'multiple-choice' || currentQuestionIndex === quizQuestions.length - 1) && (
-                     <div className="mt-6">
-                         <Button
-                             onClick={handleNextQuestion}
-                             variant="purple"
-                             className="w-full bg-beach-purple text-white py-3 rounded-md disabled:opacity-50"
-                             disabled={isSubmitting || !answers[currentQuestion.id]}
-                         >
-                             {currentQuestionIndex < quizQuestions.length - 1 ? 'Nästa fråga' : 'Skicka svar'}
-                         </Button>
-                     </div>
-                 )}
-              </>
-            )}
-          </div>
+                  {(currentQuestion.type !== 'multiple-choice' || currentQuestionIndex === quizQuestions.length - 1) && (
+                       <div className="mt-6">
+                           <Button
+                               onClick={handleNextQuestion}
+                               variant="purple"
+                               className="w-full bg-beach-purple text-white py-3 rounded-md disabled:opacity-50"
+                               disabled={isSubmitting || !answers[currentQuestion.id]}
+                           >
+                               {currentQuestionIndex < quizQuestions.length - 1 ? 'Nästa fråga' : 'Skicka svar'}
+                           </Button>
+                       </div>
+                   )}
+                </>
+              )}
+            </div>
+          </AnimatedSection>
         ) : quizResults && (
-          <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl text-center">
-            {getResultIcon()}
+          <AnimatedSection animation="fade-up" delay="300">
+            <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl text-center">
+              {getResultIcon()}
 
-            <h2
-              style={{
-                fontFamily: 'Gloock, serif',
-                fontWeight: 400
-              }}
-              className="text-[3.75rem] mb-8 text-center leading-[1.2]"
-            >
-              Din AI-fitness nivå: {quizResults.level || quizResults.result_page_title}
-            </h2>
+              <h2
+                style={{
+                  fontFamily: 'Gloock, serif',
+                  fontWeight: 400
+                }}
+                className="text-[3.75rem] mb-8 text-center leading-[1.2]"
+              >
+                Din AI-fitness nivå: {quizResults.level || quizResults.result_page_title}
+              </h2>
 
-            {quizResults.description && (
-                <p className="quiz-body-text mb-6">{quizResults.description}</p>
-            )}
-            {quizResults.recommendations && quizResults.recommendations.length > 0 && (
-                 <div className="level-recommendations mt-8">
-                     <h6 className="text-[23px] font-medium mb-4">Rekommendationer för din nivå:</h6>
-                     <ul className="quiz-recommendations">
-                         {quizResults.recommendations.map((rec, index) => (
-                             <li key={index} className="flex items-center justify-center gap-3 mb-4">
-                                 <span className="text-center leading-snug">{rec}</span>
-                             </li>
-                         ))}
-                     </ul>
-                 </div>
-             )}
+              {quizResults.description && (
+                  <p className="quiz-body-text mb-6">{quizResults.description}</p>
+              )}
+              {quizResults.recommendations && quizResults.recommendations.length > 0 && (
+                   <div className="level-recommendations mt-8">
+                       <h6 className="text-[23px] font-medium mb-4">Rekommendationer för din nivå:</h6>
+                       <ul className="quiz-recommendations">
+                           {quizResults.recommendations.map((rec, index) => (
+                               <li key={index} className="flex items-center justify-center gap-3 mb-4">
+                                   <span className="text-center leading-snug">{rec}</span>
+                               </li>
+                           ))}
+                       </ul>
+                   </div>
+               )}
 
-            {quizResults.comparative_statement && (
-                <div className="bg-gray-50 rounded-lg p-6 mb-4">
-                  <p className="quiz-percentile">
-                    {quizResults.comparative_statement}
-                  </p>
-                </div>
-            )}
+              {quizResults.comparative_statement && (
+                  <div className="bg-gray-50 rounded-lg p-6 mb-4">
+                    <p className="quiz-percentile">
+                      {quizResults.comparative_statement}
+                    </p>
+                  </div>
+              )}
 
-             {quizResults.industry_comparative_statement && quizResults.industry_comparative_statement.trim() !== '' && (
-                 <div className="bg-gray-50 rounded-lg p-6 mb-8">
-                     <p className="quiz-percentile">
-                         {quizResults.industry_comparative_statement}
-                     </p>
-                 </div>
-             )}
+               {quizResults.industry_comparative_statement && quizResults.industry_comparative_statement.trim() !== '' && (
+                   <div className="bg-gray-50 rounded-lg p-6 mb-8">
+                       <p className="quiz-percentile">
+                           {quizResults.industry_comparative_statement}
+                       </p>
+                   </div>
+               )}
 
-             {((quizResults.strategicMaturityPercent !== undefined && quizResults.strategicMaturityPercent !== 0) ||
-               (quizResults.kompetensgapPercent !== undefined && quizResults.kompetensgapPercent !== 0)) && (
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                   {quizResults.strategicMaturityPercent !== undefined && quizResults.strategicMaturityPercent !== 0 && (
-                       <div className="quiz-metric-card">
-                         <div className="flex justify-center mb-4">
-                           <TrendingUp className="w-8 h-8 text-deep-purple" />
+               {((quizResults.strategicMaturityPercent !== undefined && quizResults.strategicMaturityPercent !== 0) ||
+                 (quizResults.kompetensgapPercent !== undefined && quizResults.kompetensgapPercent !== 0)) && (
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                     {quizResults.strategicMaturityPercent !== undefined && quizResults.strategicMaturityPercent !== 0 && (
+                         <div className="quiz-metric-card">
+                           <div className="flex justify-center mb-4">
+                             <TrendingUp className="w-8 h-8 text-deep-purple" />
+                           </div>
+                           <h6 className="text-[23px] font-medium mb-4">AI strategisk mognad</h6>
+                           <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
+                             {quizResults.strategicMaturityPercent}%
+                           </div>
+                           <p className="quiz-body-text">Bedömning av hur väl AI är integrerad i företagets övergripande strategi</p>
                          </div>
-                         <h6 className="text-[23px] font-medium mb-4">AI strategisk mognad</h6>
-                         <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
-                           {quizResults.strategicMaturityPercent}%
-                         </div>
-                         <p className="quiz-body-text">Bedömning av hur väl AI är integrerad i företagets övergripande strategi</p>
-                       </div>
-                   )}
+                     )}
 
-                   {quizResults.kompetensgapPercent !== undefined && quizResults.kompetensgapPercent !== 0 && (
-                       <div className="quiz-metric-card">
-                         <div className="flex justify-center mb-4">
-                           <Users className="w-8 h-8 text-deep-purple" />
+                     {quizResults.kompetensgapPercent !== undefined && quizResults.kompetensgapPercent !== 0 && (
+                         <div className="quiz-metric-card">
+                           <div className="flex justify-center mb-4">
+                             <Users className="w-8 h-8 text-deep-purple" />
+                           </div>
+                           <h6 className="text-[23px] font-medium mb-4">Kompetensgap</h6>
+                           <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
+                             {quizResults.kompetensgapPercent}%
+                           </div>
+                           <p className="quiz-body-text">Skillnaden mellan nuvarande och önskad AI-kompetens i organisationen</p>
                          </div>
-                         <h6 className="text-[23px] font-medium mb-4">Kompetensgap</h6>
-                         <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
-                           {quizResults.kompetensgapPercent}%
-                         </div>
-                         <p className="quiz-body-text">Skillnaden mellan nuvarande och önskad AI-kompetens i organisationen</p>
-                       </div>
-                   )}
-                 </div>
-             )}
-          </div>
+                     )}
+                   </div>
+               )}
+            </div>
+          </AnimatedSection>
         )}
       </div>
     </section>
