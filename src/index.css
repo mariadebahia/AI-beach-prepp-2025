@@ -1,45 +1,52 @@
 /* src/index.css - Rent uppdaterat innehåll */
 
-/* Importera dina anpassade stilar */
-@import './styles/custom.css'; /* Använd sökvägen som stämmer för din custom.css fil */
-/* @import './css/custom.css'; */ /* Ta bort dubbla importer om du hade dem */
+/* Importera dina anpassade stilar. KONTROLLERA SÖKVÄGEN! */
+/* Använd sökvägen som stämmer för DIN custom.css fil: */
+@import './styles/custom.css';
+/* ELLER om din custom.css ligger i src/css/: */
+/* @import './css/custom.css'; */
 
 
-/* Importera Tailwinds bas-, komponent- och utility-stilar - Endast EN gång */
+/* Importera Tailwinds bas-, komponent- och utility-stilar - Endast EN GÅNG */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
-/* Definiera basstilar för HTML-element här (om du vill att Tailwind ska sköta det, annars ta bort) */
+/*
+   Basstilar för HTML-element.
+   Här sätter du standardutseendet om ingen specifik klass eller inline-stil används.
+   Ta bort motstridiga font-family/font-weight/text-shadow härifrån.
+*/
 @layer base {
   h1 {
-    @apply text-[6.25rem] font-black font-display leading-[1.2]; /* 100px */
-    /* Om du vill att Gloock Regular ska vara standard H1:
-       font-family: 'Gloock', serif;
-       font-weight: 400;
-    */
+    /* Exempel: Standard H1-stil. Om Gloock alltid ska vara H1, sätt det här. */
+    @apply text-[6.25rem] font-black font-display leading-[1.2]; /* Exempel från din gamla fil */
+    /* Om du vill att Gloock Regular ska vara standard H1 (om ingen klass override): */
+    /* font-family: 'Gloock', serif; */
+    /* font-weight: 400; */
   }
 
   h2 {
-    @apply text-[3.75rem] font-medium font-display leading-[1.2] text-black; /* 60px */
-    /* Ta bort text-shadow härifrån - den flyttas till specifika klasser om den behövs */
-    /* font-family: Bricolage 'Bricolage Grotesque'; TAS BORT HÄRIFRÅN */
-    /* Om du vill att Playfair Display ska vara standard H2:
-       font-family: 'Playfair Display', serif;
-       font-weight: 500;
-    */
+    /* Exempel: Standard H2-stil. Ta bort text-shadow härifrån. */
+    @apply text-[3.75rem] font-medium font-display leading-[1.2] text-black; /* Exempel från din gamla fil */
+    /* text-shadow: TAS BORT HÄRIFRÅN */
+    /* Ogiltig font-family som var här TAS BORT */
+    /* Om du vill att Playfair Display ska vara standard H2 (om ingen klass override): */
+    /* font-family: 'Playfair Display', serif; */
+    /* font-weight: 500; */
   }
 
   h3 {
-    @apply text-[2.5rem] font-bold font-sans leading-[1.2]; /* 40px */
+    @apply text-[2.5rem] font-bold font-sans leading-[1.2]; /* Exempel från din gamla fil */
   }
 
   body {
-    @apply font-sans text-lg bg-gray-50; /* 18px base */
+    @apply font-sans text-lg bg-gray-50; /* Exempel från din gamla fil */
   }
 
-  /* ... behåll andra @layer base regler om de finns i din originalfil och är korrekta ... */
+  /* ... behåll andra @layer base regler om de finns och är korrekta ... */
 }
 
-/* Alla dina anpassade klasser (.quiz-result-heading, .h2-quiz-outline etc.) flyttas till custom.css */
+/* Alla dina anpassade klasser (.quiz-result-heading, .h2-quiz-outline etc.) finns i custom.css */
+
