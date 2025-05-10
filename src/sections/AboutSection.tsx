@@ -1,6 +1,6 @@
 import React from 'react';
 import AnimatedHeader from '../components/AnimatedHeader';
-import { Users } from 'lucide-react';
+import { Users, Linkedin, Globe } from 'lucide-react';
 
 const AboutSection: React.FC = () => {
   return (
@@ -20,64 +20,61 @@ const AboutSection: React.FC = () => {
           enkelt och konkret sätt.
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Team Member 1 */}
-          <div className="bg-white rounded-xl overflow-hidden shadow-sm">
-            <div className="h-64 bg-gray-200 relative">
-              <img 
-                src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                alt="Team Member 1" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {/* Maria Zerihoun */}
+          <div className="text-center">
+            <div className="relative inline-block mb-6">
+              <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-lg mx-auto">
+                <div className="w-full h-full bg-gray-200" />
+              </div>
+              <div className="absolute inset-0 rounded-full border-4 border-[#d8d355]" />
             </div>
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-2">Alex Svensson</h3>
-              <p className="text-blue-600 font-medium mb-4">AI Strategy Expert</p>
-              <p className="text-gray-700">
-                Specialiserad på att skapa AI-strategier som är enkla att implementera 
-                och ger snabba, konkreta resultat.
-              </p>
-            </div>
-          </div>
-          
-          {/* Team Member 2 */}
-          <div className="bg-white rounded-xl overflow-hidden shadow-sm">
-            <div className="h-64 bg-gray-200 relative">
-              <img 
-                src="https://images.pexels.com/photos/3778876/pexels-photo-3778876.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                alt="Team Member 2" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            </div>
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-2">Mia Lindgren</h3>
-              <p className="text-blue-600 font-medium mb-4">AI Implementation Coach</p>
-              <p className="text-gray-700">
-                Hjälper företag att konkret implementera AI i vardagen och skapa 
-                nya arbetssätt som höjer effektiviteten.
-              </p>
+            <h3 className="text-2xl font-bold mb-2">Maria Zerihoun</h3>
+            <div className="flex justify-center space-x-4 mt-4">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
+                <Linkedin size={24} />
+              </a>
+              <a href="https://portfolio.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-gray-900">
+                <Globe size={24} />
+              </a>
             </div>
           </div>
-          
-          {/* Team Member 3 */}
-          <div className="bg-white rounded-xl overflow-hidden shadow-sm">
-            <div className="h-64 bg-gray-200 relative">
-              <img 
-                src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                alt="Team Member 3" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+
+          {/* Noah Dagger */}
+          <div className="text-center">
+            <div className="relative inline-block mb-6">
+              <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-lg mx-auto">
+                <div className="w-full h-full bg-gray-200" />
+              </div>
+              <div className="absolute inset-0 rounded-full border-4 border-[#d8d355]" />
             </div>
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-2">Johan Berglund</h3>
-              <p className="text-blue-600 font-medium mb-4">AI Training Specialist</p>
-              <p className="text-gray-700">
-                Expert på att utbilda team i AI på ett pedagogiskt och inspirerande sätt,
-                utan krångel eller teknisk jargong.
-              </p>
+            <h3 className="text-2xl font-bold mb-2">Noah Dagger</h3>
+            <div className="flex justify-center space-x-4 mt-4">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
+                <Linkedin size={24} />
+              </a>
+              <a href="https://portfolio.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-gray-900">
+                <Globe size={24} />
+              </a>
+            </div>
+          </div>
+
+          {/* Ellino Aaby Olsson */}
+          <div className="text-center">
+            <div className="relative inline-block mb-6">
+              <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-lg mx-auto">
+                <div className="w-full h-full bg-gray-200" />
+              </div>
+              <div className="absolute inset-0 rounded-full border-4 border-[#d8d355]" />
+            </div>
+            <h3 className="text-2xl font-bold mb-2">Ellino Aaby Olsson</h3>
+            <div className="flex justify-center space-x-4 mt-4">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
+                <Linkedin size={24} />
+              </a>
+              <a href="https://portfolio.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-gray-900">
+                <Globe size={24} />
+              </a>
             </div>
           </div>
         </div>
