@@ -49,27 +49,25 @@ const QuizSection: React.FC = () => {
 
   const submitQuiz = async (allAnswers: AllAnswers) => {
     let totalScore = 0;
-    const scoredAnswers: Record<string | number, string> = {};
+    const payloadAnswers: Record<string | number, string | number> = {};
 
     quizQuestions.forEach(question => {
-      const answerId = allAnswers[question.id];
-      if (question.type === 'multiple-choice' && answerId) {
-        const selectedOption = question.options?.find(opt => opt.id === answerId);
-        if (selectedOption && selectedOption.points !== undefined) {
-          totalScore += selectedOption.points;
-          scoredAnswers[question.id] = answerId;
-        }
-      }
-    });
+      const answerValue = allAnswers[question.id];
 
-    const payloadAnswers: Record<string | number, string> = { ...scoredAnswers };
-
-    quizQuestions.forEach(question => {
-      if (question.type !== 'multiple-choice') {
-        const answer = allAnswers[question.id];
-        if (answer) {
-          payloadAnswers[question.id] = answer;
+      if (answerValue) {
+        if (question.type === 'multiple-choice') {
+          const selectedOption = question.options?.find(opt => opt.id === answerValue);
+          if (selectedOption && selectedOption.points !== undefined) {
+            totalScore += selectedOption.points;
+            payloadAnswers[question.id] = selectedOption.points;
+          } else {
+            payloadAnswers[question.id] = 0;
+          }
+        } else {
+          payloadAnswers[question.id] = answerValue;
         }
+      } else {
+        payloadAnswers[question.id] = '';
       }
     });
 
@@ -80,8 +78,10 @@ const QuizSection: React.FC = () => {
         .filter(q => q.type === 'multiple-choice')
         .reduce((sum, q) => sum + Math.max(...(q.options?.map(opt => opt.points || 0) || [0])), 0),
       timestamp: new Date().toISOString(),
-      quiz_version: '1.1',
+      quiz_version: '1.2'
     };
+
+    console.log("Sending payload:", payload);
 
     try {
       const response = await fetch(MANUS_WEBHOOK_URL, {
