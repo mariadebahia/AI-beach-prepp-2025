@@ -5,11 +5,9 @@ import ProgressBar from '../components/ProgressBar';
 import Button from '../components/Button';
 import { Dumbbell, Brain, Rocket, TrendingUp, Users } from 'lucide-react';
 
-// Updated API key and URL
 const MANUS_WEBHOOK_URL = 'https://4zmhqivc0g0q.manus.space/quiz_submit';
-const API_KEY = 'ed5aed3cdd2410758637cc8a50e26fbb4402bead81885f55a933331228fb5f1f'; // Added missing 'f' at the end
+const API_KEY = 'ed5aed3cdd2410758637cc8a50e26fbb4402bead81885f55a933331228fb5f1f';
 
-// Updated defaultResults to include level property
 const defaultResults = {
   result_page_title: 'Nyfiken',
   level: 'Nyfiken',
@@ -199,7 +197,6 @@ const QuizSection: React.FC = () => {
     }
   };
 
-  // Fixed getResultIcon function with optional chaining
   const getResultIcon = () => {
     if (!quizResults?.level) return null;
 
