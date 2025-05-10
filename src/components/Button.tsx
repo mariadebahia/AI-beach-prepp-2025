@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   const variantStyles = {
     neon: 'bg-neon-green text-deep-purple hover:bg-opacity-90',
     purple: 'bg-deep-purple text-white hover:bg-opacity-90',
-    outline: 'border-2 border-deep-purple text-deep-purple hover:bg-deep-purple hover:text-white'
+    outline: 'border-2 border-white text-white hover:bg-deep-purple hover:text-white'
   };
   
   return (
