@@ -42,7 +42,8 @@ const Footer: React.FC = () => {
             alt="3AImigos Logo - Hand with three fingers"
             className="w-16 h-16 mx-auto hover:scale-110 transition-transform duration-300"
           />
-          <h3 className="font-display text-base font-bold mt-4">Tres AImigos</h3>
+          <h3 className="font-display text-base font-bold mt-4">Tres AImigos</h3><br></br>
+          lostresAImigos@gmail.com
         </div>
       </div>
     </footer>
