@@ -18,7 +18,7 @@
   }
 
   h2 {
-    @apply text-[3.75rem] font-outfit font-semibold leading-[1.2] text-black;
+    @apply text-[3.75rem] font-black font-['Bricolage_Grotesque'] leading-[1.2] text-black;
   }
 
   h3 {
