@@ -54,14 +54,15 @@ const IntroSection: React.FC = () => {
             Har ni AI-FOMO på jobbet?
             Lung, vi får er att komma igång!
           </h2>
-          
-          <h5 className="text-[1.25rem] leading-[1.2] mb-16 max-w-[860px] mx-auto">
+
+            <h5 className="text-[2rem] leading-[1.2] mb-16 max-w-[860px] mx-auto">
+     
             Alla snackar AI men hur kommer man igång på jobbet?! Vi hjälper er att komma igång med den första milen. Vi kommer till din arbetsplats och AI-boostar med grunden, verktyg och tips för att komma i AI-form till sommaren (så att ni är redo för hösten). Vi kallar det AI-beach prepp men en svindyr management konsult skulle nog kalla det för "get-AI-ready-or-die".
           </h5>
         </AnimatedSection>
 
          <h3 className="text-2xl font-semibold mb-4">Tävla om en AI-workout för ert företag! 🏖️</h3>
-         <h5 className="text-[2rem] leading-[1.2] mb-16 max-w-[860px] mx-auto">
+             <h5 className="text-[1.25rem] leading-[1.2] mb-16 max-w-[860px] mx-auto">
             Mellan vecka 20–24 kommer vi att välja ut ett antal företag som får ta del av vår AI Beach Prep – en skräddarsydd AI-workshop för att komma i AI-form inför sommaren.  <br></br>
 
             Urvalet görs av vår jury och baseras på er motivering, er nyfikenhet och potential att komma igång med AI. Vi bedömer alla ansökningar individuellt – bransch eller storlek spelar ingen roll.
@@ -72,7 +73,7 @@ const IntroSection: React.FC = () => {
         {isSubmitted ? (
           <AnimatedSection animation="fade-up" delay="200">
             <div className="bg-white p-8 rounded-xl shadow-lg">
-              <h3 className="text-4xl font-bold text-green-600 mb-6">Tack – ni är med i AI Beach Prep! 🏋️</h3>
+              <h2 className="text-4xl font-bold text-green-600 mb-6">Tack – ni är med i AI Beach Prep! 🏋️</h3>
               <p className="text-2xl text-gray-700 mb-8">
                 Vi har registrerat er anmälan och hör snart av oss om ni går vidare till nästa steg. Redan nu kan ni börja AI-värma upp med vår guide!
               </p>
