@@ -73,73 +73,90 @@ const IntroSection: React.FC = () => {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-sm">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label htmlFor="company_name" className="block text-sm font-medium text-gray-700 mb-1">
-                  Företagsnamn *
-                </label>
-                <input
-                  type="text"
-                  id="company_name"
-                  name="company_name"
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="contact_name" className="block text-sm font-medium text-gray-700 mb-1">
-                  Kontaktperson *
-                </label>
-                <input
-                  type="text"
-                  id="contact_name"
-                  name="contact_name"
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
+            <div className="mb-6">
+              <label htmlFor="company_name" className="block text-left text-lg font-medium text-gray-900 mb-2">
+                Företagsnamn *
+              </label>
+              <input
+                type="text"
+                id="company_name"
+                name="company_name"
+                placeholder="Ditt företag"
+                required
+                className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
+              />
+            </div>
+            
+            <div className="mb-6">
+              <label htmlFor="contact_name" className="block text-left text-lg font-medium text-gray-900 mb-2">
+                Kontaktperson (Namn) *
+              </label>
+              <input
+                type="text"
+                id="contact_name"
+                name="contact_name"
+                placeholder="Förnamn Efternamn"
+                required
+                className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
+              />
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="email" className="block text-left text-lg font-medium text-gray-900 mb-2">
                   E-post *
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
+                  placeholder="din@email.se"
                   required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
                 />
               </div>
               
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                  Telefon *
+                <label htmlFor="phone" className="block text-left text-lg font-medium text-gray-900 mb-2">
+                  Telefon
                 </label>
                 <input
                   type="tel"
                   id="phone"
                   name="phone"
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="070-123 45 67"
+                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
                 />
               </div>
             </div>
             
             <div className="mb-6">
-              <label htmlFor="motivation" className="block text-sm font-medium text-gray-700 mb-1">
-                Berätta kort om er AI-resa *
+              <label htmlFor="motivation" className="block text-left text-lg font-medium text-gray-900 mb-2">
+                Motivering *
               </label>
               <textarea
                 id="motivation"
                 name="motivation"
+                placeholder="Berätta för oss varför just ditt företag skulle gynnas av AI-träning"
                 required
                 rows={4}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
               />
+            </div>
+
+            <div className="mb-8">
+              <div className="flex items-start gap-2">
+                <input
+                  type="checkbox"
+                  id="gdpr"
+                  name="gdpr"
+                  required
+                  className="mt-1.5 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                />
+                <label htmlFor="gdpr" className="text-left text-base text-gray-700">
+                  Jag godkänner att mina uppgifter sparas enligt <a href="#" className="underline">integritetspolicyn</a> *
+                </label>
+              </div>
             </div>
 
             {error && (
@@ -149,8 +166,13 @@ const IntroSection: React.FC = () => {
             )}
             
             <div className="text-center">
-              <Button type="submit" variant="purple" disabled={isSubmitting}>
-                {isSubmitting ? 'Skickar...' : 'Skicka intresseanmälan'}
+              <Button 
+                type="submit" 
+                variant="purple" 
+                disabled={isSubmitting}
+                className="w-full md:w-auto bg-black text-white text-xl py-6 px-12"
+              >
+                {isSubmitting ? 'Skickar...' : 'Vi behöver AI Beach Prepp!!'}
               </Button>
             </div>
           </form>
