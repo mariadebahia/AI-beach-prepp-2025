@@ -14,7 +14,7 @@
 */
 @layer base {
   h1 {
-    @apply text-[6.25rem] font-black font-display leading-[1.2];
+    @apply text-[6.25rem] font-black font-['Bricolage_Grotesque'] leading-[1.2];
   }
 
   h2 {
