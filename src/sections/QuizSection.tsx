@@ -239,7 +239,7 @@ const QuizSection: React.FC = () => {
         )}
 
         {!showResults ? (
-          <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-sm">
+          <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl">
             <ProgressBar
               currentStep={currentQuestionIndex + 1}
               totalSteps={quizQuestions.length}
@@ -310,7 +310,7 @@ const QuizSection: React.FC = () => {
             )}
           </div>
         ) : quizResults && (
-          <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-sm text-center">
+          <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl">
             {getResultIcon()}
 
             <h2

@@ -58,7 +58,7 @@ const IntroSection: React.FC = () => {
         </h5>
 
         {isSubmitted ? (
-          <div className="bg-white p-8 rounded-xl shadow-sm">
+          <div className="bg-white p-8 rounded-xl shadow-lg">
             <h3 className="text-4xl font-bold text-green-600 mb-6">Tack – ni är med i AI Beach Prep! 🏋️</h3>
             <p className="text-2xl text-gray-700 mb-8">
               Vi har registrerat er anmälan och hör snart av oss om ni går vidare till nästa steg. Redan nu kan ni börja AI-värma upp med vår guide!
@@ -71,7 +71,7 @@ const IntroSection: React.FC = () => {
             </Button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-sm">
+          <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-lg transition-shadow duration-300 hover:shadow-xl">
             <div className="mb-6">
               <label htmlFor="company_name" className="block text-left text-lg font-medium text-gray-900 mb-2">
                 Företagsnamn *
