@@ -61,7 +61,7 @@ const IntroSection: React.FC = () => {
           </h5>
         </AnimatedSection>
 
-         <h3 className="text-2xl font-semibold mb-4">Tävla om en AI-workout för ert företag! 🏖️</h3>
+         <h3 className="text-4xl font-semibold mb-4">Tävla om en AI-workout för ert företag! 🏖️</h3>
              <h5 className="text-[1.25rem] leading-[1.2] mb-16 max-w-[860px] mx-auto">
             Mellan vecka 20–24 kommer vi att välja ut ett antal företag som får ta del av vår AI Beach Prep – en skräddarsydd AI-workshop för att komma i AI-form inför sommaren.  <br></br>
 
