@@ -49,7 +49,7 @@ const CompetitionSection: React.FC = () => {
   };
   
   return (
-    <section className="py-20 px-8 bg-[#A5D6A7]" id="competition-section">
+    <section className="py-20 px-8 bg-[#fffcf7]" id="competition-section">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-center mb-8">
           <Trophy className="text-yellow-500 mr-3" size={32} />

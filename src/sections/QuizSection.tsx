@@ -219,7 +219,7 @@ const QuizSection: React.FC = () => {
   };
 
   return (
-    <section className="py-32 px-8 bg-[#CDB4DB]" id="quiz-section">
+    <section className="py-32 px-8 bg-[#d8d355]" id="quiz-section">
       <div className="max-w-3xl mx-auto">
         <h2 className="h2-quiz-outline mb-8 text-center leading-[1.2]">
           Har ni AI-FOMO på jobbet?
