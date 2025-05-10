@@ -222,10 +222,7 @@ const QuizSection: React.FC = () => {
     <section className="py-32 px-8 bg-[#d8d355]" id="quiz-section">
       <div className="max-w-3xl mx-auto">
         <h2 className="h2-quiz-outline mb-8 text-center leading-[1.2]">
-          Har ni AI-FOMO på jobbet?
-        </h2>
-        <h2 className="h2-quiz-outline mb-8 text-center leading-[1.2]">
-          Lungt, vi får er att komma igång!
+          Hur är det med AI-formen? Ta vårt AI-fitnesstest!
         </h2>
 
         <h5 className="text-[1.4375rem] leading-relaxed mb-8 text-center">
@@ -310,7 +307,7 @@ const QuizSection: React.FC = () => {
             )}
           </div>
         ) : quizResults && (
-          <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl">
+          <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl text-center">
             {getResultIcon()}
 
             <h2
