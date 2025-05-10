@@ -9,8 +9,17 @@ export default {
       fontFamily: {
         'sans': ['Inter', 'system-ui', 'sans-serif'],
         'display': ['Inter', 'system-ui', 'sans-serif'],
-        'outfit': ['Outfit', 'sans-serif']
+        'outfit': ['Outfit', 'sans-serif'],
+        'gloock': ['Gloock', 'serif'],
+        'bricolage': ['Bricolage Grotesque', 'sans-serif']
       },
+      colors: {
+        'beach-yellow': '#FFE664',
+        'beach-pink': '#FFF5F5',
+        'beach-purple': '#2D1B69',
+        'deep-purple': '#2D1B69',
+        'neon-green': '#ADFF00'
+      }
     },
   },
   plugins: [],
