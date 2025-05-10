@@ -61,9 +61,9 @@ const IntroSection: React.FC = () => {
 
         {isSubmitted ? (
           <div className="bg-white p-8 rounded-xl shadow-sm">
-            <h3 className="text-2xl font-bold text-green-600 mb-4">Tack för din anmälan!</h3>
-            <p className="text-gray-700 mb-6">
-              Vi har mottagit din intresseanmälan och återkommer inom kort.
+            <h3 className="text-4xl font-bold text-green-600 mb-6">Tack – ni är med i AI Beach Prep! 🏋️</h3>
+            <p className="text-2xl text-gray-700 mb-8">
+              Vi har registrerat er anmälan och hör snart av oss om ni går vidare till nästa steg. Redan nu kan ni börja AI-värma upp med vår guide!
             </p>
             <Button 
               variant="outline"
