@@ -49,9 +49,7 @@ const IntroSection: React.FC = () => {
     <section className="py-32 px-8 bg-[#fbf9f9]" id="intro-section">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="mb-4 h2-quiz-outline">
-          Har ni AI-FOMO på jobbet?
-        </h2>
-        <h2 className="mb-8 h2-quiz-outline">
+          Har ni AI-FOMO på jobbet?<break></break>
           Lungt, vi får er att komma igång!
         </h2>
         
