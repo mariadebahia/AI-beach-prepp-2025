@@ -4,6 +4,7 @@ export const quizQuestions: QuizQuestion[] = [
   {
     id: 1,
     question: 'Hur är er relation till AI just nu?',
+    type: 'multiple-choice',
     options: [
       { id: '1a', text: 'Vi är som främlingar som aldrig mötts', points: 0 },
       { id: '1b', text: 'Vi har swipat höger på ChatGPT några gånger', points: 1 },
@@ -14,6 +15,7 @@ export const quizQuestions: QuizQuestion[] = [
   {
     id: 2,
     question: 'Hur många AI-verktyg har ni i er digitala verktygslåda?',
+    type: 'multiple-choice',
     options: [
       { id: '2a', text: 'Vår verktygslåda är tom som efter ett inbrott', points: 0 },
       { id: '2b', text: 'Vi har en skruvmejsel (ChatGPT) och en hammare (Midjourney)', points: 1 },
@@ -24,6 +26,7 @@ export const quizQuestions: QuizQuestion[] = [
   {
     id: 3,
     question: 'Hur ser er AI-strategi ut?',
+    type: 'multiple-choice',
     options: [
       { id: '3a', text: 'Strategi? Vi har inte ens en plan för fredagsfikan', points: 0 },
       { id: '3b', text: 'Vi har pratat om AI på ett möte en gång', points: 1 },
@@ -34,6 +37,7 @@ export const quizQuestions: QuizQuestion[] = [
   {
     id: 4,
     question: 'Hur reagerar era anställda när AI nämns?',
+    type: 'multiple-choice',
     options: [
       { id: '4a', text: 'De gömmer sig under skrivbordet och viskar "Skynet"', points: 0 },
       { id: '4b', text: 'De nickar artigt men använder aldrig AI-verktygen', points: 1 },
@@ -44,6 +48,7 @@ export const quizQuestions: QuizQuestion[] = [
   {
     id: 5,
     question: 'Hur mycket resurser lägger ni på AI-utveckling?',
+    type: 'multiple-choice',
     options: [
       { id: '5a', text: 'Samma som min investering i kryptovaluta 2022 - noll', points: 0 },
       { id: '5b', text: 'Vi har ett gratis ChatGPT-konto som vi delar på', points: 1 },
@@ -54,6 +59,7 @@ export const quizQuestions: QuizQuestion[] = [
   {
     id: 6,
     question: 'Hur ligger ni till jämfört med konkurrenterna?',
+    type: 'multiple-choice',
     options: [
       { id: '6a', text: 'Vi är som en häst och vagn i en Tesla-utställning', points: 0 },
       { id: '6b', text: 'Vi är som en Volvo 740 bland Teslor', points: 1 },
@@ -64,6 +70,7 @@ export const quizQuestions: QuizQuestion[] = [
   {
     id: 7,
     question: 'Hur hanterar ni AI-etik?',
+    type: 'multiple-choice',
     options: [
       { id: '7a', text: 'AI-etik låter som namnet på en science fiction-film', points: 0 },
       { id: '7b', text: 'Vi har googlat "är AI farligt?" en gång', points: 1 },
@@ -74,6 +81,7 @@ export const quizQuestions: QuizQuestion[] = [
   {
     id: 8,
     question: 'Vad är er vision för AI i framtiden?',
+    type: 'multiple-choice',
     options: [
       { id: '8a', text: 'Framtiden? Vi försöker överleva nuet', points: 0 },
       { id: '8b', text: 'Vi hoppas AI inte tar över världen', points: 1 },
@@ -84,6 +92,7 @@ export const quizQuestions: QuizQuestion[] = [
   {
     id: 9,
     question: 'Hur ser ert AI-kunskapsläge ut?',
+    type: 'multiple-choice',
     options: [
       { id: '9a', text: 'Vi vet lika mycket om AI som om kvantfysik på mandarin', points: 0 },
       { id: '9b', text: 'En person har sett en YouTube-video om ChatGPT', points: 1 },
@@ -94,17 +103,53 @@ export const quizQuestions: QuizQuestion[] = [
   {
     id: 10,
     question: 'Hur är er data förberedd för AI-implementering?',
+    type: 'multiple-choice',
     options: [
       { id: '10a', text: 'Vår data är som en tonårings rum - totalt kaos', points: 0 },
       { id: '10b', text: 'Vi har börjat städa men hittar fortfarande inte strumporna', points: 1 },
       { id: '10c', text: 'Vi har hyfsat organiserade datamappar och system', points: 2 },
       { id: '10d', text: 'Vår data är mer välorganiserad än Marie Kondos garderob', points: 3 }
     ]
+  },
+  {
+    id: 'industry',
+    question: 'Vilken bransch är ni verksamma inom?',
+    type: 'dropdown',
+    options: [
+      { id: 'industry-eget', text: 'Eget företag' },
+      { id: 'industry-tech', text: 'Teknik / IT' },
+      { id: 'industry-finance', text: 'Finans / Försäkring' },
+      { id: 'industry-healthcare', text: 'Hälsovård / Medicin' },
+      { id: 'industry-retail', text: 'Handel / E-handel' },
+      { id: 'industry-education', text: 'Utbildning' },
+      { id: 'industry-marketing', text: 'Marknadsföring / Media' },
+      { id: 'industry-consulting', text: 'Konsultverksamhet' },
+      { id: 'industry-manufacturing', text: 'Tillverkning / Industri' },
+      { id: 'industry-public', text: 'Offentlig sektor' },
+      { id: 'industry-other', text: 'Annan' }
+    ]
+  },
+  {
+    id: 'companySize',
+    question: 'Hur många anställda har ert företag?',
+    type: 'dropdown',
+    options: [
+      { id: 'size-1-10', text: '1-10' },
+      { id: 'size-11-50', text: '11-50' },
+      { id: 'size-51-200', text: '51-200' },
+      { id: 'size-201-500', text: '201-500' },
+      { id: 'size-501-plus', text: '501+' }
+    ]
+  },
+  {
+    id: 'strangeAIQuestion',
+    question: 'Om er AI var en superhjälte i arbetslivet, vilken kraft skulle vara mest användbar för att lösa era största utmaningar?',
+    type: 'text',
+    placeholder: 'T.ex. "Superstyrka för att lyfta tunga datamängder" eller "Osynlighet för att arbeta i bakgrunden"'
   }
 ];
 
 export const getQuizResult = (score: number): QuizResult => {
-  // Adjusted thresholds for 10 questions (max 30 points)
   if (score <= 10) {
     return {
       level: 'Pappskalle',

@@ -1,18 +1,24 @@
-export type QuizQuestion = {
-  id: number;
-  question: string;
-  options: {
-    id: string;
-    text: string;
-    points: number;
-  }[];
-};
+export type QuestionType = 'multiple-choice' | 'dropdown' | 'text';
 
-export type QuizResult = {
-  level: 'Pappskalle' | 'Nyfiken' | 'Beach Ready';
+export interface QuizOption {
+  id: string;
+  text: string;
+  points?: number;
+}
+
+export interface QuizQuestion {
+  id: string | number;
+  question: string;
+  type: QuestionType;
+  options?: QuizOption[];
+  placeholder?: string;
+}
+
+export interface QuizResult {
+  level: string;
   description: string;
   recommendations: string[];
-};
+}
 
 export type FormData = {
   companyName: string;
