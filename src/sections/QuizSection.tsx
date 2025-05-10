@@ -211,7 +211,7 @@ const QuizSection: React.FC = () => {
 
   return (
     <section className="py-32 px-8 bg-[#CDB4DB]" id="quiz-section">
-      <div className="max-w-[850px] mx-auto">
+      <div className="max-w-[860px] mx-auto">
         <h2 className="h2-quiz-outline mb-8 text-center leading-[1.2]">
           Har ni AI-FOMO på jobbet?
         </h2>

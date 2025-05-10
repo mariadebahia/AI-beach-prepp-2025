@@ -4,7 +4,7 @@ import Button from '../components/Button';
 const HeroSection: React.FC = () => {
   return (
     <section className="relative bg-[#FFFDE7] pt-8 pb-20 px-8">
-      <div className="max-w-[850px] mx-auto text-center">
+      <div className="max-w-[860px] mx-auto text-center">
         <img 
           src="https://gbnzjpuohpidutbwadbu.supabase.co/storage/v1/object/sign/image/3AImigos_logo_hand.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2ZkNTI0NzJhLTk5YzgtNDQ2Yy05ZTM3LTczMTVkYjJjYzQ4MiJ9.eyJ1cmwiOiJpbWFnZS8zQUltaWdvc19sb2dvX2hhbmQucG5nIiwiaWF0IjoxNzQ2NTU4NTE2LCJleHAiOjE3NzgwOTQ1MTZ9.KPMF6SXJR_5Jon9Kps4S59PyWn6hJyRP8o0cDcMmIeI"
           alt="3AImigos Logo - Hand with three fingers"
