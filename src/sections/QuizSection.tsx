@@ -11,3 +11,5 @@ const API_KEY = 'ed5aed3cdd2410758637cc8a50e26f4bb4402bead81885f55a933331228fb5f
 
 // Rest of the file remains unchanged
 [... rest of the file content remains exactly the same ...]
+
+export default API_KEY
