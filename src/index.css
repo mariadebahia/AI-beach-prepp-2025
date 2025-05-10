@@ -11,7 +11,6 @@
 /*
    Base styles for HTML elements.
    Here you set the default appearance if no specific class or inline style is used.
-   Remove conflicting font-family/font-weight/text-shadow from here.
 */
 @layer base {
   h1 {
@@ -19,11 +18,11 @@
   }
 
   h2 {
-    @apply text-[3.75rem] font-outfit font-extralight leading-[1.2] text-black;
+    @apply text-[3.75rem] font-outfit font-semibold leading-[1.2] text-black;
   }
 
   h3 {
-    @apply text-[2.5rem] font-bold font-sans leading-[1.2];
+    @apply text-[2.5rem] font-outfit font-semibold leading-[1.2];
   }
 
   body {

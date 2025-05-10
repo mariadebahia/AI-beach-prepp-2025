@@ -31,12 +31,10 @@ const CompetitionSection: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
       
-      // Reset form after submission
       setFormData({
         companyName: '',
         contactName: '',
@@ -46,14 +44,13 @@ const CompetitionSection: React.FC = () => {
         gdprConsent: false
       });
       
-      // In a real application, you would send this data to your backend
       console.log('Form submitted:', formData);
     }, 1500);
   };
   
   return (
-    <section className="py-20 px-4 bg-[#A5D6A7]" id="competition-section">
-      <div className="max-w-5xl mx-auto">
+    <section className="py-20 px-8 bg-[#A5D6A7]" id="competition-section">
+      <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-center mb-8">
           <Trophy className="text-yellow-500 mr-3" size={32} />
           <AnimatedHeader

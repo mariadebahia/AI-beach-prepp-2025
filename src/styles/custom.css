@@ -4,7 +4,7 @@
 .h2-quiz-outline {
   /* Typsnitt och vikt */
   font-family: 'Outfit', sans-serif;
-  font-weight: 200;
+  font-weight: 600;
 
   /* Eventuella andra stilar som är specifika för dessa H2:or */
   /* text-align: center; */
@@ -13,23 +13,23 @@
 
 /* Dina anpassade klasser för quiz-resultat etc. */
 .quiz-result-heading {
-  @apply text-[4.5rem] font-display font-bold mb-12 text-[#2D1B69] leading-[1.2];
+  @apply text-[4.5rem] font-outfit font-semibold mb-12 text-[#2D1B69] leading-[1.2];
 }
 
 .quiz-metric-heading {
-  @apply text-[2.75rem] font-sans font-medium mb-6 leading-[1.2];
+  @apply text-[2.75rem] font-outfit font-semibold mb-6 leading-[1.2];
 }
 
 .quiz-metric-value {
-  @apply text-[7.5rem] font-sans font-bold text-[#2D1B69] mb-6 leading-none;
+  @apply text-[7.5rem] font-outfit font-semibold text-[#2D1B69] mb-6 leading-none;
 }
 
 .quiz-percentile {
-  @apply text-2xl font-sans font-semibold text-[#2D1B69] leading-relaxed;
+  @apply text-2xl font-outfit font-semibold text-[#2D1B69] leading-relaxed;
 }
 
 .quiz-recommendations {
-  @apply text-xl font-sans leading-relaxed;
+  @apply text-xl font-outfit leading-relaxed;
 }
 
 .quiz-recommendations li {
@@ -37,7 +37,7 @@
 }
 
 .quiz-body-text {
-  @apply text-xl font-sans leading-relaxed text-gray-700;
+  @apply text-xl font-outfit leading-relaxed text-gray-700;
 }
 
 .quiz-metric-card {
