@@ -82,12 +82,14 @@ const QuizSection: React.FC = () => {
       }
     });
 
+    const maxScore = quizQuestions
+      .filter(q => q.type === 'multiple-choice')
+      .reduce((sum, q) => sum + Math.max(...(q.options?.map(opt => opt.points || 0) || [0])), 0);
+
     const payload = {
       answers: payloadAnswers,
       totalScore,
-      maxPossibleScore: quizQuestions
-        .filter(q => q.type === 'multiple-choice')
-        .reduce((sum, q) => sum + Math.max(...(q.options?.map(opt => opt.points || 0) || [0])), 0),
+      maxScore,
       timestamp: new Date().toISOString(),
       quiz_version: '1.1',
     };
