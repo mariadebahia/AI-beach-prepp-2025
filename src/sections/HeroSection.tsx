@@ -12,7 +12,7 @@ const HeroSection: React.FC = () => {
         />
         
         <h1 className="font-['Bricolage_Grotesque'] font-extrabold mb-6">
-          Fixa AI-formen till<br />beach 2025!
+          Fixa AI-formen till beach 2025!
         </h1>
         <h5 className="text-[2rem] leading-relaxed mb-12">
           Tävla och vinn en skräddarsydd AI-workout för ditt jobb innan midsommar!
