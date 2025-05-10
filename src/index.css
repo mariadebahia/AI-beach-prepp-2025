@@ -2,6 +2,7 @@
 
 /* Import your custom styles */
 @import './styles/custom.css';
+@import './styles/animations.css';
 
 /* Import Tailwind's base, components, and utility styles - ONLY ONCE */
 @tailwind base;
@@ -27,5 +28,11 @@
 
   body {
     @apply font-sans text-lg bg-gray-50;
+  }
+
+  /* Add no-js class to body when JavaScript is disabled */
+  .no-js {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
