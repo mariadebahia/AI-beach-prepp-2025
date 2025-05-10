@@ -4,7 +4,7 @@ import { Users } from 'lucide-react';
 
 const AboutSection: React.FC = () => {
   return (
-    <section className="py-20 px-4 bg-blue-50" id="about-section">
+    <section className="py-20 px-4 bg-[#FFEB3B]" id="about-section">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-center mb-8">
           <Users className="text-blue-600 mr-3" size={32} />
