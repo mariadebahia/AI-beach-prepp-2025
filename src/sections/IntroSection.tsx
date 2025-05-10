@@ -73,7 +73,7 @@ const IntroSection: React.FC = () => {
         {isSubmitted ? (
           <AnimatedSection animation="fade-up" delay="200">
             <div className="bg-white p-8 rounded-xl shadow-lg">
-              <h2 className="text-4xl font-bold text-green-600 mb-6">Tack – ni är med i AI Beach Prep! 🏋️</h3>
+              <h2 className="text-4xl font-bold text-green-600 mb-6">Tack – ni är med i AI Beach Prep! 🏋️</h2>
               <p className="text-2xl text-gray-700 mb-8">
                 Vi har registrerat er anmälan och hör snart av oss om ni går vidare till nästa steg. Redan nu kan ni börja AI-värma upp med vår guide!
               </p>
