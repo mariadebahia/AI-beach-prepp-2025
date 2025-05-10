@@ -1,26 +1,15 @@
+/* src/styles/custom.css */
 
-/* src/styles/custom.css (eller där du valde att spara filen) - Uppdaterat innehåll */
-
-/* Anpassad klass för H2 i Quiz-sektionen med Bricolage Grotesque SemiBold 600 (utan Outline) */
-/* Använd denna klass på de två H2:orna i QuizSection.tsx */
+/* Anpassad klass för H2 i Quiz-sektionen */
 .h2-quiz-outline {
   /* Typsnitt och vikt */
-  font-family: 'Bricolage Grotesque', sans-serif; /* KONTROLLERA EXAKT NAMN! */
-  font-weight: 600; /* SemiBold */
-
-  /* Textkontur (Outline) - TAS BORT */
-  /* -webkit-text-stroke: 2px black; */
-  /* text-stroke: 2px black; */
-  /* color: transparent; */ /* TAS BORT - texten blir nu synlig */
+  font-family: 'Outfit', sans-serif;
+  font-weight: 200;
 
   /* Eventuella andra stilar som är specifika för dessa H2:or */
   /* text-align: center; */
-  /* @apply text-[3.75rem] leading-[1.2]; */ /* Om du vill flytta storlek etc. hit istället för till .tsx */
-
-  /* Sätt textfärgen här om den inte ska vara standard svart från h2{} regeln */
-  /* color: black; */ /* Exempel: Sätt färgen till svart */
+  /* @apply text-[3.75rem] leading-[1.2]; */
 }
-
 
 /* Dina anpassade klasser för quiz-resultat etc. */
 .quiz-result-heading {
@@ -66,7 +55,3 @@
 .results-container {
   @apply p-10;
 }
-
-
-/* Lägg till andra anpassade stilar nedan vid behov */
-

@@ -19,7 +19,7 @@
   }
 
   h2 {
-    @apply text-[3.75rem] font-extralight font-outfit leading-[1.2] text-black;
+    @apply text-[3.75rem] font-outfit font-extralight leading-[1.2] text-black;
   }
 
   h3 {
