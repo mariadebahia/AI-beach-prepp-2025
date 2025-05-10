@@ -14,7 +14,7 @@ import { Dumbbell, Brain, Rocket, TrendingUp, Users } from 'lucide-react';
 // Kontrollera att denna URL är den senaste och korrekta från Manus.im
 const MANUS_WEBHOOK_URL = 'https://29yhyi3c9q7y.manus.space/quiz_submit'; // Använder den nya URL:en
 
-// Standardresultat om API-anropet misslyckas eller inte returnerar JSON
+// Standardresultat om API-anropet misslyssnas eller inte returnerar JSON
 // Detta objekt används när API-anropet misslysslas (t.ex. 401-fel)
 const defaultResults = {
   result_page_title: 'Nyfiken',
@@ -501,38 +501,4 @@ const QuizSection: React.FC = () => {
                          <div className="flex justify-center mb-4">
                            <Users className="w-8 h-8 text-deep-purple" />
                          </div>
-                         <h6 className="text-[23px] font-medium mb-4">Kompetensgap</h6>
-                         <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
-                           {quizResults.kompetensgapPercent}%
-                         </div>
-                         <p className="quiz-body-text">Skillnaden mellan nuvarande kompetens och vad som krävs för nästa nivå</p>
-                       </div>
-                   )}
-                 </div>
-             )}
-
-
-            {/* Knapp för att scrolla till nästa sektion */}
-            <Button
-              onClick={() => document.getElementById('competition-section')?.scrollIntoView({ behavior: 'smooth' })}
-              variant="purple" // Anpassa variant/stil vid behov
-              className="bg-beach-purple text-white" // Exempel på Tailwind-klasser för knappstil
-            >
-              Tävla om en AI-workshop
-            </Button>
-          </div>
-        )}
-
-        {/* Laddningsindikator */}
-        {isSubmitting && (
-             <div className="text-center text-lg font-semibold mt-6">
-                 Skickar svar...
-             </div>
-         )}
-
-      </div>
-    </section>
-  );
-};
-
-export default QuizSection;
+                         <h6 className="text-[23px] font-medium mb-4">Kompetens
