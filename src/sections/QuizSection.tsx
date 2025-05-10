@@ -5,8 +5,8 @@ import ProgressBar from '../components/ProgressBar';
 import Button from '../components/Button';
 import { Dumbbell, Brain, Rocket, TrendingUp, Users } from 'lucide-react';
 
-const MANUS_WEBHOOK_URL = 'https://4zmhqivc0g0q.manus.space/quiz_submit';
-const API_KEY = 'ed5aed3cdd2410758637cc8a50e26fbb4402bead81885f55a933331228fb5f1f';
+const MANUS_WEBHOOK_URL = 'https://29yhyi3c9q7y.manus.space/quiz_submit';
+const API_KEY = 'ed5aed3cdd2410758637cc8a50e26f4bb4402bead81885f55a933331228fb5f1';
 
 const defaultResults = {
   result_page_title: 'Nyfiken',
