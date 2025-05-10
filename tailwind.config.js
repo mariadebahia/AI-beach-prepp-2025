@@ -16,6 +16,7 @@ export default {
         inter: ['Inter', 'sans-serif'],
         bitter: ['Bitter', 'serif'],
         gloock: ['Gloock', 'serif'],
+        outfit: ['Outfit', 'sans-serif'],
       },
       fontSize: {
         'h1': ['5rem', { lineHeight: '1.2' }], // 80px
