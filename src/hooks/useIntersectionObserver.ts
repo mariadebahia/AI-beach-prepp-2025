@@ -19,6 +19,7 @@ export const useIntersectionObserver = ({
         if (entry.isIntersecting) {
           entry.target.classList.add('fade-in');
           onIntersect?.();
+          observer.unobserve(entry.target); // Only animate once
         }
       },
       {
