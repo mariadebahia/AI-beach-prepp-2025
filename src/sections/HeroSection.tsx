@@ -11,7 +11,7 @@ const HeroSection: React.FC = () => {
           className="w-24 h-24 mx-auto mb-12 hover:scale-110 transition-transform duration-300"
         />
         
-        <h1 className="font-bricolage font-bold mb-6">
+        <h1 className="font-['Bricolage_Grotesque'] font-bold mb-6">
           Fixa AI-formen till<br />beach 2025!
         </h1>
         <h5 className="text-[2rem] leading-relaxed mb-12">
