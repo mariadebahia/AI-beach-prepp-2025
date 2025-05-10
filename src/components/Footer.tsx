@@ -9,7 +9,29 @@ const Footer: React.FC = () => {
           <h2 className="font-gloock font-normal mb-6 leading-[1.4]">
             Hej, det är vi som är<br />Tres AImigos!
           </h2>
-          {/* Rest of the component remains unchanged */}
+          <p className="text-xl mb-12">
+            Vi är världens första AI Content Engineers, examinerade från Berghs SOC. 
+            Med vår unika kompetens hjälper vi företag att komma igång med AI på ett 
+            enkelt och konkret sätt.
+          </p>
+          <div className="flex justify-center space-x-6 mb-8">
+            <a 
+              href="https://www.linkedin.com/company/tres-aimigos" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-gray-900"
+            >
+              <Linkedin size={24} />
+            </a>
+            <a 
+              href="https://www.instagram.com/tresaimigos" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-gray-900"
+            >
+              <Instagram size={24} />
+            </a>
+          </div>
         </div>
       </div>
       
@@ -27,4 +49,4 @@ const Footer: React.FC = () => {
   );
 };
 
-export default Footer
+export default Footer;
