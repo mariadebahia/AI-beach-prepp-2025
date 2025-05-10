@@ -47,13 +47,13 @@ const IntroSection: React.FC = () => {
 
   return (
     <section className="py-32 px-8 bg-[#fbf9f9]" id="intro-section">
-      <div className="max-w-[700px] mx-auto text-center">
+      <div className="max-w-[850px] mx-auto text-center">
         <h2 className="mb-4 h2-quiz-outline">
           Har ni AI-FOMO på jobbet?<break></break>
           Lungt, vi får er att komma igång!
         </h2>
         
-        <h5 className="text-[2rem] leading-[1.2] mb-16 max-w-[700px] mx-auto">
+        <h5 className="text-[2rem] leading-[1.2] mb-16 max-w-[850px] mx-auto">
           Alla snackar AI men hur kommer man igång på jobbet?! Vi hjälper er med den första milen. Vi kommer till din arbetsplats och AI-boostar med grunden, verktyg och tips för att komma i AI-form till sommaren (så att ni är redo för hösten). Vi kallar det AI-beach prepp men en svindyr management konsult skulle nog kalla det för "get-AI-ready-or-die".
         </h5>
 
