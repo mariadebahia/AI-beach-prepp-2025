@@ -221,12 +221,7 @@ const QuizSection: React.FC = () => {
   return (
     <section className="py-32 px-8 bg-[#CDB4DB]" id="quiz-section">
       <div className="max-w-3xl mx-auto">
-        <h2 className="h2-quiz-outline mb-8 text-center leading-[1.2]">
-          Hur är AI-formen?
-        </h2>
-        <h2 className="h2-quiz-outline mb-8 text-center leading-[1.2]">
-          Ta vårt AI-fitnesstest!
-        </h2>
+        <h2 className="h2-quiz-outline mb-8 text-center leading-[1.2]">Hur är AI-formen? Ta vårt AI-fitnesstest!</h2>
 
         <h5 className="text-[1.4375rem] leading-relaxed mb-8 text-center">
           Kör vårt 2-minuters quiz och kolla vilket AI-nivå ni är på idag: Pappskalle, Nyfiken Nybörjare eller Beach Ready?
