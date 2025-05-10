@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../components/Button';
+import { supabase } from '../lib/supabase';
 
 const MAKE_WEBHOOK_URL = 'https://hook.eu2.make.com/abhs8xzl3ssmsqjeglpldt8aj84hihfo';
 
@@ -23,6 +24,16 @@ const IntroSection: React.FC = () => {
     };
 
     try {
+      // Save to Supabase
+      const { error: supabaseError } = await supabase
+        .from('submissions')
+        .insert([submission]);
+
+      if (supabaseError) {
+        throw new Error(supabaseError.message);
+      }
+
+      // Send to Make.com webhook
       const response = await fetch(MAKE_WEBHOOK_URL, {
         method: 'POST',
         headers: {
