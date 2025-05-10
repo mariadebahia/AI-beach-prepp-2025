@@ -1,17 +1,19 @@
 import React, { useState, ChangeEvent } from 'react';
-import { quizQuestions, QuizQuestion, QuizResult } from '../utils/quizData'; // Removed QuizOption from this import
+import { quizQuestions, QuizQuestion, QuizResult } from '../utils/quizData';
 import QuizOption from '../components/QuizOption';
 import ProgressBar from '../components/ProgressBar';
 import Button from '../components/Button';
 import { Dumbbell, Brain, Rocket, TrendingUp, Users } from 'lucide-react';
 
-// Kontrollera att denna URL är den senaste och korrekta från Manus.im
+// Updated API key and URL
 const MANUS_WEBHOOK_URL = 'https://4zmhqivc0g0q.manus.space/quiz_submit';
+const API_KEY = 'ed5aed3cdd2410758637cc8a50e26fbb4402bead81885f55a933331228fb5f1f'; // Added missing 'f' at the end
 
-// Standardresultat om API-anropet misslyckas eller inte returnerar JSON
+// Updated defaultResults to include level property
 const defaultResults = {
   result_page_title: 'Nyfiken',
-  result_html_content: `
+  level: 'Nyfiken',
+  description: `
     <p class="quiz-body-text mb-8">Du har tagit dina första steg in i AI-världen och visar stor potential!</p>
     <div class="mb-8">
       <h6 class="text-[23px] font-medium mb-4">Rekommendationer:</h6>
@@ -28,18 +30,21 @@ const defaultResults = {
       </ul>
     </div>
   `,
+  recommendations: [
+    'Börja med att identifiera enkla AI-användningsfall',
+    'Utbilda teamet i grundläggande AI-koncept',
+    'Experimentera med färdiga AI-verktyg'
+  ],
   comparative_statement: 'Du ligger bättre till än 65% av alla som tagit testet!',
   strategicMaturityPercent: 75,
   kompetensgapPercent: 60
 };
 
-// Definiera en typ för att lagra alla svar, inklusive de nya typerna
 interface AllAnswers {
-  [questionId: string | number]: string; // Svar lagras med frågans ID som nyckel
+  [questionId: string | number]: string;
 }
 
 const QuizSection: React.FC = () => {
-  // State för att hantera quiz-flödet
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<AllAnswers>({});
   const [showResults, setShowResults] = useState(false);
@@ -47,15 +52,12 @@ const QuizSection: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [quizResults, setQuizResults] = useState<QuizResult | null>(null);
 
-  // Hämta aktuell fråga baserat på index
   const currentQuestion = quizQuestions.length > 0 && currentQuestionIndex < quizQuestions.length
     ? quizQuestions[currentQuestionIndex]
     : null;
 
-  // Hjälpfunktion för fördröjning (används i återförsökslogiken)
   const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-  // Funktion för att skicka quiz-svar till backend
   const submitQuiz = async (allAnswers: AllAnswers) => {
     let totalScore = 0;
     const scoredAnswers: Record<string | number, string> = {};
@@ -92,15 +94,13 @@ const QuizSection: React.FC = () => {
       quiz_version: '1.1',
     };
 
-    console.log("Sending payload:", payload);
-
     try {
       const response = await fetch(MANUS_WEBHOOK_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'X-API-KEY': 'ed5aed3cdd2410758637cc8a50e26fbb4402bead81885f55a933331228fb5f1'
+          'X-API-KEY': API_KEY
         },
         body: JSON.stringify(payload),
         mode: 'cors',
@@ -137,15 +137,12 @@ const QuizSection: React.FC = () => {
         return await submitQuiz(allAnswers);
       } catch (error) {
         retries++;
-
         if (retries > maxRetries) {
           throw error;
         }
-
         await delay(1000 * retries);
       }
     }
-    console.log('Max retries reached, returning default results');
     return defaultResults;
   };
 
@@ -202,8 +199,9 @@ const QuizSection: React.FC = () => {
     }
   };
 
+  // Fixed getResultIcon function with optional chaining
   const getResultIcon = () => {
-    if (!quizResults) return null;
+    if (!quizResults?.level) return null;
 
     switch (quizResults.level.toLowerCase()) {
       case 'pappskalle':
@@ -213,7 +211,7 @@ const QuizSection: React.FC = () => {
       case 'beach ready':
         return <Rocket className="w-16 h-16 text-green-500 mx-auto mb-6" />;
       default:
-        return null;
+        return <Brain className="w-16 h-16 text-yellow-500 mx-auto mb-6" />;
     }
   };
 
