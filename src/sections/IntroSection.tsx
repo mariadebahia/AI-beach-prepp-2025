@@ -55,19 +55,19 @@ const IntroSection: React.FC = () => {
             Lung, vi får er att komma igång!
           </h2>
           
-          <h5 className="text-[2rem] leading-[1.2] mb-16 max-w-[860px] mx-auto">
+          <h5 className="text-[1.5rem] leading-[1.2] mb-16 max-w-[860px] mx-auto">
             Alla snackar AI men hur kommer man igång på jobbet?! Vi hjälper er att komma igång med den första milen. Vi kommer till din arbetsplats och AI-boostar med grunden, verktyg och tips för att komma i AI-form till sommaren (så att ni är redo för hösten). Vi kallar det AI-beach prepp men en svindyr management konsult skulle nog kalla det för "get-AI-ready-or-die".
           </h5>
         </AnimatedSection>
 
          Tävla om en AI-workout för ert företag! 🏖️<break></break>
- <h5 className="text-[2rem] leading-[1.2] mb-16 max-w-[860px] mx-auto">
-Mellan vecka 20–24 kommer vi att välja ut ett antal företag som får ta del av vår AI Beach Prep – en skräddarsydd AI-workshop för att komma i AI-form inför sommaren.  <br></br>
+         <h5 className="text-[1.5rem] leading-[1.2] mb-16 max-w-[860px] mx-auto">
+            Mellan vecka 20–24 kommer vi att välja ut ett antal företag som får ta del av vår AI Beach Prep – en skräddarsydd AI-workshop för att komma i AI-form inför sommaren.  <br></br>
 
-Urvalet görs av vår jury och baseras på er motivering, er nyfikenhet och potential att komma igång med AI. Vi bedömer alla ansökningar individuellt – bransch eller storlek spelar ingen roll.
+            Urvalet görs av vår jury och baseras på er motivering, er nyfikenhet och potential att komma igång med AI. Vi bedömer alla ansökningar individuellt – bransch eller storlek spelar ingen roll.
 
-📝 Alla som anmäler sig får vår AI-fitnessguide som tack, oavsett om man blir utvald eller inte.
-     </h5>
+            📝 Alla som anmäler sig får vår AI-fitnessguide som tack, oavsett om man blir utvald eller inte.
+         </h5>
 
         {isSubmitted ? (
           <AnimatedSection animation="fade-up" delay="200">
