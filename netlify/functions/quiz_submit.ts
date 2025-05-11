@@ -1,4 +1,5 @@
 import { Handler } from '@netlify/functions';
+import { google } from 'googleapis';
 
 interface QuizPayload {
   answers: Record<string, number>;
@@ -6,6 +7,9 @@ interface QuizPayload {
   maxScore: number;
   timestamp: string;
   quiz_version: string;
+  industry?: string;
+  companySize?: string;
+  strangeAIQuestion?: string;
 }
 
 const handler: Handler = async (event) => {
@@ -29,7 +33,7 @@ const handler: Handler = async (event) => {
 
   try {
     const payload: QuizPayload = JSON.parse(event.body || '{}');
-    const { totalScore } = payload;
+    const { totalScore, answers, industry, companySize, strangeAIQuestion } = payload;
 
     // Calculate result level based on total score
     let level;
@@ -62,11 +66,54 @@ const handler: Handler = async (event) => {
       ];
     }
 
+    // Calculate percentages
+    const strategicMaturityPercent = Math.round((totalScore / payload.maxScore) * 100);
+    const kompetensgapPercent = Math.round(100 - ((totalScore / payload.maxScore) * 100));
+
+    // Google Sheets Integration
+    const auth = new google.auth.GoogleAuth({
+      credentials: {
+        client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      },
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    });
+
+    const sheets = google.sheets({ version: 'v4', auth });
+    const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_ID;
+    const SHEET_NAME = 'Quiz Results';
+
+    const timestamp = new Date().toISOString();
+    const rowData = [
+      timestamp,
+      JSON.stringify(answers),
+      industry || '',
+      companySize || '',
+      strangeAIQuestion || '',
+      totalScore,
+      level,
+      strategicMaturityPercent,
+      kompetensgapPercent,
+      payload.quiz_version
+    ];
+
+    await sheets.spreadsheets.values.append({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `${SHEET_NAME}!A:J`,
+      valueInputOption: 'USER_ENTERED',
+      insertDataOption: 'INSERT_ROWS',
+      resource: {
+        values: [rowData],
+      },
+    });
+
     const response = {
       level,
       description,
       recommendations,
-      comparative_statement: `Du ligger bättre till än ${Math.floor(Math.random() * 30) + 60}% av alla som tagit testet!`
+      comparative_statement: `Du ligger bättre till än ${Math.floor(Math.random() * 30) + 60}% av alla som tagit testet!`,
+      strategicMaturityPercent,
+      kompetensgapPercent
     };
 
     return {
