@@ -19,7 +19,7 @@ const HeroSection: React.FC = () => {
             Fixa AI-formen till beach 2025!
           </h1>
           <h5 className="text-[2rem] leading-relaxed mb-12">
-            Tävla och vinn en skräddarsydd AI-workout för ditt jobb innan midsommar!
+            Tävla och vinn en skräddarsydd AI-workout för dig och ditt jobb innan midsommar!
           </h5>
         </AnimatedSection>
         
