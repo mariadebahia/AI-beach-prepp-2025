@@ -85,16 +85,16 @@ const handler: Handler = async (event) => {
 
     const timestamp = new Date().toISOString();
     const rowData = [
-      timestamp,
-      JSON.stringify(answers),
-      industry || '',
-      companySize || '',
-      strangeAIQuestion || '',
-      totalScore,
-      level,
-      strategicMaturityPercent,
-      kompetensgapPercent,
-      payload.quiz_version
+      timestamp,                    // Timestamp
+      JSON.stringify(answers),      // Raw answers as JSON
+      industry || '',              // Industry
+      companySize || '',           // Company size
+      strangeAIQuestion || '',     // Strange AI question response
+      totalScore,                  // Total score
+      level,                       // Result level
+      strategicMaturityPercent,    // Strategic maturity percentage
+      kompetensgapPercent,        // Competency gap percentage
+      payload.quiz_version         // Quiz version
     ];
 
     await sheets.spreadsheets.values.append({
