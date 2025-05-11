@@ -6,7 +6,7 @@ import Button from '../components/Button';
 import AnimatedSection from '../components/AnimatedSection';
 import { Dumbbell, Brain, Rocket, TrendingUp, Users } from 'lucide-react';
 
-const MANUS_WEBHOOK_URL = 'https://29yhyi3c9q7y.manus.space/quiz_submit';
+const MANUS_WEBHOOK_URL = 'https://29yhyi3c95z7.manus.space/quiz_submit';
 
 const defaultResults = {
   result_page_title: 'Nyfiken',
