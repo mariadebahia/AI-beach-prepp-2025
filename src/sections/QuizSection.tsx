@@ -8,7 +8,7 @@ import { Dumbbell, Brain, Rocket, TrendingUp, Users } from 'lucide-react';
 
 const QUIZ_ENDPOINT = import.meta.env.PROD 
   ? '/.netlify/functions/quiz_submit'  // Production endpoint
-  : 'https://29yhyi3c95z7.manus.space/quiz_submit'; // Development endpoint
+  : 'http://localhost:8888/.netlify/functions/quiz_submit'; // Local development endpoint
 
 const calculateKompetensgapPercent = (answers: Record<string | number, string>): number => {
   const kompetensQuestions = [1, 3, 5, 7, 9]; // Questions related to competency
@@ -90,7 +90,7 @@ const QuizSection: React.FC = () => {
   const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
   const submitQuiz = async (allAnswers: AllAnswers) => {
-    let totalScore = 0;
+    let totalPoints = 0;
     const payloadAnswers: Record<string | number, string | number> = {};
 
     quizQuestions.forEach(question => {
@@ -103,13 +103,13 @@ const QuizSection: React.FC = () => {
             totalPoints += selectedOption.points;
             payloadAnswers[question.id] = selectedOption.points;
           } else {
-             payloadAnswers[question.id] = 0;
+            payloadAnswers[question.id] = 0;
           }
         } else {
           payloadAnswers[question.id] = answerValue;
         }
       } else {
-          payloadAnswers[question.id] = '';
+        payloadAnswers[question.id] = '';
       }
     });
 
@@ -118,7 +118,7 @@ const QuizSection: React.FC = () => {
 
     const payload = {
       answers: payloadAnswers,
-      totalScore,
+      totalScore: totalPoints,
       maxScore: quizQuestions
         .filter(q => q.type === 'multiple-choice')
         .reduce((sum, q) => sum + Math.max(...(q.options?.map(opt => opt.points || 0) || [0])), 0),
@@ -132,7 +132,6 @@ const QuizSection: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'X-API-KEY': 'ed5aed3cdd2410758637cc8a50e26f4bb4402bead81885f55a933331228fb5f1'
         },
         body: JSON.stringify(payload),
         mode: 'cors',
@@ -140,8 +139,8 @@ const QuizSection: React.FC = () => {
       });
 
       if (!response.ok) {
-         const errorText = await response.text();
-         throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText || response.statusText}`);
+        const errorText = await response.text();
+        throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText || response.statusText}`);
       }
 
       const contentType = response.headers.get('content-type');
