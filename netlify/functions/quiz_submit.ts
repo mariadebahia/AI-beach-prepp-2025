@@ -83,23 +83,32 @@ const handler: Handler = async (event) => {
     const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_ID;
     const SHEET_NAME = 'Quiz Results';
 
-    const timestamp = new Date().toISOString();
+    // Prepare row data to match exactly 19 columns in the Google Sheet
     const rowData = [
-      timestamp,                    // Timestamp
-      JSON.stringify(answers),      // Raw answers as JSON
-      industry || '',              // Industry
-      companySize || '',           // Company size
-      strangeAIQuestion || '',     // Strange AI question response
-      totalScore,                  // Total score
-      level,                       // Result level
-      strategicMaturityPercent,    // Strategic maturity percentage
-      kompetensgapPercent,        // Competency gap percentage
-      payload.quiz_version         // Quiz version
+      new Date().toISOString(),                    // Timestamp
+      industry || '',                              // Industry
+      companySize || '',                           // Company Size
+      answers[1] || 0,                             // Q1 Score
+      answers[2] || 0,                             // Q2 Score
+      answers[3] || 0,                             // Q3 Score
+      answers[4] || 0,                             // Q4 Score
+      answers[5] || 0,                             // Q5 Score
+      answers[6] || 0,                             // Q6 Score
+      answers[7] || 0,                             // Q7 Score
+      answers[8] || 0,                             // Q8 Score
+      answers[9] || 0,                             // Q9 Score
+      answers[10] || 0,                            // Q10 Score
+      totalScore,                                  // Total Score
+      level,                                       // Result Level
+      strategicMaturityPercent,                    // Strategic Maturity %
+      kompetensgapPercent,                         // Competency Gap %
+      strangeAIQuestion || '',                     // Strange AI Question
+      payload.quiz_version                         // Quiz Version
     ];
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: `${SHEET_NAME}!A:J`,
+      range: `${SHEET_NAME}!A:S`,                  // Updated to match 19 columns (A through S)
       valueInputOption: 'USER_ENTERED',
       insertDataOption: 'INSERT_ROWS',
       resource: {
