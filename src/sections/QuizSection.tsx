@@ -230,7 +230,9 @@ const QuizSection: React.FC = () => {
 
         <AnimatedSection animation="fade-up" delay="200">
           <h5 className="text-[1.4375rem] leading-relaxed mb-8 text-center">
-            Kör vårt 2-minuters quiz och kolla vilket AI-nivå ni är på idag: Pappskalle, Nyfiken Nybörjare eller Beach Ready?
+  Vårt AI-fitnesstest är inte bara kul – det mäter er strategiska AI-mognad, hittar era kompetensgap och ger er en konkret rekommendation.<break></break>
+
+På bara 2 minuter får ni koll på läget. Och nästa steg.
           </h5>
         </AnimatedSection>
 
