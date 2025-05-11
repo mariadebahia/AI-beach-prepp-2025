@@ -8,6 +8,44 @@ import { Dumbbell, Brain, Rocket, TrendingUp, Users } from 'lucide-react';
 
 const MANUS_WEBHOOK_URL = 'https://29yhyi3c95z7.manus.space/quiz_submit';
 
+const calculateKompetensgapPercent = (answers: Record<string | number, string>): number => {
+  const kompetensQuestions = [1, 3, 5, 7, 9]; // Questions related to competency
+  let totalPoints = 0;
+  let maxPoints = kompetensQuestions.length * 3; // Max 3 points per question
+
+  kompetensQuestions.forEach(questionId => {
+    const answer = answers[questionId];
+    if (answer) {
+      const question = quizQuestions.find(q => q.id === questionId);
+      const option = question?.options?.find(opt => opt.id === answer);
+      if (option?.points !== undefined) {
+        totalPoints += option.points;
+      }
+    }
+  });
+
+  return Math.round((totalPoints / maxPoints) * 100);
+};
+
+const calculateStrategicMaturityPercent = (answers: Record<string | number, string>): number => {
+  const strategicQuestions = [2, 4, 6, 8, 10]; // Questions related to strategic maturity
+  let totalPoints = 0;
+  let maxPoints = strategicQuestions.length * 3; // Max 3 points per question
+
+  strategicQuestions.forEach(questionId => {
+    const answer = answers[questionId];
+    if (answer) {
+      const question = quizQuestions.find(q => q.id === questionId);
+      const option = question?.options?.find(opt => opt.id === answer);
+      if (option?.points !== undefined) {
+        totalPoints += option.points;
+      }
+    }
+  });
+
+  return Math.round((totalPoints / maxPoints) * 100);
+};
+
 const defaultResults = {
   result_page_title: 'Nyfiken',
   level: 'Nyfiken',
@@ -73,17 +111,18 @@ const QuizSection: React.FC = () => {
       }
     });
 
+    const localKompetensgapPercent = calculateKompetensgapPercent(allAnswers);
+    const localStrategicMaturityPercent = calculateStrategicMaturityPercent(allAnswers);
+
     const payload = {
       answers: payloadAnswers,
       totalScore,
       maxScore: quizQuestions
-                         .filter(q => q.type === 'multiple-choice')
-                         .reduce((sum, q) => sum + Math.max(...(q.options?.map(opt => opt.points || 0) || [0])), 0),
+        .filter(q => q.type === 'multiple-choice')
+        .reduce((sum, q) => sum + Math.max(...(q.options?.map(opt => opt.points || 0) || [0])), 0),
       timestamp: new Date().toISOString(),
       quiz_version: '1.2',
     };
-
-    console.log("Sending payload:", payload);
 
     try {
       const response = await fetch(MANUS_WEBHOOK_URL, {
@@ -104,13 +143,34 @@ const QuizSection: React.FC = () => {
       }
 
       const contentType = response.headers.get('content-type');
+      let apiResults;
+      
       if (contentType && contentType.includes('application/json')) {
-        const apiResults = await response.json();
-        return apiResults;
+        apiResults = await response.json();
+      } else {
+        console.log('Response was not JSON, using default results');
+        apiResults = defaultResults;
       }
 
-      console.log('Response was not JSON, using default results', await response.text());
-      return defaultResults;
+      // Combine API results with local calculations
+      const enhancedResults = {
+        ...apiResults,
+        kompetensgapPercent: localKompetensgapPercent,
+        strategicMaturityPercent: localStrategicMaturityPercent
+      };
+
+      // Save results to localStorage for debugging
+      localStorage.setItem('lastQuizResult', JSON.stringify({
+        timestamp: new Date().toISOString(),
+        answers: allAnswers,
+        calculatedResults: {
+          kompetensgapPercent: localKompetensgapPercent,
+          strategicMaturityPercent: localStrategicMaturityPercent
+        },
+        backendResults: apiResults
+      }));
+
+      return enhancedResults;
 
     } catch (err) {
       console.error('Quiz submission error:', err);
@@ -230,9 +290,9 @@ const QuizSection: React.FC = () => {
 
         <AnimatedSection animation="fade-up" delay="200">
           <h5 className="text-[1.4375rem] leading-relaxed mb-8 text-center">
-  Vårt AI-fitnesstest är inte bara kul – det mäter er strategiska AI-mognad och visar på eventuellt kompetensgap samt levererar tre konkret rekommendation.<break></break>
+            Vårt AI-fitnesstest är inte bara kul – det mäter er strategiska AI-mognad och visar på eventuellt kompetensgap samt levererar tre konkret rekommendation.<break></break>
 
-På bara 2 minuter får ni koll på läget. Och nästa steg.
+            På bara 2 minuter får ni koll på läget. Och nästa steg.
           </h5>
         </AnimatedSection>
 
