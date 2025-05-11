@@ -6,7 +6,9 @@ import Button from '../components/Button';
 import AnimatedSection from '../components/AnimatedSection';
 import { Dumbbell, Brain, Rocket, TrendingUp, Users } from 'lucide-react';
 
-const MANUS_WEBHOOK_URL = 'https://29yhyi3c95z7.manus.space/quiz_submit';
+const QUIZ_ENDPOINT = import.meta.env.PROD 
+  ? '/.netlify/functions/quiz_submit'  // Production endpoint
+  : 'https://29yhyi3c95z7.manus.space/quiz_submit'; // Development endpoint
 
 const calculateKompetensgapPercent = (answers: Record<string | number, string>): number => {
   const kompetensQuestions = [1, 3, 5, 7, 9]; // Questions related to competency
@@ -98,7 +100,7 @@ const QuizSection: React.FC = () => {
         if (question.type === 'multiple-choice') {
           const selectedOption = question.options?.find(opt => opt.id === answerValue);
           if (selectedOption && selectedOption.points !== undefined) {
-            totalScore += selectedOption.points;
+            totalPoints += selectedOption.points;
             payloadAnswers[question.id] = selectedOption.points;
           } else {
              payloadAnswers[question.id] = 0;
@@ -125,7 +127,7 @@ const QuizSection: React.FC = () => {
     };
 
     try {
-      const response = await fetch(MANUS_WEBHOOK_URL, {
+      const response = await fetch(QUIZ_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
