@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
           <h2 className="font-['Bricolage_Grotesque'] text-[6rem] font-black mb-6 leading-[1.4]">
             Hej, det är vi som är<br />Tres AImigos!
           </h2>
-          <p className="text-xl mb-12">
+          <p className="text-2xl mb-12">
             Vi är världens första AI Content Engineers, examinerade från Berghs SOC. 
             Med vår unika kompetens hjälper vi företag att komma igång med AI på ett 
             enkelt och konkret sätt.
