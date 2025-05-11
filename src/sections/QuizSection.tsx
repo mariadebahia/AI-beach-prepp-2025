@@ -230,7 +230,7 @@ const QuizSection: React.FC = () => {
 
         <AnimatedSection animation="fade-up" delay="200">
           <h5 className="text-[1.4375rem] leading-relaxed mb-8 text-center">
-  Vårt AI-fitnesstest är inte bara kul – det mäter er strategiska AI-mognad, hittar era kompetensgap och ger er en konkret rekommendation.<break></break>
+  Vårt AI-fitnesstest är inte bara kul – det mäter er strategiska AI-mognad och visar på eventuellt kompetensgap samt levererar tre konkret rekommendation.<break></break>
 
 På bara 2 minuter får ni koll på läget. Och nästa steg.
           </h5>
