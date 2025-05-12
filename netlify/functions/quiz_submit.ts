@@ -66,9 +66,9 @@ const handler: Handler = async (event) => {
       ];
     }
 
-    // Calculate percentages
-    const strategicMaturityPercent = Math.round((totalScore / payload.maxScore) * 100);
-    const kompetensgapPercent = Math.round(100 - ((totalScore / payload.maxScore) * 100));
+    // Calculate percentages with safeguards
+    const strategicMaturityPercent = Math.min(100, Math.max(0, Math.round((totalScore / payload.maxScore) * 100))) || 0;
+    const kompetensgapPercent = Math.min(100, Math.max(0, Math.round(100 - ((totalScore / payload.maxScore) * 100)))) || 0;
 
     // Google Sheets Integration
     const auth = new google.auth.GoogleAuth({
@@ -83,27 +83,27 @@ const handler: Handler = async (event) => {
     const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_ID;
     const SHEET_NAME = 'Quiz Results';
 
-    // Prepare row data to match exactly 19 columns in the Google Sheet
+    // Prepare row data with default values and type checking
     const rowData = [
       new Date().toISOString(),                    // Timestamp
       industry || '',                              // Industry
       companySize || '',                           // Company Size
-      answers[1] || 0,                             // Q1 Score
-      answers[2] || 0,                             // Q2 Score
-      answers[3] || 0,                             // Q3 Score
-      answers[4] || 0,                             // Q4 Score
-      answers[5] || 0,                             // Q5 Score
-      answers[6] || 0,                             // Q6 Score
-      answers[7] || 0,                             // Q7 Score
-      answers[8] || 0,                             // Q8 Score
-      answers[9] || 0,                             // Q9 Score
-      answers[10] || 0,                            // Q10 Score
-      totalScore,                                  // Total Score
-      level,                                       // Result Level
+      Number(answers[1]) || 0,                     // Q1 Score
+      Number(answers[2]) || 0,                     // Q2 Score
+      Number(answers[3]) || 0,                     // Q3 Score
+      Number(answers[4]) || 0,                     // Q4 Score
+      Number(answers[5]) || 0,                     // Q5 Score
+      Number(answers[6]) || 0,                     // Q6 Score
+      Number(answers[7]) || 0,                     // Q7 Score
+      Number(answers[8]) || 0,                     // Q8 Score
+      Number(answers[9]) || 0,                     // Q9 Score
+      Number(answers[10]) || 0,                    // Q10 Score
+      Number(totalScore) || 0,                     // Total Score
+      level || 'Nyfiken',                         // Result Level
       strategicMaturityPercent,                    // Strategic Maturity %
       kompetensgapPercent,                         // Competency Gap %
       strangeAIQuestion || '',                     // Strange AI Question
-      payload.quiz_version                         // Quiz Version
+      payload.quiz_version || '1.0'                // Quiz Version
     ];
 
     await sheets.spreadsheets.values.append({
