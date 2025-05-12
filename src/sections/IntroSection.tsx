@@ -94,7 +94,7 @@ const IntroSection: React.FC = () => {
 
          <b>📝 Alla som anmäler sig får vår AI-fitnessguide som tack, oavsett om man blir utvald eller inte.</b> 
           
-          Urvalet görs av vår jury och baseras på er motivering, er nyfikenhet och potential att komma igång med AI. Vi bedömer alla ansökningar individuellt – bransch eller storlek spelar ingen roll.<bR></bR>
+    <bR></bR>
         </h5>
 
         {isSubmitted ? (
@@ -102,7 +102,7 @@ const IntroSection: React.FC = () => {
             <div className="bg-white p-8 rounded-xl shadow-lg">
               <h2 className="text-4xl font-bold text-green-600 mb-6">Tack – ni är med i AI Beach Prep! 🏋️</h2>
               <p className="text-2xl text-gray-700 mb-8">
-                Vi har registrerat er anmälan och hör snart av oss om ni går vidare till nästa steg. Redan nu kan ni börja AI-värma upp med vår guide!
+                Vi har registrerat er anmälan och hör snart av oss om ni går vidare till nästa steg.      Urvalet görs av vår jury och baseras på er motivering, er nyfikenhet och potential att komma igång med AI. Vi bedömer alla ansökningar individuellt – bransch eller storlek spelar ingen roll. Redan nu kan ni börja AI-värma upp med vår guide!
               </p>
               <Button 
                 variant="outline"
