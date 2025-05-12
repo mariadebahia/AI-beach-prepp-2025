@@ -122,7 +122,7 @@ const Footer: React.FC = () => {
                   <Linkedin size={24} />
                 </a>
                 <a 
-                  href="https://www.ellinoaabyolsson.com" 
+                  href="https://www.aicontentengineers.se/ellinor-aaby-olsson/"
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-deep-purple transition-colors"

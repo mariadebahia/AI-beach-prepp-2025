@@ -102,7 +102,7 @@ const AboutSection: React.FC = () => {
               <a href="https://www.linkedin.com/in/ellino-aaby-olsson" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
                 <img src={linkedinIconUrl} alt="LinkedIn" className="w-6 h-6" />
               </a>
-              <a href="https://ellinoaabyolsson.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-gray-900">
+              <a href="https://www.aicontentengineers.se/ellinor-aaby-olsson/" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-gray-900">
                 <img src={globeIconUrl} alt="Portfolio" className="w-6 h-6" />
               </a>
             </div>
