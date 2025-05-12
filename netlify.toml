@@ -1,3 +1,5 @@
+# netlify.toml
+
 [build]
   command = "npm run build"
   publish = "dist"
@@ -6,6 +8,13 @@
 [dev]
   command = "npm run dev"
   targetPort = 5173
+
+[[redirects]]
+  from = "/api/quiz"
+  to = "https://script.google.com/macros/s/AKfycbytMPbUdqps1VR2jNipkpiWtbVgODtEXd5UG_Uh1osqRlqaxyBZjbpYU6H2_FNKfVmK/exec"
+  status = 200
+  force = true
+  headers = { "Access-Control-Allow-Origin" = "*" }
 
 [[redirects]]
   from = "/*"
