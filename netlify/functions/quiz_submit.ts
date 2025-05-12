@@ -84,9 +84,9 @@ const handler: Handler = async (event) => {
     const sheets = google.sheets({ version: 'v4', auth });
     const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
     const sheetName = 'Quiz Results';
-    const range = `${sheetName}!A:S`;
+    const range = `${sheetName}!A:T`; // Updated range for 20 columns
 
-    // Prepare row data matching exactly 19 columns
+    // Prepare row data matching exactly 20 columns
     const rowData = [
       new Date(payload.timestamp).toISOString(),    // 1. Timestamp
       industry || '',                               // 2. Industry
@@ -106,7 +106,8 @@ const handler: Handler = async (event) => {
       strategicMaturityPercent,                     // 16. Strategic Maturity %
       kompetensgapPercent,                         // 17. Competency Gap %
       aiReadinessPercent,                          // 18. AI-readiness %
-      payload.quiz_version || '1.0'                 // 19. Quiz Version
+      payload.quiz_version || '1.0',                // 19. Quiz Version
+      strangeAIQuestion || '',                      // 20. Strange AI Question
     ];
 
     // Log the data being sent to help with debugging
