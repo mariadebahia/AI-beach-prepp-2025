@@ -12,7 +12,7 @@
 [[redirects]]
   from = "/api/quiz"
   # Ersätt med din exakta Google Apps Script Web App URL
-  to = "https://script.google.com/macros/s/AKfycbwuSibl18yUHjWLqSn0fm6oBtXNvf8PA7MVISnEpMU0Rqj8xfZcoYkKN36hYi1iLql_/exec"
+  to = "https://script.google.com/macros/s/AKfycbzUB-pBw16f91NM2qKawP4yORYcuiGw6m10FTODTnxcugLF4OsiiRmt7X8vCbEGlmuk/exec"
   status = 200
   force = true
   # KORRIGERAD syntax för headers (med dubbla citationstecken)
