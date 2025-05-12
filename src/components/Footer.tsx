@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
               <h3 className="text-2xl font-bold mb-2">Maria Zerihoun</h3>
               <div className="flex justify-center space-x-4">
                 <a 
-                  href="https://www.linkedin.com/in/maria-zerihoun-b3b4b9168" 
+                  href="https://www.linkedin.com/in/mariazerihoun/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-deep-purple transition-colors"
