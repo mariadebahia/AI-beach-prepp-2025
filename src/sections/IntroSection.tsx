@@ -92,7 +92,7 @@ const IntroSection: React.FC = () => {
         <h5 className="text-[1.25rem] leading-[1.2] mb-16 max-w-[860px] mx-auto text-left">
 
 
-         <b>📝 Alla som anmäler sig får vår AI-fitnessguide som tack, oavsett om man blir utvald eller inte.</b> 
+         <b> Pst - Alla som anmäler sig får vår AI-fitnessguide. En snabbstart till AI-form – med knepen, verktygen och peppen för att ta första steget direkt.</b> 
           
     <bR></bR>
         </h5>
