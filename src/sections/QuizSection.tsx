@@ -89,45 +89,44 @@ const QuizSection: React.FC = () => {
 
   const submitQuiz = async (allAnswers: AllAnswers) => {
     let totalPoints = 0;
-    const payloadAnswers: Record<string | number, string | number> = {};
+    const numericAnswers: Record<number, number> = {};
+    const industry = allAnswers['industry'] || '';
+    const companySize = allAnswers['companySize'] || '';
+    const strangeAIQuestion = allAnswers['strangeAIQuestion'] || '';
 
-    quizQuestions.forEach(question => {
-      const answerValue = allAnswers[question.id];
-
-      if (answerValue !== undefined && answerValue !== null) {
-        if (question.type === 'multiple-choice') {
-          const selectedOption = question.options?.find(opt => opt.id === answerValue);
-          if (selectedOption && selectedOption.points !== undefined) {
-            totalPoints += selectedOption.points;
-            payloadAnswers[question.id] = selectedOption.points;
-          } else {
-            payloadAnswers[question.id] = 0;
-          }
+    // Calculate points for multiple choice questions (1-10)
+    for (let i = 1; i <= 10; i++) {
+      const question = quizQuestions.find(q => q.id === i);
+      const answerValue = allAnswers[i];
+      
+      if (question && answerValue) {
+        const selectedOption = question.options?.find(opt => opt.id === answerValue);
+        if (selectedOption && selectedOption.points !== undefined) {
+          totalPoints += selectedOption.points;
+          numericAnswers[i] = selectedOption.points;
         } else {
-          payloadAnswers[question.id] = answerValue;
+          numericAnswers[i] = 0;
         }
       } else {
-        payloadAnswers[question.id] = '';
+        numericAnswers[i] = 0;
       }
-    });
+    }
 
-    const localKompetensgapPercent = calculateKompetensgapPercent(allAnswers);
-    const localStrategicMaturityPercent = calculateStrategicMaturityPercent(allAnswers);
+    const maxScore = quizQuestions
+      .filter(q => q.type === 'multiple-choice')
+      .reduce((sum, q) => sum + Math.max(...(q.options?.map(opt => opt.points || 0) || [0])), 0);
 
     const payload = {
-      answers: payloadAnswers,
+      answers: numericAnswers,
+      industry,
+      companySize,
+      strangeAIQuestion,
       totalScore: totalPoints,
-      maxScore: quizQuestions
-        .filter(q => q.type === 'multiple-choice')
-        .reduce((sum, q) => sum + Math.max(...(q.options?.map(opt => opt.points || 0) || [0])), 0),
+      maxScore,
       timestamp: new Date().toISOString(),
-      quiz_version: '1.2',
-      industry: allAnswers['industry'] || '',
-      companySize: allAnswers['companySize'] || '',
-      strangeAIQuestion: allAnswers['strangeAIQuestion'] || ''
+      quiz_version: '1.2'
     };
 
-    // Add logging statement before sending the payload
     console.log('Quiz-payload:', JSON.stringify(payload, null, 2));
 
     try {
@@ -157,14 +156,15 @@ const QuizSection: React.FC = () => {
         apiResults = defaultResults;
       }
 
-      // Combine API results with local calculations
+      const localKompetensgapPercent = calculateKompetensgapPercent(allAnswers);
+      const localStrategicMaturityPercent = calculateStrategicMaturityPercent(allAnswers);
+
       const enhancedResults = {
         ...apiResults,
         kompetensgapPercent: localKompetensgapPercent,
         strategicMaturityPercent: localStrategicMaturityPercent
       };
 
-      // Save results to localStorage for debugging
       localStorage.setItem('lastQuizResult', JSON.stringify({
         timestamp: new Date().toISOString(),
         answers: allAnswers,
