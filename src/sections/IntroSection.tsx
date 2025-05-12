@@ -47,12 +47,12 @@ const IntroSection: React.FC = () => {
   };
 
   return (
-    <section className="py-22 px-8 bg-[#fbf9f9]" id="intro-section">
+    <section className="py-27 px-8 bg-[#fbf9f9]" id="intro-section">
       <div className="max-w-[860px] mx-auto text-center">
         <AnimatedSection animation="fade-up">
           <h2 className="mb-4 h2-quiz-outline">
             Har ni AI-FOMO på jobbet?
-            Lung, vi får er att komma igång!
+            Lugn, vi får er att komma igång!
           </h2>
 
           <h5 className="text-[2rem] leading-[1.2] mb-16 max-w-[860px] mx-auto text-left">
