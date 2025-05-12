@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
               <h3 className="text-2xl font-bold mb-2">Maria Zerihoun</h3>
               <div className="flex justify-center space-x-4">
                 <a 
-                  href="https://www.linkedin.com/in/maria-zerihoun" 
+                  href="https://www.linkedin.com/in/maria-zerihoun-b3b4b9168" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-deep-purple transition-colors"
@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
                   <Linkedin size={24} />
                 </a>
                 <a 
-                  href="https://mariazerihoun.com" 
+                  href="https://www.mariazerihoun.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-deep-purple transition-colors"
@@ -64,7 +64,7 @@ const Footer: React.FC = () => {
               <h3 className="text-2xl font-bold mb-2">Noah Dagger</h3>
               <div className="flex justify-center space-x-4">
                 <a 
-                  href="https://www.linkedin.com/in/noah-dagger" 
+                  href="https://www.linkedin.com/in/noah-dagger-b3b4b9168" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-deep-purple transition-colors"
@@ -72,7 +72,7 @@ const Footer: React.FC = () => {
                   <Linkedin size={24} />
                 </a>
                 <a 
-                  href="https://noahdagger.com" 
+                  href="https://www.noahdagger.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-deep-purple transition-colors"
@@ -97,7 +97,7 @@ const Footer: React.FC = () => {
               <h3 className="text-2xl font-bold mb-2">Ellino Aaby Olsson</h3>
               <div className="flex justify-center space-x-4">
                 <a 
-                  href="https://www.linkedin.com/in/ellino-aaby-olsson" 
+                  href="https://www.linkedin.com/in/ellino-aaby-olsson-b3b4b9168" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-deep-purple transition-colors"
@@ -105,7 +105,7 @@ const Footer: React.FC = () => {
                   <Linkedin size={24} />
                 </a>
                 <a 
-                  href="https://ellinoaabyolsson.com" 
+                  href="https://www.ellinoaabyolsson.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-deep-purple transition-colors"
