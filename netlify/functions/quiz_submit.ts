@@ -67,8 +67,10 @@ const handler: Handler = async (event) => {
     }
 
     // Calculate percentages with safeguards
-    const strategicMaturityPercent = Math.min(100, Math.max(0, Math.round((totalScore / payload.maxScore) * 100))) || 0;
-    const kompetensgapPercent = Math.min(100, Math.max(0, Math.round(100 - ((totalScore / payload.maxScore) * 100)))) || 0;
+    const maxScore = payload.maxScore || 1; // Safeguard against division by zero
+    const strategicMaturityPercent = Math.min(100, Math.max(0, Math.round((totalScore / maxScore) * 100))) || 0;
+    const kompetensgapPercent = Math.min(100, Math.max(0, Math.round(100 - ((totalScore / maxScore) * 100)))) || 0;
+    const aiReadinessPercent = Math.min(100, Math.max(0, Math.round((totalScore / maxScore) * 100))) || 0;
 
     // Google Sheets Integration
     const auth = new google.auth.GoogleAuth({
@@ -81,46 +83,51 @@ const handler: Handler = async (event) => {
 
     const sheets = google.sheets({ version: 'v4', auth });
     const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+    const sheetName = 'Quiz Results';
+    const range = `${sheetName}!A:S`;
 
-    // Prepare row data with default values and type checking
+    // Prepare row data matching exactly 19 columns
     const rowData = [
-      new Date().toISOString(),                    // Timestamp
-      industry || '',                              // Industry
-      companySize || '',                           // Company Size
-      Number(answers[1]) || 0,                     // Q1 Score
-      Number(answers[2]) || 0,                     // Q2 Score
-      Number(answers[3]) || 0,                     // Q3 Score
-      Number(answers[4]) || 0,                     // Q4 Score
-      Number(answers[5]) || 0,                     // Q5 Score
-      Number(answers[6]) || 0,                     // Q6 Score
-      Number(answers[7]) || 0,                     // Q7 Score
-      Number(answers[8]) || 0,                     // Q8 Score
-      Number(answers[9]) || 0,                     // Q9 Score
-      Number(answers[10]) || 0,                    // Q10 Score
-      Number(totalScore) || 0,                     // Total Score
-      level || 'Nyfiken',                         // Result Level
-      strategicMaturityPercent,                    // Strategic Maturity %
-      kompetensgapPercent,                         // Competency Gap %
-      strangeAIQuestion || '',                     // Strange AI Question
-      payload.quiz_version || '1.0'                // Quiz Version
+      new Date(payload.timestamp).toISOString(),    // 1. Timestamp
+      industry || '',                               // 2. Industry
+      companySize || '',                            // 3. Company Size
+      Number(answers[1]) || 0,                      // 4. Q1 Score
+      Number(answers[2]) || 0,                      // 5. Q2 Score
+      Number(answers[3]) || 0,                      // 6. Q3 Score
+      Number(answers[4]) || 0,                      // 7. Q4 Score
+      Number(answers[5]) || 0,                      // 8. Q5 Score
+      Number(answers[6]) || 0,                      // 9. Q6 Score
+      Number(answers[7]) || 0,                      // 10. Q7 Score
+      Number(answers[8]) || 0,                      // 11. Q8 Score
+      Number(answers[9]) || 0,                      // 12. Q9 Score
+      Number(answers[10]) || 0,                     // 13. Q10 Score
+      Number(totalScore) || 0,                      // 14. Total Score
+      level || 'Nyfiken',                          // 15. Result Level
+      strategicMaturityPercent,                     // 16. Strategic Maturity %
+      kompetensgapPercent,                         // 17. Competency Gap %
+      aiReadinessPercent,                          // 18. AI-readiness %
+      payload.quiz_version || '1.0'                 // 19. Quiz Version
     ];
 
     // Log the data being sent to help with debugging
     console.log('Sending data to Google Sheets:', {
       spreadsheetId,
-      range: 'Quiz Results!A:S',
+      range,
       values: [rowData]
     });
 
+    // Append the row to the Google Sheet
     await sheets.spreadsheets.values.append({
       spreadsheetId,
-      range: 'Quiz Results!A:S',
+      range,
       valueInputOption: 'USER_ENTERED',
       insertDataOption: 'INSERT_ROWS',
-      requestBody: {
+      resource: {
         values: [rowData],
       },
     });
+
+    console.log('Quiz data successfully logged to Google Sheet');
 
     const response = {
       level,
@@ -128,7 +135,8 @@ const handler: Handler = async (event) => {
       recommendations,
       comparative_statement: `Du ligger bättre till än ${Math.floor(Math.random() * 30) + 60}% av alla som tagit testet!`,
       strategicMaturityPercent,
-      kompetensgapPercent
+      kompetensgapPercent,
+      aiReadinessPercent
     };
 
     return {
