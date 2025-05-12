@@ -110,12 +110,12 @@ const handler: Handler = async (event) => {
       strangeAIQuestion || '',                      // 20. Strange AI Question
     ];
 
-    // Log the data being sent to help with debugging
-    console.log('Sending data to Google Sheets:', {
-      spreadsheetId,
-      range,
-      values: [rowData]
-    });
+    // Debug logging for Sheets API call
+    console.log('Debugging Sheets Append Request:');
+    console.log('spreadsheetId:', spreadsheetId);
+    console.log('range:', range);
+    console.log('values being sent:', [rowData]); // Log the [rowData] structure
+    console.log('rowData content:', rowData); // Log the content of the rowData array
 
     // Append the row to the Google Sheet
     await sheets.spreadsheets.values.append({
