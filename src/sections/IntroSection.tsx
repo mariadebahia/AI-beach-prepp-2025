@@ -56,7 +56,11 @@ const IntroSection: React.FC = () => {
           </h2>
 
           <h5 className="text-[2rem] leading-[1.2] mb-16 max-w-[860px] mx-auto text-left">
-            Alla snackar AI men hur kommer man igång på jobbet?! Vi hjälper er att komma igång med den första milen. Vi kommer till din arbetsplats och AI-boostar med grunden, verktyg och tips för att komma i AI-form till sommaren (så att ni är redo för hösten). Vi kallar det AI-beach prepp men en svindyr management konsult skulle nog kalla det för "get-AI-ready-or-die".
+ Alla snackar AI. Men hur börjar man på jobbet?<br></br>
+
+Vi hjälper er ta första milen mot AI-form. Vi kommer till er, boostar med grunder, verktyg och knep som får er att känna er AI-ready till sommaren.<br></br>
+
+Vi kallar det AI Beach Prep. En dyr managementkonsult hade kallat det “get-AI-ready-or-die.”
           </h5>
         </AnimatedSection>
 
