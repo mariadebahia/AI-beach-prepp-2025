@@ -15,67 +15,30 @@ export const handler: Handler = async (event) => {
     };
   }
 
+  // Endast POST tillåtet här
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ error: "Method not allowed" }),
+    };
+  }
+
   try {
     // 2) Läs in payload
     const data = JSON.parse(event.body || "{}");
+
+    // Fallback om data.numericAnswers eller data.answers saknas
     const answers: Record<string, number> =
       data.numericAnswers ?? data.answers ?? {};
 
-    // Övriga fält med säkra default‐värden
-    const industry          = data.industry          || "";
-    const companySize       = data.companySize       || "";
-    const strangeAIQuestion = data.strangeAIQuestion || "";
-    const totalScore        = Number(data.totalScore) || 0;
-    const maxScore          = Number(data.maxScore)   || 0;
-    const quizVersion       = data.quiz_version      || "";
-    const timestamp         = data.timestamp         || new Date().toISOString();
+    // Säkerställ att vi har siffror
+    const score       = Number(data.totalScore) || 0;
+    const maxScore    = Number(data.maxScore)   || 1;
+    const industry    = data.industry           || "";
+    const companySize = data.companySize        || "";
+    const strangeQ    = data.strangeAIQuestion  || "";
+    const version     = data.quiz_version       || "";
+    const timestamp   = data.timestamp          || new Date().toISOString();
 
-    // 3) Bygg raden dynamiskt för Q1–Q10
-    const row = [
-      timestamp,
-      industry,
-      companySize,
-      ...Array.from({ length: 10 }, (_, i) => Number(answers[String(i + 1)] ?? 0)),
-      totalScore,
-      maxScore,
-      quizVersion,
-      strangeAIQuestion,
-    ];
-
-    // 4) Autentisera och skriv till Google Sheets
-    const auth = new google.auth.JWT(
-      process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      undefined,
-      (process.env.GOOGLE_PRIVATE_KEY || "").replace(/\\n/g, "\n"),
-      ["https://www.googleapis.com/auth/spreadsheets"]
-    );
-    const sheets = google.sheets({ version: "v4", auth });
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: process.env.GOOGLE_SHEETS_ID!,
-      range: "Quiz Results!A:Q",
-      valueInputOption: "RAW",
-      requestBody: { values: [row] },
-    });
-
-    // 5) Skicka tillbaka succé
-    return {
-      statusCode: 200,
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({ success: true }),
-    };
-
-  } catch (err: any) {
-    console.error("Error processing quiz submission:", err);
-    return {
-      statusCode: 500,
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({ success: false, error: err.message }),
-    };
-  }
-};
+    // 3) Resultat
