@@ -1,5 +1,3 @@
-# netlify.toml
-
 [build]
   command = "npm run build"
   publish = "dist"
@@ -11,11 +9,9 @@
 
 [[redirects]]
   from = "/api/quiz"
-  # Ersätt med din exakta Google Apps Script Web App URL
   to = "https://script.google.com/macros/s/AKfycbxLvdXr5VZ6mMcWeLgH4goicDAKlUl0vICnC0oBpEYvXYapJWNDujRn8-RsmtDQhjFQ/exec"
   status = 200
   force = true
-  # KORRIGERAD syntax för headers (med dubbla citationstecken)
   headers = { "Access-Control-Allow-Origin" = "*" }
 
 [[redirects]]
