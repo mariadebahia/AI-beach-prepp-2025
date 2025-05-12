@@ -16,7 +16,7 @@
   status = 200
   force = true
   # KORRIGERAD syntax för headers (med dubbla citationstecken)
-  headers = { "Access-Control-Allow-Origin" = "*" }
+headers = { "Access-Control-Allow-Origin" = "*" }
 
 [[redirects]]
   from = "/*"
