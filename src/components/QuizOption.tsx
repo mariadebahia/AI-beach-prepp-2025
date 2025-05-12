@@ -5,9 +5,10 @@ type QuizOptionProps = {
   text: string;
   isSelected: boolean;
   onSelect: () => void;
+  name: string;
 };
 
-const QuizOption: React.FC<QuizOptionProps> = ({ id, text, isSelected, onSelect }) => {
+const QuizOption: React.FC<QuizOptionProps> = ({ id, text, isSelected, onSelect, name }) => {
   return (
     <div
       className={`p-4 mb-3 border-2 rounded-lg cursor-pointer transition-all duration-300 ${
@@ -28,7 +29,7 @@ const QuizOption: React.FC<QuizOptionProps> = ({ id, text, isSelected, onSelect 
       <input
         type="radio"
         id={id}
-        name={`question-${id.split('-')[0]}`}
+        name={name}
         checked={isSelected}
         onChange={onSelect}
         className="sr-only"
@@ -36,5 +37,3 @@ const QuizOption: React.FC<QuizOptionProps> = ({ id, text, isSelected, onSelect 
     </div>
   );
 };
-
-export default QuizOption;
