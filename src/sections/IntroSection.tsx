@@ -90,18 +90,17 @@ const IntroSection: React.FC = () => {
 
         <h3 className="text-4xl font-semibold mb-4">Tävla om en AI-workout för ert företag! 🏖️</h3>
         <h5 className="text-[1.25rem] leading-[1.2] mb-16 max-w-[860px] mx-auto text-left">
-
-Pst - Alla som anmäler sig får vår AI-fitnessguide. En snabbstart till AI-form – med knepen, verktygen och peppen för att ta första steget direkt.
+          Pst - Alla som anmäler sig får vår AI-fitnessguide. En snabbstart till AI-form – med knepen, verktygen och peppen för att ta första steget direkt.
           
-    <bR></bR>
+          <bR></bR>
         </h5>
 
         {isSubmitted ? (
           <AnimatedSection animation="fade-up" delay="200">
             <div className="bg-white p-8 rounded-xl shadow-lg">
-              <h2 className="text-4xl font-bold text-green-600 mb-6">Tack – ni är med i AI Beach Prep! 🏋️</h2>
+              <h2 className="text-4xl font-bold text-deep-purple mb-6">Tack – ni är med i AI Beach Prep! 🏋️</h2>
               <p className="text-2xl text-gray-700 mb-8">
-                Vi har registrerat er anmälan och hör snart av oss om ni går vidare till nästa steg.      Urvalet görs av vår jury och baseras på er motivering, er nyfikenhet och potential att komma igång med AI. Vi bedömer alla ansökningar individuellt – bransch eller storlek spelar ingen roll. Redan nu kan ni börja AI-värma upp med vår guide!
+                Vi har registrerat er anmälan och hör snart av oss om ni går vidare till nästa steg. Urvalet görs av vår jury och baseras på er motivering, er nyfikenhet och potential att komma igång med AI. Vi bedömer alla ansökningar individuellt – bransch eller storlek spelar ingen roll. Redan nu kan ni börja AI-värma upp med vår guide!
               </p>
               <Button 
                 variant="outline"
