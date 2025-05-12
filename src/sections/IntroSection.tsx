@@ -51,8 +51,8 @@ const IntroSection: React.FC = () => {
       <div className="max-w-[860px] mx-auto text-center">
         <AnimatedSection animation="fade-up">
           <h2 className="mb-4 h2-quiz-outline">
-            Har ni AI-FOMO på jobbet?
-            Lugn, vi får igång er!
+          Känner ni AI-FOMO på jobbet?
+          Ni är inte ensamma.
           </h2>
 
           <h5 className="text-[2rem] leading-[1.2] mb-16 max-w-[860px] mx-auto text-left">
