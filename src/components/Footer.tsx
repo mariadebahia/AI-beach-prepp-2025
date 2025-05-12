@@ -1,23 +1,14 @@
 import React from 'react';
 import { Linkedin, Globe } from 'lucide-react';
-import { supabase } from '../lib/supabase';
 
 const Footer: React.FC = () => {
-  const {
-    data: { publicUrl: mariaImageUrl }
-  } = supabase.storage.from('image').getPublicUrl('maria.jpg');
+  // Using the same direct URL as in HeroSection
+  const logoUrl = "https://gbnzjpuohpidutbwadbu.supabase.co/storage/v1/object/sign/image/3AImigos_logo_hand.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2ZkNTI0NzJhLTk5YzgtNDQ2Yy05ZTM3LTczMTVkYjJjYzQ4MiJ9.eyJ1cmwiOiJpbWFnZS8zQUltaWdvc19sb2dvX2hhbmQucG5nIiwiaWF0IjoxNzQ2NTU4NTE2LCJleHAiOjE3NzgwOTQ1MTZ9.KPMF6SXJR_5Jon9Kps4S59PyWn6hJyRP8o0cDcMmIeI";
 
-  const {
-    data: { publicUrl: noahImageUrl }
-  } = supabase.storage.from('image').getPublicUrl('noah.jpg');
-
-  const {
-    data: { publicUrl: ellinoImageUrl }
-  } = supabase.storage.from('image').getPublicUrl('ellino.jpg');
-
-  const {
-    data: { publicUrl: logoUrl }
-  } = supabase.storage.from('image').getPublicUrl('3AImigos_logo_hand.png');
+  // Using placeholder images from Pexels temporarily
+  const mariaImageUrl = "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=800";
+  const noahImageUrl = "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=800";
+  const ellinoImageUrl = "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=800";
 
   return (
     <footer>

@@ -1,30 +1,11 @@
 import React from 'react';
-import { supabase } from '../lib/supabase';
+import { Linkedin, Globe, Instagram } from 'lucide-react';
 
 const AboutSection: React.FC = () => {
-  const {
-    data: { publicUrl: mariaImageUrl }
-  } = supabase.storage.from('image').getPublicUrl('maria.jpg');
-
-  const {
-    data: { publicUrl: noahImageUrl }
-  } = supabase.storage.from('image').getPublicUrl('noah.jpg');
-
-  const {
-    data: { publicUrl: ellinoImageUrl }
-  } = supabase.storage.from('image').getPublicUrl('ellino.jpg');
-
-  const {
-    data: { publicUrl: linkedinIconUrl }
-  } = supabase.storage.from('image').getPublicUrl('linkedin.png');
-
-  const {
-    data: { publicUrl: globeIconUrl }
-  } = supabase.storage.from('image').getPublicUrl('globe.png');
-
-  const {
-    data: { publicUrl: instagramIconUrl }
-  } = supabase.storage.from('image').getPublicUrl('instagram.png');
+  // Using placeholder images from Pexels temporarily
+  const mariaImageUrl = "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=800";
+  const noahImageUrl = "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=800";
+  const ellinoImageUrl = "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=800";
 
   return (
     <section className="py-32 px-8 bg-[#fffcf7]" id="about-section">
@@ -53,11 +34,11 @@ const AboutSection: React.FC = () => {
             </div>
             <h3 className="text-2xl font-bold mb-2">Maria Zerihoun</h3>
             <div className="flex justify-center space-x-4 mt-4">
-              <a href="https://www.linkedin.com/in/maria-zerihoun" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
-                <img src={linkedinIconUrl} alt="LinkedIn" className="w-6 h-6" />
+              <a href="https://www.linkedin.com/in/maria-zerihoun" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
+                <Linkedin size={24} />
               </a>
-              <a href="https://www.aicontentengineers.se/maria-zerihoun/" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-gray-900">
-                <img src={globeIconUrl} alt="Portfolio" className="w-6 h-6" />
+              <a href="https://www.aicontentengineers.se/maria-zerihoun/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
+                <Globe size={24} />
               </a>
             </div>
           </div>
@@ -76,11 +57,11 @@ const AboutSection: React.FC = () => {
             </div>
             <h3 className="text-2xl font-bold mb-2">Noah Dagger</h3>
             <div className="flex justify-center space-x-4 mt-4">
-              <a href="https://www.linkedin.com/in/noah-dagger" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
-                <img src={linkedinIconUrl} alt="LinkedIn" className="w-6 h-6" />
+              <a href="https://www.linkedin.com/in/noah-dagger" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
+                <Linkedin size={24} />
               </a>
-              <a href="https://www.aicontentengineers.se/noah-dagger/" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-gray-900">
-                <img src={globeIconUrl} alt="Portfolio" className="w-6 h-6" />
+              <a href="https://www.aicontentengineers.se/noah-dagger/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
+                <Globe size={24} />
               </a>
             </div>
           </div>
@@ -99,11 +80,11 @@ const AboutSection: React.FC = () => {
             </div>
             <h3 className="text-2xl font-bold mb-2">Ellino Aaby Olsson</h3>
             <div className="flex justify-center space-x-4 mt-4">
-              <a href="https://www.linkedin.com/in/ellino-aaby-olsson" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
-                <img src={linkedinIconUrl} alt="LinkedIn" className="w-6 h-6" />
+              <a href="https://www.linkedin.com/in/ellino-aaby-olsson" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
+                <Linkedin size={24} />
               </a>
-              <a href="https://www.aicontentengineers.se/ellinor-aaby-olsson/" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-gray-900">
-                <img src={globeIconUrl} alt="Portfolio" className="w-6 h-6" />
+              <a href="https://www.aicontentengineers.se/ellinor-aaby-olsson/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
+                <Globe size={24} />
               </a>
             </div>
           </div>
@@ -116,7 +97,7 @@ const AboutSection: React.FC = () => {
             rel="noopener noreferrer"
             className="opacity-50 hover:opacity-100 transition-opacity"
           >
-            <img src={linkedinIconUrl} alt="LinkedIn" className="w-8 h-8" />
+            <Linkedin size={32} />
           </a>
           <a 
             href="https://www.instagram.com/tresaimigos" 
@@ -124,7 +105,7 @@ const AboutSection: React.FC = () => {
             rel="noopener noreferrer"
             className="opacity-50 hover:opacity-100 transition-opacity"
           >
-            <img src={instagramIconUrl} alt="Instagram" className="w-8 h-8" />
+            <Instagram size={32} />
           </a>
         </div>
       </div>
