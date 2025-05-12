@@ -91,8 +91,7 @@ const IntroSection: React.FC = () => {
         <h3 className="text-4xl font-semibold mb-4">Tävla om en AI-workout för ert företag! 🏖️</h3>
         <h5 className="text-[1.25rem] leading-[1.2] mb-16 max-w-[860px] mx-auto text-left">
 
-
-         <b> Pst - Alla som anmäler sig får vår AI-fitnessguide. En snabbstart till AI-form – med knepen, verktygen och peppen för att ta första steget direkt.</b> 
+Pst - Alla som anmäler sig får vår AI-fitnessguide. En snabbstart till AI-form – med knepen, verktygen och peppen för att ta första steget direkt.
           
     <bR></bR>
         </h5>
