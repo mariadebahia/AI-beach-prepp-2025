@@ -6,7 +6,7 @@ import Button from '../components/Button';
 import AnimatedSection from '../components/AnimatedSection';
 import { Dumbbell, Brain, Rocket, TrendingUp, Users } from 'lucide-react';
 
-const QUIZ_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw1f5yDQn3MQ3V365yhEf5CSexzlzn9XEybUs16iLwkXSg4_xi6yOgKd5FvUtggvt4/exec';
+const QUIZ_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwuSibl18yUHjWLqSn0fm6oBtXNvf8PA7MVISnEpMU0Rqj8xfZcoYkKN36hYi1iLql_/exec';
 
 const calculateKompetensgapPercent = (answers: Record<string | number, string>): number => {
   const kompetensQuestions = [1, 3, 5, 7, 9]; // Questions related to competency
