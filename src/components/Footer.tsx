@@ -1,7 +1,24 @@
 import React from 'react';
 import { Linkedin, Globe } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 const Footer: React.FC = () => {
+  const {
+    data: { publicUrl: mariaImageUrl }
+  } = supabase.storage.from('image').getPublicUrl('maria.jpg');
+
+  const {
+    data: { publicUrl: noahImageUrl }
+  } = supabase.storage.from('image').getPublicUrl('noah.jpg');
+
+  const {
+    data: { publicUrl: ellinoImageUrl }
+  } = supabase.storage.from('image').getPublicUrl('ellino.jpg');
+
+  const {
+    data: { publicUrl: logoUrl }
+  } = supabase.storage.from('image').getPublicUrl('3AImigos_logo_hand.png');
+
   return (
     <footer>
       <div className="bg-white py-16">
@@ -22,7 +39,7 @@ const Footer: React.FC = () => {
                 <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-lg mx-auto relative">
                   <div className="absolute inset-0 bg-deep-purple rounded-full" style={{ clipPath: 'circle(50% at 100% 100%)' }} />
                   <img 
-                    src="https://gbnzjpuohpidutbwadbu.supabase.co/storage/v1/object/sign/image/maria.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZS9tYXJpYS5qcGciLCJpYXQiOjE3MDk4MjU2MDAsImV4cCI6MTc0MTM2MTYwMH0.vWoKqxfHWWn_4NYU8YeABXF_VUxh_-xW_h5ZhVYKTwE" 
+                    src={mariaImageUrl}
                     alt="Maria Zerihoun"
                     className="w-full h-full object-cover rounded-full"
                   />
@@ -55,7 +72,7 @@ const Footer: React.FC = () => {
                 <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-lg mx-auto relative">
                   <div className="absolute inset-0 bg-deep-purple rounded-full" style={{ clipPath: 'circle(50% at 100% 100%)' }} />
                   <img 
-                    src="https://gbnzjpuohpidutbwadbu.supabase.co/storage/v1/object/sign/image/noah.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZS9ub2FoLmpwZyIsImlhdCI6MTcwOTgyNTYwMCwiZXhwIjoxNzQxMzYxNjAwfQ.vWoKqxfHWWn_4NYU8YeABXF_VUxh_-xW_h5ZhVYKTwE" 
+                    src={noahImageUrl}
                     alt="Noah Dagger"
                     className="w-full h-full object-cover rounded-full"
                   />
@@ -88,7 +105,7 @@ const Footer: React.FC = () => {
                 <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-lg mx-auto relative">
                   <div className="absolute inset-0 bg-deep-purple rounded-full" style={{ clipPath: 'circle(50% at 100% 100%)' }} />
                   <img 
-                    src="https://gbnzjpuohpidutbwadbu.supabase.co/storage/v1/object/sign/image/ellino.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZS9lbGxpbm8uanBnIiwiaWF0IjoxNzA5ODI1NjAwLCJleHAiOjE3NDEzNjE2MDB9.vWoKqxfHWWn_4NYU8YeABXF_VUxh_-xW_h5ZhVYKTwE" 
+                    src={ellinoImageUrl}
                     alt="Ellino Aaby Olsson"
                     className="w-full h-full object-cover rounded-full"
                   />
@@ -121,7 +138,7 @@ const Footer: React.FC = () => {
       <div className="bg-[#ff6b6b] py-8">
         <div className="max-w-[860px] mx-auto px-4 text-center">
           <img 
-            src="https://gbnzjpuohpidutbwadbu.supabase.co/storage/v1/object/sign/image/3AImigos_logo_hand.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2ZkNTI0NzJhLTk5YzgtNDQ2Yy05ZTM3LTczMTVkYjJjYzQ4MiJ9.eyJ1cmwiOiJpbWFnZS8zQUltaWdvc19sb2dvX2hhbmQucG5nIiwiaWF0IjoxNzQ2NTU4NTE2LCJleHAiOjE3NzgwOTQ1MTZ9.KPMF6SXJR_5Jon9Kps4S59PyWn6hJyRP8o0cDcMmIeI"
+            src={logoUrl}
             alt="3AImigos Logo - Hand with three fingers"
             className="w-16 h-16 mx-auto hover:scale-110 transition-transform duration-300"
           />
