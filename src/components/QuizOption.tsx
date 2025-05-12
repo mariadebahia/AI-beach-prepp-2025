@@ -37,3 +37,5 @@ const QuizOption: React.FC<QuizOptionProps> = ({ id, text, isSelected, onSelect,
     </div>
   );
 };
+
+export default QuizOption
