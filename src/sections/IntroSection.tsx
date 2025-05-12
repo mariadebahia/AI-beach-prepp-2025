@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../components/Button';
 import AnimatedSection from '../components/AnimatedSection';
+import { Dumbbell, Trophy, Rocket } from 'lucide-react';
 
 const MAKE_WEBHOOK_URL = 'https://hook.eu2.make.com/abhs8xzl3ssmsqjeglpldt8aj84hihfo';
 
@@ -51,17 +52,40 @@ const IntroSection: React.FC = () => {
       <div className="max-w-[860px] mx-auto text-center">
         <AnimatedSection animation="fade-up">
           <h2 className="mb-4 h2-quiz-outline">
-          Känner ni AI-FOMO på jobbet?
-          Ni är inte ensamma.
+            Känner ni AI-FOMO på jobbet?
+            Ni är inte ensamma.
           </h2>
 
           <h5 className="text-[2rem] leading-[1.2] mb-16 max-w-[860px] mx-auto text-left">
- Alla snackar AI. Men hur börjar man på jobbet?<br></br>
+            Alla snackar AI. Men hur börjar man på jobbet?<br></br>
 
-Vi hjälper er ta första milen mot AI-form. Vi kommer till er, boostar med grunder, verktyg och knep som får er att känna er AI-ready till sommaren.<br></br>
+            Vi hjälper er ta första milen mot AI-form. Vi kommer till er, boostar med grunder, verktyg och knep som får er att känna er AI-ready till sommaren.<br></br>
 
-Vi kallar det AI Beach Prep. En dyr managementkonsult hade kallat det “get-AI-ready-or-die.”
+            Vi kallar det AI Beach Prep. En dyr managementkonsult hade kallat det "get-AI-ready-or-die."
           </h5>
+        </AnimatedSection>
+
+        {/* Three-step section */}
+        <AnimatedSection animation="fade-up" delay="200">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-deep-purple">
+            <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+              <div className="text-4xl mb-4">🏋️</div>
+              <h3 className="text-xl font-semibold mb-4">Anmäl ditt företag</h3>
+              <p className="text-gray-600">Berätta varför ni vill bli AI-fit – vi vill höra er story.</p>
+            </div>
+
+            <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+              <div className="text-4xl mb-4">🏖️</div>
+              <h3 className="text-xl font-semibold mb-4">Vi väljer ut vinnare varje vecka</h3>
+              <p className="text-gray-600">Vår jury plockar ut de mest AI-nyfikna och beach-prep-sugna.</p>
+            </div>
+
+            <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+              <div className="text-4xl mb-4">🚀</div>
+              <h3 className="text-xl font-semibold mb-4">Vi kommer till er och kör AI-workout</h3>
+              <p className="text-gray-600">På plats hos er. Utan krångel. Med AI-svettgaranti.</p>
+            </div>
+          </div>
         </AnimatedSection>
 
         <h3 className="text-4xl font-semibold mb-4">Tävla om en AI-workout för ert företag! 🏖️</h3>
