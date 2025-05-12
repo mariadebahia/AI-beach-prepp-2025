@@ -6,9 +6,7 @@ import Button from '../components/Button';
 import AnimatedSection from '../components/AnimatedSection';
 import { Dumbbell, Brain, Rocket, TrendingUp, Users } from 'lucide-react';
 
-const QUIZ_ENDPOINT = import.meta.env.PROD 
-  ? '/.netlify/functions/quiz_submit'  // Production endpoint
-  : 'http://localhost:8888/.netlify/functions/quiz_submit'; // Local development endpoint
+const QUIZ_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw1f5yDQn3MQ3V365yhEf5CSexzlzn9XEybUs16iLwkXSg4_xi6yOgKd5FvUtggvt4/exec';
 
 const calculateKompetensgapPercent = (answers: Record<string | number, string>): number => {
   const kompetensQuestions = [1, 3, 5, 7, 9]; // Questions related to competency
