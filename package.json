@@ -3,12 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "lint": "eslint .",
+  "preview": "vite preview",
+  "test-proxy": "curl -s -o /dev/null -w \"%{http_code} %{content_type}\\n\" -X POST https://verdant-salmiakki-60ef04.netlify.app/api/quiz -H \"Content-Type: application/json\" -d '{\"foo\":\"bar\"}' && echo \"→ OK om du ser 200 application/json\""
+},
   "dependencies": {
     "@netlify/functions": "^2.6.0",
     "@supabase/supabase-js": "^2.39.7",
