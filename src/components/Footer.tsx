@@ -89,7 +89,7 @@ const Footer: React.FC = () => {
                   <Linkedin size={24} />
                 </a>
                 <a 
-                  href="https://www.noahdagger.com" 
+                  href="https://www.aicontentengineers.se/noah-dagger/"
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-deep-purple transition-colors"
