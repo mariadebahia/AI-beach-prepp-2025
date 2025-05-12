@@ -122,7 +122,13 @@ const QuizSection: React.FC = () => {
         .reduce((sum, q) => sum + Math.max(...(q.options?.map(opt => opt.points || 0) || [0])), 0),
       timestamp: new Date().toISOString(),
       quiz_version: '1.2',
+      industry: allAnswers['industry'] || '',
+      companySize: allAnswers['companySize'] || '',
+      strangeAIQuestion: allAnswers['strangeAIQuestion'] || ''
     };
+
+    // Add logging statement before sending the payload
+    console.log('Quiz-payload:', JSON.stringify(payload, null, 2));
 
     try {
       const response = await fetch(QUIZ_ENDPOINT, {
