@@ -80,8 +80,7 @@ const handler: Handler = async (event) => {
     });
 
     const sheets = google.sheets({ version: 'v4', auth });
-    const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_ID;
-    const SHEET_NAME = 'Quiz Results';
+    const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
 
     // Prepare row data with default values and type checking
     const rowData = [
@@ -106,12 +105,19 @@ const handler: Handler = async (event) => {
       payload.quiz_version || '1.0'                // Quiz Version
     ];
 
+    // Log the data being sent to help with debugging
+    console.log('Sending data to Google Sheets:', {
+      spreadsheetId,
+      range: 'Quiz Results!A:S',
+      values: [rowData]
+    });
+
     await sheets.spreadsheets.values.append({
-      spreadsheetId: SPREADSHEET_ID,
-      range: `${SHEET_NAME}!A:S`,                  // Updated to match 19 columns (A through S)
+      spreadsheetId,
+      range: 'Quiz Results!A:S',
       valueInputOption: 'USER_ENTERED',
       insertDataOption: 'INSERT_ROWS',
-      resource: {
+      requestBody: {
         values: [rowData],
       },
     });
