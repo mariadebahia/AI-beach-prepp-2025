@@ -1,22 +1,22 @@
 # netlify.toml
 
 [build]
-  command = "npm run build"
-  publish = "dist"
+  command   = "npm run build"
+  publish   = "dist"
   functions = "netlify/functions"
 
 [dev]
-  command = "npm run dev"
+  command    = "npm run dev"
   targetPort = 5173
 
 [[redirects]]
-  from = "/api/quiz"
-  to = "https://script.google.com/macros/s/AKfycbytMPbUdqps1VR2jNipkpiWtbVgODtEXd5UG_Uh1osqRlqaxyBZjbpYU6H2_FNKfVmK/exec"
+  from   = "/api/quiz"
+  to     = "https://script.google.com/macros/s/AKfycbzUB-pBw16f91NM2qKawP4yORYcuiGw6m10FTODTnxcugLF4OsiiRmt7X8vCbEGlmuk/exec"
   status = 200
-  force = true
+  force  = true
   headers = { "Access-Control-Allow-Origin" = "*" }
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from   = "/*"
+  to     = "/index.html"
   status = 200
