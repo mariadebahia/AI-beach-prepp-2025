@@ -285,13 +285,13 @@ const QuizSection: React.FC = () => {
     <section className="py-32 px-8 bg-[#d8d355]" id="quiz-section">
       <div className="max-w-3xl mx-auto">
         <AnimatedSection animation="fade-up">
-          <h2 className="h2-quiz-outline mb-8 text-center leading-[1.2]">
+          <h2 className="h2-quiz-outline mb-8 text-left leading-[1.2]">
             Hur är det med AI-formen? Ta vårt AI-fitnesstest!
           </h2>
         </AnimatedSection>
 
         <AnimatedSection animation="fade-up" delay="200">
-          <h5 className="text-[1.4375rem] leading-relaxed mb-8 text-center">
+          <h5 className="text-[1.4375rem] leading-relaxed mb-8 text-left">
             Vårt AI-fitnesstest är inte bara kul – det mäter er strategiska AI-mognad och visar på eventuellt kompetensgap samt levererar tre konkret rekommendation.<break></break>
 
             På bara 2 minuter får ni koll på läget. Och nästa steg.
