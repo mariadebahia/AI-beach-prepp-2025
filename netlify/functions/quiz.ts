@@ -2,7 +2,7 @@ import { Handler } from "@netlify/functions";
 import { google } from "googleapis";
 
 export const handler: Handler = async (event) => {
-  // 1) CORS‐preflight
+  // CORS-preflight
   if (event.httpMethod === "OPTIONS") {
     return {
       statusCode: 200,
@@ -15,7 +15,7 @@ export const handler: Handler = async (event) => {
     };
   }
 
-  // Endast POST tillåtet här
+  // Only allow POST
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
@@ -25,14 +25,13 @@ export const handler: Handler = async (event) => {
   }
 
   try {
-    // 2) Läs in payload
+    // Parse payload
     const data = JSON.parse(event.body || "{}");
 
-    // Fallback om data.numericAnswers eller data.answers saknas
-    const answers: Record<string, number> =
-      data.numericAnswers ?? data.answers ?? {};
+    // Fallback if data.numericAnswers or data.answers is missing
+    const answers: Record<string, number> = data.numericAnswers ?? data.answers ?? {};
 
-    // Säkerställ att vi har siffror
+    // Ensure numeric values
     const score = Number(data.totalScore) || 0;
     const maxScore = Number(data.maxScore) || 1;
     const industry = data.industry || "";
@@ -76,6 +75,54 @@ export const handler: Handler = async (event) => {
     const strategicMaturityPercent = Math.min(100, Math.max(0, Math.round((score / maxScore) * 100))) || 0;
     const kompetensgapPercent = Math.min(100, Math.max(0, Math.round(100 - ((score / maxScore) * 100)))) || 0;
     const aiReadinessPercent = Math.min(100, Math.max(0, Math.round((score / maxScore) * 100))) || 0;
+
+    // Google Sheets Integration
+    const auth = new google.auth.GoogleAuth({
+      credentials: {
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      },
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    });
+
+    const sheets = google.sheets({ version: 'v4', auth });
+    const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+    const range = 'Quiz Results!A:T';
+
+    // Prepare row data
+    const rowData = [
+      timestamp,                                  // A: Timestamp
+      industry,                                   // B: Industry
+      companySize,                                // C: Company Size
+      Number(answers[1]) || 0,                    // D: Q1 Score
+      Number(answers[2]) || 0,                    // E: Q2 Score
+      Number(answers[3]) || 0,                    // F: Q3 Score
+      Number(answers[4]) || 0,                    // G: Q4 Score
+      Number(answers[5]) || 0,                    // H: Q5 Score
+      Number(answers[6]) || 0,                    // I: Q6 Score
+      Number(answers[7]) || 0,                    // J: Q7 Score
+      Number(answers[8]) || 0,                    // K: Q8 Score
+      Number(answers[9]) || 0,                    // L: Q9 Score
+      Number(answers[10]) || 0,                   // M: Q10 Score
+      score,                                      // N: Total Score
+      level,                                      // O: Result Level
+      strategicMaturityPercent,                   // P: Strategic Maturity %
+      kompetensgapPercent,                       // Q: Competency Gap %
+      aiReadinessPercent,                        // R: AI-readiness %
+      version,                                    // S: Quiz Version
+      strangeQ,                                   // T: Strange AI Question
+    ];
+
+    // Append to Google Sheet
+    await sheets.spreadsheets.values.append({
+      spreadsheetId,
+      range,
+      valueInputOption: 'USER_ENTERED',
+      insertDataOption: 'INSERT_ROWS',
+      resource: {
+        values: [rowData],
+      },
+    });
 
     const response = {
       level,
