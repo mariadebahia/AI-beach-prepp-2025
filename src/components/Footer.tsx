@@ -2,13 +2,11 @@ import React from 'react';
 import { Linkedin, Globe } from 'lucide-react';
 
 const Footer: React.FC = () => {
-  // Using the same direct URL as in HeroSection
   const logoUrl = "https://gbnzjpuohpidutbwadbu.supabase.co/storage/v1/object/sign/image/3AImigos_logo_hand.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5X2ZkNTI0NzJhLTk5YzgtNDQ2Yy05ZTM3LTczMTVkYjJjYzQ4MiJ9.eyJ1cmwiOiJpbWFnZS8zQUltaWdvc19sb2dvX2hhbmQucG5nIiwiaWF0IjoxNzQ2NTU4NTE2LCJleHAiOjE3NzgwOTQ1MTZ9.KPMF6SXJR_5Jon9Kps4S59PyWn6hJyRP8o0cDcMmIeI";
 
-  // New profile images from Pexels
-  const mariaImageUrl = "https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg?auto=compress&cs=tinysrgb&w=800";
-  const noahImageUrl = "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=800";
-  const ellinoImageUrl = "https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=800";
+  const mariaImageUrl = "https://gbnzjpuohpidutbwadbu.supabase.co/storage/v1/object/public/image//TresAImigos_maria.jpeg";
+  const noahImageUrl = "https://gbnzjpuohpidutbwadbu.supabase.co/storage/v1/object/public/image//TresAImigos_noah.jpeg";
+  const ellinoImageUrl = "https://gbnzjpuohpidutbwadbu.supabase.co/storage/v1/object/public/image//TresAImigos_ellinor.jpeg";
 
   return (
     <footer>
