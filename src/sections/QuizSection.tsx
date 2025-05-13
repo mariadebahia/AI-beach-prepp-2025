@@ -394,7 +394,9 @@ const QuizSection: React.FC = () => {
               </h2>
 
               {quizResults.description && (
-                <p className="quiz-body-text mb-6">{quizResults.description}</p>
+                <p className="quiz-body-text mb-6 text-xl font-bold">
+                  {quizResults.description}
+                </p>
               )}
 
               {quizResults.recommendations && quizResults.recommendations.length > 0 && (
