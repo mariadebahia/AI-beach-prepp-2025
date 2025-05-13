@@ -24,7 +24,7 @@ const HeroSection: React.FC = () => {
         </AnimatedSection>
         
         <AnimatedSection animation="fade-up" delay="300">
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4">
             <Button 
               variant="purple" 
               className="bg-beach-purple text-white text-[1.5rem]"
