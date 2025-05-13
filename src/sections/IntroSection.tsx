@@ -49,9 +49,9 @@ const IntroSection: React.FC = () => {
 
   return (
     <section className="py-32 px-8 bg-[#fbf9f9]" id="intro-section">
-      <div className="max-w-[860px] mx-auto text-center">
+      <div className="max-w-[860px] mx-auto">
         <AnimatedSection animation="fade-up">
-          <h2 className="mb-4 h2-quiz-outline">
+          <h2 className="mb-4 h2-quiz-outline text-left">
             Känner ni AI-FOMO på jobbet?
             Ni är inte ensamma.
           </h2>
@@ -65,7 +65,6 @@ const IntroSection: React.FC = () => {
           </h5>
         </AnimatedSection>
 
-        {/* Three-step section */}
         <AnimatedSection animation="fade-up" delay="200">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-deep-purple">
             <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
@@ -88,7 +87,7 @@ const IntroSection: React.FC = () => {
           </div>
         </AnimatedSection>
 
-        <h3 className="text-4xl font-semibold mb-4">Tävla om en AI-workout för ert företag! 🏖️</h3>
+        <h3 className="text-4xl font-semibold mb-4 text-left">Tävla om en AI-workout för ert företag! 🏖️</h3>
         <h5 className="text-[1.25rem] leading-[1.2] mb-16 max-w-[860px] mx-auto text-left">
           Pst - Alla som anmäler sig får vår AI-fitnessguide. En snabbstart till AI-form – med knepen, verktygen och peppen för att ta första steget direkt.
           
@@ -98,7 +97,7 @@ const IntroSection: React.FC = () => {
         {isSubmitted ? (
           <AnimatedSection animation="fade-up" delay="200">
             <div className="bg-white p-8 rounded-xl shadow-lg">
-              <h2 className="text-4xl font-bold text-deep-purple mb-6">Tack – ni är med i AI Beach Prep! 🏋️</h2>
+              <h2 className="text-4xl font-bold text-deep-purple mb-6 text-left">Tack – ni är med i AI Beach Prep! 🏋️</h2>
               <p className="text-2xl text-gray-700 mb-8">
                 Vi har registrerat er anmälan och hör snart av oss om ni går vidare till nästa steg. Urvalet görs av vår jury och baseras på er motivering, er nyfikenhet och potential att komma igång med AI. Vi bedömer alla ansökningar individuellt – bransch eller storlek spelar ingen roll. Redan nu kan ni börja AI-värma upp med vår guide!
               </p>
