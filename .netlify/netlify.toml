@@ -1,0 +1,59 @@
+functionsDirectory = "/Users/mariadebahia/Documents/GitHub/AI-beach-prepp-2025/netlify/functions"
+functionsDirectoryOrigin = "config-v1"
+redirectsOrigin = "config"
+plugins = []
+headers = []
+
+[build]
+publish = "/Users/mariadebahia/Documents/GitHub/AI-beach-prepp-2025/dist"
+publishOrigin = "config"
+commandOrigin = "config"
+command = "npm run build"
+functions = "/Users/mariadebahia/Documents/GitHub/AI-beach-prepp-2025/netlify/functions"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[dev]
+command = "npm run dev"
+targetPort = 5173.0
+
+[functions]
+
+[functions."*"]
+
+[[redirects]]
+from = "/api/quiz"
+to = "https://script.google.com/macros/s/AKfycbzUB-pBw16f91NM2qKawP4yORYcuiGw6m10FTODTnxcugLF4OsiiRmt7X8vCbEGlmuk/exec"
+status = 200.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+Access-Control-Allow-Origin = "*"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]

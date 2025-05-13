@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Handler } from '@netlify/functions';
 import { google } from 'googleapis';
 
@@ -28,19 +29,66 @@ const handler: Handler = async (event) => {
     return {
       statusCode: 405,
       body: JSON.stringify({ error: 'Method not allowed' }),
+=======
+import { Handler } from "@netlify/functions";
+import { google } from "googleapis";
+
+export const handler: Handler = async (event) => {
+  // 1) CORS‐preflight
+  if (event.httpMethod === "OPTIONS") {
+    return {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
+      body: "",
+    };
+  }
+
+  // Endast POST tillåtet här
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ error: "Method not allowed" }),
+>>>>>>> vodka-redbull
     };
   }
 
   try {
+<<<<<<< HEAD
     const payload: QuizPayload = JSON.parse(event.body || '{}');
     const { totalScore, answers, industry, companySize, strangeAIQuestion } = payload;
+=======
+    // 2) Läs in payload
+    const data = JSON.parse(event.body || "{}");
+
+    // Fallback om data.numericAnswers eller data.answers saknas
+    const answers: Record<string, number> =
+      data.numericAnswers ?? data.answers ?? {};
+
+    // Säkerställ att vi har siffror
+    const score = Number(data.totalScore) || 0;
+    const maxScore = Number(data.maxScore) || 1;
+    const industry = data.industry || "";
+    const companySize = data.companySize || "";
+    const strangeQ = data.strangeAIQuestion || "";
+    const version = data.quiz_version || "";
+    const timestamp = data.timestamp || new Date().toISOString();
+>>>>>>> vodka-redbull
 
     // Calculate result level based on total score
     let level;
     let description;
     let recommendations;
 
+<<<<<<< HEAD
     if (totalScore <= 10) {
+=======
+    if (score <= 10) {
+>>>>>>> vodka-redbull
       level = 'Pappskalle';
       description = 'Du är som en nybörjare på gymmet som försöker lyfta de tyngsta vikterna direkt. Dags att börja med grunderna!';
       recommendations = [
@@ -48,7 +96,11 @@ const handler: Handler = async (event) => {
         'Experimentera med ChatGPT (som att lära sig grundläggande övningar)',
         'Hitta ett litet projekt där AI kan hjälpa er (som att sätta upp ett enkelt träningsschema)'
       ];
+<<<<<<< HEAD
     } else if (totalScore <= 20) {
+=======
+    } else if (score <= 20) {
+>>>>>>> vodka-redbull
       level = 'Nyfiken';
       description = 'Du har börjat din AI-resa, ungefär som någon som precis upptäckt att det finns mer på gymmet än löpbandet!';
       recommendations = [
@@ -66,6 +118,7 @@ const handler: Handler = async (event) => {
       ];
     }
 
+<<<<<<< HEAD
     // Calculate percentages with safeguards
     const maxScore = payload.maxScore || 1; // Safeguard against division by zero
     const strategicMaturityPercent = Math.min(100, Math.max(0, Math.round((totalScore / maxScore) * 100))) || 0;
@@ -129,6 +182,12 @@ const handler: Handler = async (event) => {
     });
 
     console.log('Quiz data successfully logged to Google Sheet');
+=======
+    // Calculate percentages
+    const strategicMaturityPercent = Math.min(100, Math.max(0, Math.round((score / maxScore) * 100))) || 0;
+    const kompetensgapPercent = Math.min(100, Math.max(0, Math.round(100 - ((score / maxScore) * 100)))) || 0;
+    const aiReadinessPercent = Math.min(100, Math.max(0, Math.round((score / maxScore) * 100))) || 0;
+>>>>>>> vodka-redbull
 
     const response = {
       level,
@@ -143,22 +202,36 @@ const handler: Handler = async (event) => {
     return {
       statusCode: 200,
       headers: {
+<<<<<<< HEAD
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(response),
     };
+=======
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(response),
+    };
+
+>>>>>>> vodka-redbull
   } catch (error) {
     console.error('Error processing quiz submission:', error);
     return {
       statusCode: 500,
       headers: {
+<<<<<<< HEAD
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify({ error: 'Internal server error' }),
+=======
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({ error: "Internal server error" }),
+>>>>>>> vodka-redbull
     };
   }
 };
-
-export { handler };

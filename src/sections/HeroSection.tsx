@@ -15,11 +15,11 @@ const HeroSection: React.FC = () => {
         </AnimatedSection>
         
         <AnimatedSection animation="fade-up" delay="200">
-          <h1 className="font-['Bricolage_Grotesque'] font-extrabold mb-6">
+          <h1 className="font-['Bricolage_Grotesque'] font-extrabold mb-6 text-center">
             Fixa AI-formen till beach 2025!
           </h1>
-          <h5 className="text-[2rem] leading-relaxed mb-12">
-            Tävla och vinn en skräddarsydd AI-workout för dig och ditt jobb innan midsommar!
+          <h5 className="text-[2rem] leading-relaxed mb-12 text-center">
+            Tävla om en skräddarsydd AI-workout för ditt team – kör igång innan midsommar!
           </h5>
         </AnimatedSection>
         
@@ -27,14 +27,14 @@ const HeroSection: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               variant="purple" 
-              className="bg-beach-purple text-white text-[1.25rem]"
+              className="bg-beach-purple text-white text-[1.5rem]"
               onClick={() => document.getElementById('intro-section')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Tävla och vinn en<br />AI-workout för jobbet
             </Button>
             <Button 
               variant="outline" 
-              className="border-beach-purple text-beach-purple text-[1.25rem]"
+              className="border-beach-purple text-beach-purple text-[1.5rem]"
               onClick={() => document.getElementById('quiz-section')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Testa jobbets<br />AI-fitnessnivå

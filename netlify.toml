@@ -1,24 +1,24 @@
 # netlify.toml
 
 [build]
-  command = "npm run build"
-  publish = "dist"
+  command   = "npm run build"
+  publish   = "dist"
   functions = "netlify/functions"
 
 [dev]
-  command = "npm run dev"
+  command    = "npm run dev"
   targetPort = 5173
 
+# Proxy all /api/quiz calls to your Netlify Function
 [[redirects]]
-  from = "/api/quiz"
-  # Ersätt med din exakta Google Apps Script Web App URL
-  to = "https://script.google.com/macros/s/AKfycbzUB-pBw16f91NM2qKawP4yORYcuiGw6m10FTODTnxcugLF4OsiiRmt7X8vCbEGlmuk/exec"
+  from   = "/api/quiz"
+  to     = "/.netlify/functions/quiz"
   status = 200
-  force = true
-  # KORRIGERAD syntax för headers (med dubbla citationstecken)
+  force  = true
   headers = { "Access-Control-Allow-Origin" = "*" }
 
+# Single‐page‐app fallback
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200# bump
+  from   = "/*"
+  to     = "/index.html"
+  status = 200

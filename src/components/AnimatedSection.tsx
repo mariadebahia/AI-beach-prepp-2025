@@ -4,22 +4,24 @@ import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 interface AnimatedSectionProps {
   children: React.ReactNode;
   className?: string;
-  animation?: 'fade-up' | 'fade-down' | 'fade-left' | 'fade-right';
+  animation?: 'fade-in-up' | 'fade-up' | 'fade-down' | 'fade-left' | 'fade-right';
   delay?: '100' | '200' | '300' | '400';
 }
 
 const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   children,
   className = '',
-  animation = 'fade-up',
+  animation = 'fade-in-up',
   delay
 }) => {
-  const ref = useIntersectionObserver();
+  const ref = useIntersectionObserver({
+    className: animation
+  });
 
   return (
     <div
       ref={ref}
-      className={`${animation} ${delay ? `delay-${delay}` : ''} ${className}`}
+      className={`${delay ? `delay-${delay}` : ''} ${className}`}
     >
       {children}
     </div>

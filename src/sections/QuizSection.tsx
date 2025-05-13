@@ -9,9 +9,9 @@ import { Dumbbell, Brain, Rocket, TrendingUp, Users } from 'lucide-react';
 const QUIZ_ENDPOINT = '/api/quiz';
 
 const calculateKompetensgapPercent = (answers: Record<string | number, string>): number => {
-  const kompetensQuestions = [1, 3, 5, 7, 9]; // Questions related to competency
+  const kompetensQuestions = [1, 3, 5, 7, 9];
   let totalPoints = 0;
-  let maxPoints = kompetensQuestions.length * 3; // Max 3 points per question
+  let maxPoints = kompetensQuestions.length * 3;
 
   kompetensQuestions.forEach(questionId => {
     const answer = answers[questionId];
@@ -28,9 +28,9 @@ const calculateKompetensgapPercent = (answers: Record<string | number, string>):
 };
 
 const calculateStrategicMaturityPercent = (answers: Record<string | number, string>): number => {
-  const strategicQuestions = [2, 4, 6, 8, 10]; // Questions related to strategic maturity
+  const strategicQuestions = [2, 4, 6, 8, 10];
   let totalPoints = 0;
-  let maxPoints = strategicQuestions.length * 3; // Max 3 points per question
+  let maxPoints = strategicQuestions.length * 3;
 
   strategicQuestions.forEach(questionId => {
     const answer = answers[questionId];
@@ -89,39 +89,41 @@ const QuizSection: React.FC = () => {
 
   const submitQuiz = async (allAnswers: AllAnswers) => {
     let totalPoints = 0;
-    const payloadAnswers: Record<string | number, string | number> = {};
+    const numericAnswers: Record<number, number> = {};
+    const industry = allAnswers['industry'] || '';
+    const companySize = allAnswers['companySize'] || '';
+    const strangeAIQuestion = allAnswers['strangeAIQuestion'] || '';
 
-    quizQuestions.forEach(question => {
-      const answerValue = allAnswers[question.id];
-
-      if (answerValue !== undefined && answerValue !== null) {
-        if (question.type === 'multiple-choice') {
-          const selectedOption = question.options?.find(opt => opt.id === answerValue);
-          if (selectedOption && selectedOption.points !== undefined) {
-            totalPoints += selectedOption.points;
-            payloadAnswers[question.id] = selectedOption.points;
-          } else {
-            payloadAnswers[question.id] = 0;
-          }
+    for (let i = 1; i <= 10; i++) {
+      const question = quizQuestions.find(q => q.id === i);
+      const answerValue = allAnswers[i];
+      
+      if (question && answerValue) {
+        const selectedOption = question.options?.find(opt => opt.id === answerValue);
+        if (selectedOption && selectedOption.points !== undefined) {
+          totalPoints += selectedOption.points;
+          numericAnswers[i] = selectedOption.points;
         } else {
-          payloadAnswers[question.id] = answerValue;
+          numericAnswers[i] = 0;
         }
       } else {
-        payloadAnswers[question.id] = '';
+        numericAnswers[i] = 0;
       }
-    });
+    }
 
-    const localKompetensgapPercent = calculateKompetensgapPercent(allAnswers);
-    const localStrategicMaturityPercent = calculateStrategicMaturityPercent(allAnswers);
+    const maxScore = quizQuestions
+      .filter(q => q.type === 'multiple-choice')
+      .reduce((sum, q) => sum + Math.max(...(q.options?.map(opt => opt.points || 0) || [0])), 0);
 
     const payload = {
-      answers: payloadAnswers,
+      answers: numericAnswers,
+      industry,
+      companySize,
+      strangeAIQuestion,
       totalScore: totalPoints,
-      maxScore: quizQuestions
-        .filter(q => q.type === 'multiple-choice')
-        .reduce((sum, q) => sum + Math.max(...(q.options?.map(opt => opt.points || 0) || [0])), 0),
+      maxScore,
       timestamp: new Date().toISOString(),
-      quiz_version: '1.2',
+      quiz_version: '1.2'
     };
 
     try {
@@ -151,14 +153,15 @@ const QuizSection: React.FC = () => {
         apiResults = defaultResults;
       }
 
-      // Combine API results with local calculations
+      const localKompetensgapPercent = calculateKompetensgapPercent(allAnswers);
+      const localStrategicMaturityPercent = calculateStrategicMaturityPercent(allAnswers);
+
       const enhancedResults = {
         ...apiResults,
         kompetensgapPercent: localKompetensgapPercent,
         strategicMaturityPercent: localStrategicMaturityPercent
       };
 
-      // Save results to localStorage for debugging
       localStorage.setItem('lastQuizResult', JSON.stringify({
         timestamp: new Date().toISOString(),
         answers: allAnswers,
@@ -282,13 +285,13 @@ const QuizSection: React.FC = () => {
     <section className="py-32 px-8 bg-[#d8d355]" id="quiz-section">
       <div className="max-w-3xl mx-auto">
         <AnimatedSection animation="fade-up">
-          <h2 className="h2-quiz-outline mb-8 text-center leading-[1.2]">
+          <h2 className="h2-quiz-outline mb-8 text-left leading-[1.2]">
             Hur är det med AI-formen? Ta vårt AI-fitnesstest!
           </h2>
         </AnimatedSection>
 
         <AnimatedSection animation="fade-up" delay="200">
-          <h5 className="text-[1.4375rem] leading-relaxed mb-8 text-center">
+          <h5 className="text-[1.4375rem] leading-relaxed mb-8 text-left">
             Vårt AI-fitnesstest är inte bara kul – det mäter er strategiska AI-mognad och visar på eventuellt kompetensgap samt levererar tre konkret rekommendation.<break></break>
 
             På bara 2 minuter får ni koll på läget. Och nästa steg.
@@ -320,7 +323,8 @@ const QuizSection: React.FC = () => {
                       {currentQuestion.options.map((option) => (
                         <QuizOption
                           key={option.id}
-                          id={option.id}
+                          id={`question-${currentQuestion.id}-option-${option.id}`}
+                          name={`question-${currentQuestion.id}`}
                           text={option.text}
                           isSelected={answers[currentQuestion.id] === option.id}
                           onSelect={() => handleOptionSelect(option.id)}
@@ -330,46 +334,52 @@ const QuizSection: React.FC = () => {
                   )}
 
                   {currentQuestion.type === 'dropdown' && Array.isArray(currentQuestion.options) && (
-                       <div className="mb-4">
-                           <select
-                               value={answers[currentQuestion.id] || ''}
-                               onChange={handleInputChange}
-                               className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                               disabled={isSubmitting}
-                           >
-                               <option value="" disabled>Välj...</option>
-                               {currentQuestion.options.map(option => (
-                                   <option key={option.id} value={option.id}>{option.text}</option>
-                               ))}
-                           </select>
-                       </div>
-                   )}
+                    <div className="mb-4">
+                      <select
+                        id={`question-${currentQuestion.id}`}
+                        name={`question-${currentQuestion.id}`}
+                        value={answers[currentQuestion.id] || ''}
+                        onChange={handleInputChange}
+                        className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        disabled={isSubmitting}
+                        aria-label={currentQuestion.question}
+                      >
+                        <option value="" disabled>Välj...</option>
+                        {currentQuestion.options.map(option => (
+                          <option key={option.id} value={option.id}>{option.text}</option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
 
-                   {currentQuestion.type === 'text' && (
-                       <div className="mb-4">
-                           <input
-                               type="text"
-                               value={answers[currentQuestion.id] || ''}
-                               onChange={handleInputChange}
-                               placeholder={currentQuestion.placeholder || ''}
-                               className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                               disabled={isSubmitting}
-                           />
-                       </div>
-                   )}
+                  {currentQuestion.type === 'text' && (
+                    <div className="mb-4">
+                      <input
+                        type="text"
+                        id={`question-${currentQuestion.id}`}
+                        name={`question-${currentQuestion.id}`}
+                        value={answers[currentQuestion.id] || ''}
+                        onChange={handleInputChange}
+                        placeholder={currentQuestion.placeholder || ''}
+                        className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        disabled={isSubmitting}
+                        aria-label={currentQuestion.question}
+                      />
+                    </div>
+                  )}
 
                   {(currentQuestion.type !== 'multiple-choice' || currentQuestionIndex === quizQuestions.length - 1) && (
-                       <div className="mt-6">
-                           <Button
-                               onClick={handleNextQuestion}
-                               variant="purple"
-                               className="w-full bg-beach-purple text-white py-3 rounded-md disabled:opacity-50"
-                               disabled={isSubmitting || !answers[currentQuestion.id]}
-                           >
-                               {currentQuestionIndex < quizQuestions.length - 1 ? 'Nästa fråga' : 'Skicka svar'}
-                           </Button>
-                       </div>
-                   )}
+                    <div className="mt-6">
+                      <Button
+                        onClick={handleNextQuestion}
+                        variant="purple"
+                        className="w-full bg-beach-purple text-white py-3 rounded-md disabled:opacity-50"
+                        disabled={isSubmitting || !answers[currentQuestion.id]}
+                      >
+                        {currentQuestionIndex < quizQuestions.length - 1 ? 'Nästa fråga' : 'Skicka svar'}
+                      </Button>
+                    </div>
+                  )}
                 </>
               )}
             </div>
@@ -390,67 +400,68 @@ const QuizSection: React.FC = () => {
               </h2>
 
               {quizResults.description && (
-                  <p className="quiz-body-text mb-6">{quizResults.description}</p>
+                <p className="quiz-body-text mb-6">{quizResults.description}</p>
               )}
+
               {quizResults.recommendations && quizResults.recommendations.length > 0 && (
-                   <div className="level-recommendations mt-8">
-                       <h6 className="text-[23px] font-medium mb-4">Rekommendationer för din nivå:</h6>
-                       <ul className="quiz-recommendations">
-                           {quizResults.recommendations.map((rec, index) => (
-                               <li key={index} className="flex items-center justify-center gap-3 mb-4">
-                                   <span className="text-center leading-snug">{rec}</span>
-                               </li>
-                           ))}
-                       </ul>
-                   </div>
-               )}
+                <div className="level-recommendations mt-8">
+                  <h6 className="text-[23px] font-medium mb-4">Rekommendationer för din nivå:</h6>
+                  <ul className="quiz-recommendations">
+                    {quizResults.recommendations.map((rec, index) => (
+                      <li key={index} className="flex items-center justify-center gap-3 mb-4">
+                        <span className="text-center leading-snug">{rec}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {quizResults.comparative_statement && (
-                  <div className="bg-gray-50 rounded-lg p-6 mb-4">
-                    <p className="quiz-percentile">
-                      {quizResults.comparative_statement}
-                    </p>
-                  </div>
+                <div className="bg-gray-50 rounded-lg p-6 mb-4">
+                  <p className="quiz-percentile">
+                    {quizResults.comparative_statement}
+                  </p>
+                </div>
               )}
 
-               {quizResults.industry_comparative_statement && quizResults.industry_comparative_statement.trim() !== '' && (
-                   <div className="bg-gray-50 rounded-lg p-6 mb-8">
-                       <p className="quiz-percentile">
-                           {quizResults.industry_comparative_statement}
-                       </p>
-                   </div>
-               )}
+              {quizResults.industry_comparative_statement && quizResults.industry_comparative_statement.trim() !== '' && (
+                <div className="bg-gray-50 rounded-lg p-6 mb-8">
+                  <p className="quiz-percentile">
+                    {quizResults.industry_comparative_statement}
+                  </p>
+                </div>
+              )}
 
-               {((quizResults.strategicMaturityPercent !== undefined && quizResults.strategicMaturityPercent !== 0) ||
-                 (quizResults.kompetensgapPercent !== undefined && quizResults.kompetensgapPercent !== 0)) && (
-                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                     {quizResults.strategicMaturityPercent !== undefined && quizResults.strategicMaturityPercent !== 0 && (
-                         <div className="quiz-metric-card">
-                           <div className="flex justify-center mb-4">
-                             <TrendingUp className="w-8 h-8 text-deep-purple" />
-                           </div>
-                           <h6 className="text-[23px] font-medium mb-4">AI strategisk mognad</h6>
-                           <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
-                             {quizResults.strategicMaturityPercent}%
-                           </div>
-                           <p className="quiz-body-text">Bedömning av hur väl AI är integrerad i företagets övergripande strategi</p>
-                         </div>
-                     )}
+              {((quizResults.strategicMaturityPercent !== undefined && quizResults.strategicMaturityPercent !== 0) ||
+                (quizResults.kompetensgapPercent !== undefined && quizResults.kompetensgapPercent !== 0)) && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                  {quizResults.strategicMaturityPercent !== undefined && quizResults.strategicMaturityPercent !== 0 && (
+                    <div className="quiz-metric-card">
+                      <div className="flex justify-center mb-4">
+                        <TrendingUp className="w-8 h-8 text-deep-purple" />
+                      </div>
+                      <h6 className="text-[23px] font-medium mb-4">AI strategisk mognad</h6>
+                      <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
+                        {quizResults.strategicMaturityPercent}%
+                      </div>
+                      <p className="quiz-body-text">Bedömning av hur väl AI är integrerad i företagets övergripande strategi</p>
+                    </div>
+                  )}
 
-                     {quizResults.kompetensgapPercent !== undefined && quizResults.kompetensgapPercent !== 0 && (
-                         <div className="quiz-metric-card">
-                           <div className="flex justify-center mb-4">
-                             <Users className="w-8 h-8 text-deep-purple" />
-                           </div>
-                           <h6 className="text-[23px] font-medium mb-4">Kompetensgap</h6>
-                           <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
-                             {quizResults.kompetensgapPercent}%
-                           </div>
-                           <p className="quiz-body-text">Skillnaden mellan nuvarande och önskad AI-kompetens i organisationen</p>
-                         </div>
-                     )}
-                   </div>
-               )}
+                  {quizResults.kompetensgapPercent !== undefined && quizResults.kompetensgapPercent !== 0 && (
+                    <div className="quiz-metric-card">
+                      <div className="flex justify-center mb-4">
+                        <Users className="w-8 h-8 text-deep-purple" />
+                      </div>
+                      <h6 className="text-[23px] font-medium mb-4">Kompetensgap</h6>
+                      <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
+                        {quizResults.kompetensgapPercent}%
+                      </div>
+                      <p className="quiz-body-text">Skillnaden mellan nuvarande och önskad AI-kompetens i organisationen</p>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </AnimatedSection>
         )}
