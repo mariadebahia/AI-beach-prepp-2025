@@ -276,17 +276,6 @@ const QuizSection: React.FC = () => {
                       />
                     ))}
                   </div>
-
-                  {currentQuestion.type === 'multiple-choice' && currentQuestionIndex < 9 && (
-                    <div className="mt-6 text-center">
-                      <Button
-                        onClick={() => handleOptionSelect(answers[currentQuestion.id] || '')}
-                        disabled={!answers[currentQuestion.id]}
-                      >
-                        {currentQuestionIndex < 9 ? 'Nästa fråga' : 'Skicka svar'}
-                      </Button>
-                    </div>
-                  )}
                 </>
               )}
             </div>
