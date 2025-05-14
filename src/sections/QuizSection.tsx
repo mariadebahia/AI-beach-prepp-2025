@@ -91,7 +91,7 @@ const QuizSection: React.FC = () => {
     let totalPoints = 0;
     const numericAnswers: Record<number, number> = {};
     
-    // Get the non-numeric answers
+    // Get the non-numeric answers without default values
     const industry = allAnswers['industry'];
     const companySize = allAnswers['companySize'];
     const strangeAIQuestion = allAnswers['strangeAIQuestion'];
@@ -105,7 +105,7 @@ const QuizSection: React.FC = () => {
         const selectedOption = question.options?.find(opt => opt.id === answerValue);
         if (selectedOption && selectedOption.points !== undefined) {
           totalPoints += selectedOption.points;
-          numericAnswers[i] = selectedOption.points;
+          numericAnswers[i] = selectedOption.points;  // Store the points value
         } else {
           numericAnswers[i] = 0;
         }
@@ -114,12 +114,15 @@ const QuizSection: React.FC = () => {
       }
     }
 
+    // Log the numeric answers before sending
+    console.log('numericAnswers being sent:', numericAnswers);
+
     const maxScore = quizQuestions
       .filter(q => q.type === 'multiple-choice')
       .reduce((sum, q) => sum + Math.max(...(q.options?.map(opt => opt.points || 0) || [0])), 0);
 
     const payload = {
-      answers: numericAnswers,
+      answers: numericAnswers,  // Contains point values for questions 1-10
       industry,
       companySize,
       strangeAIQuestion,
