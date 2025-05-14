@@ -40,7 +40,7 @@ const handler: Handler = async (event) => {
     let description;
     let recommendations;
 
-    if (totalScore <= 10) {
+    if (totalScore <= 7) {
       level = 'Pappskalle';
       description = 'Du är som en nybörjare på gymmet som försöker lyfta de tyngsta vikterna direkt. Dags att börja med grunderna!';
       recommendations = [
@@ -48,7 +48,7 @@ const handler: Handler = async (event) => {
         'Experimentera med ChatGPT (som att lära sig grundläggande övningar)',
         'Hitta ett litet projekt där AI kan hjälpa er (som att sätta upp ett enkelt träningsschema)'
       ];
-    } else if (totalScore <= 20) {
+    } else if (totalScore <= 14) {
       level = 'Nyfiken';
       description = 'Du har börjat din AI-resa, ungefär som någon som precis upptäckt att det finns mer på gymmet än löpbandet!';
       recommendations = [
@@ -84,30 +84,27 @@ const handler: Handler = async (event) => {
     const sheets = google.sheets({ version: 'v4', auth });
     const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
     const sheetName = 'Quiz Results';
-    const range = `${sheetName}!A:T`; // Updated range for 20 columns
+    const range = `${sheetName}!A:Q`; // Updated range for 17 columns
 
-    // Prepare row data matching exactly 20 columns
+    // Prepare row data matching exactly 17 columns
     const rowData = [
       new Date(payload.timestamp).toISOString(),    // 1. Timestamp
       industry || '',                               // 2. Industry
-      companySize || '',                            // 3. Company Size
-      Number(answers[1]) || 0,                      // 4. Q1 Score
-      Number(answers[2]) || 0,                      // 5. Q2 Score
-      Number(answers[3]) || 0,                      // 6. Q3 Score
-      Number(answers[4]) || 0,                      // 7. Q4 Score
-      Number(answers[5]) || 0,                      // 8. Q5 Score
-      Number(answers[6]) || 0,                      // 9. Q6 Score
-      Number(answers[7]) || 0,                      // 10. Q7 Score
-      Number(answers[8]) || 0,                      // 11. Q8 Score
-      Number(answers[9]) || 0,                      // 12. Q9 Score
-      Number(answers[10]) || 0,                     // 13. Q10 Score
-      Number(totalScore) || 0,                      // 14. Total Score
-      level || 'Nyfiken',                          // 15. Result Level
-      strategicMaturityPercent,                     // 16. Strategic Maturity %
-      kompetensgapPercent,                         // 17. Competency Gap %
-      aiReadinessPercent,                          // 18. AI-readiness %
-      payload.quiz_version || '1.0',                // 19. Quiz Version
-      strangeAIQuestion || '',                      // 20. Strange AI Question
+      companySize || '',                           // 3. Company Size
+      Number(answers[1]) || 0,                     // 4. Q1 Score
+      Number(answers[2]) || 0,                     // 5. Q2 Score
+      Number(answers[3]) || 0,                     // 6. Q3 Score
+      Number(answers[4]) || 0,                     // 7. Q4 Score
+      Number(answers[5]) || 0,                     // 8. Q5 Score
+      Number(answers[6]) || 0,                     // 9. Q6 Score
+      Number(answers[7]) || 0,                     // 10. Q7 Score
+      Number(totalScore) || 0,                     // 11. Total Score
+      level || 'Nyfiken',                          // 12. Result Level
+      strategicMaturityPercent,                    // 13. Strategic Maturity %
+      kompetensgapPercent,                        // 14. Competency Gap %
+      aiReadinessPercent,                         // 15. AI-readiness %
+      payload.quiz_version || '1.0',               // 16. Quiz Version
+      strangeAIQuestion || '',                     // 17. Strange AI Question
     ];
 
     // Debug logging for Sheets API call
@@ -160,3 +157,5 @@ const handler: Handler = async (event) => {
     };
   }
 };
+
+export { handler };

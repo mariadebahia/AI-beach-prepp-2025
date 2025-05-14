@@ -45,7 +45,7 @@ export const handler: Handler = async (event) => {
     let description;
     let recommendations;
 
-    if (score <= 10) {
+    if (score <= 7) {
       level = 'Pappskalle';
       description = 'Du är som en nybörjare på gymmet som försöker lyfta de tyngsta vikterna direkt. Dags att börja med grunderna!';
       recommendations = [
@@ -53,7 +53,7 @@ export const handler: Handler = async (event) => {
         'Experimentera med ChatGPT (som att lära sig grundläggande övningar)',
         'Hitta ett litet projekt där AI kan hjälpa er (som att sätta upp ett enkelt träningsschema)'
       ];
-    } else if (score <= 20) {
+    } else if (score <= 14) {
       level = 'Nyfiken';
       description = 'Du har börjat din AI-resa, ungefär som någon som precis upptäckt att det finns mer på gymmet än löpbandet!';
       recommendations = [
@@ -87,9 +87,9 @@ export const handler: Handler = async (event) => {
 
     const sheets = google.sheets({ version: 'v4', auth });
     const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
-    const range = 'Quiz Results!A:T'; // Exact tab name and range
+    const range = 'Quiz Results!A:Q'; // Updated range for 17 columns
 
-    // Prepare row data matching exactly 20 columns (A through T)
+    // Prepare row data matching exactly 17 columns (A through Q)
     const rowData = [
       timestamp,                                    // A: Timestamp
       industry,                                     // B: Industry
@@ -101,16 +101,13 @@ export const handler: Handler = async (event) => {
       Number(answers[5]) || 0,                     // H: Q5 Score
       Number(answers[6]) || 0,                     // I: Q6 Score
       Number(answers[7]) || 0,                     // J: Q7 Score
-      Number(answers[8]) || 0,                     // K: Q8 Score
-      Number(answers[9]) || 0,                     // L: Q9 Score
-      Number(answers[10]) || 0,                    // M: Q10 Score
-      score,                                       // N: Total Score
-      level,                                       // O: Result Level
-      strategicMaturityPercent,                    // P: Strategic Maturity %
-      kompetensgapPercent,                        // Q: Competency Gap %
-      aiReadinessPercent,                         // R: AI-readiness %
-      version,                                     // S: Quiz Version
-      strangeQ                                     // T: Strange AI Question
+      score,                                       // K: Total Score
+      level,                                       // L: Result Level
+      strategicMaturityPercent,                    // M: Strategic Maturity %
+      kompetensgapPercent,                        // N: Competency Gap %
+      aiReadinessPercent,                         // O: AI-readiness %
+      version,                                     // P: Quiz Version
+      strangeQ                                     // Q: Strange AI Question
     ];
 
     // Append to Google Sheet

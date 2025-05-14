@@ -79,39 +79,6 @@ export const quizQuestions: QuizQuestion[] = [
     ]
   },
   {
-    id: 8,
-    question: 'Vad är er vision för AI i framtiden?',
-    type: 'multiple-choice',
-    options: [
-      { id: '8a', text: 'Framtiden? Vi försöker överleva nuet', points: 0 },
-      { id: '8b', text: 'Vi hoppas AI inte tar över världen', points: 1 },
-      { id: '8c', text: 'Vi ser ljust på framtiden med AI som vår träningskompis', points: 2 },
-      { id: '8d', text: 'Vi planerar att bli AI-influencers och sälja proteinshakes', points: 3 }
-    ]
-  },
-  {
-    id: 9,
-    question: 'Hur ser ert AI-kunskapsläge ut?',
-    type: 'multiple-choice',
-    options: [
-      { id: '9a', text: 'Vi vet lika mycket om AI som om kvantfysik på mandarin', points: 0 },
-      { id: '9b', text: 'En person har sett en YouTube-video om ChatGPT', points: 1 },
-      { id: '9c', text: 'Vi har några självlärda AI-entusiaster i korridorerna', points: 2 },
-      { id: '9d', text: 'Vi har både formell och informell AI-utbildning för alla', points: 3 }
-    ]
-  },
-  {
-    id: 10,
-    question: 'Hur är er data förberedd för AI-implementering?',
-    type: 'multiple-choice',
-    options: [
-      { id: '10a', text: 'Vår data är som en tonårings rum - totalt kaos', points: 0 },
-      { id: '10b', text: 'Vi har börjat städa men hittar fortfarande inte strumporna', points: 1 },
-      { id: '10c', text: 'Vi har hyfsat organiserade datamappar och system', points: 2 },
-      { id: '10d', text: 'Vår data är mer välorganiserad än Marie Kondos garderob', points: 3 }
-    ]
-  },
-  {
     id: 'industry',
     question: 'Vilken bransch är ni verksamma inom?',
     type: 'dropdown',
@@ -150,7 +117,7 @@ export const quizQuestions: QuizQuestion[] = [
 ];
 
 export const getQuizResult = (score: number): QuizResult => {
-  if (score <= 10) {
+  if (score <= 7) {
     return {
       level: 'Pappskalle',
       description: 'Du är som en nybörjare på gymmet som försöker lyfta de tyngsta vikterna direkt. Dags att börja med grunderna!',
@@ -160,7 +127,7 @@ export const getQuizResult = (score: number): QuizResult => {
         'Hitta ett litet projekt där AI kan hjälpa er (som att sätta upp ett enkelt träningsschema)'
       ]
     };
-  } else if (score <= 20) {
+  } else if (score <= 14) {
     return {
       level: 'Nyfiken',
       description: 'Du har börjat din AI-resa, ungefär som någon som precis upptäckt att det finns mer på gymmet än löpbandet!',
