@@ -4,7 +4,7 @@ import QuizOption from '../components/QuizOption';
 import ProgressBar from '../components/ProgressBar';
 import Button from '../components/Button';
 import AnimatedSection from '../components/AnimatedSection';
-import { Dumbbell, Brain, Rocket, TrendingUp, Users, Check } from 'lucide-react';
+import { Dumbbell, Brain, Rocket, TrendingUp, Users, LineChart, Zap } from 'lucide-react';
 
 const QUIZ_ENDPOINT = '/api/quiz';
 
@@ -46,6 +46,16 @@ const calculateStrategicMaturityPercent = (answers: Record<string | number, stri
   return Math.round((totalPoints / maxPoints) * 100);
 };
 
+const calcGrowthPotential = (ans: Record<number, number>): number => {
+  const points = (ans[6] ?? 0) + (ans[8] ?? 0) + (ans[2] ?? 0);
+  return Math.round((points / 9) * 100);
+};
+
+const calcAIReadiness = (ans: Record<number, number>): number => {
+  const total = (ans[1] ?? 0) + (ans[9] ?? 0) + (ans[10] ?? 0) + 0.5 * (ans[5] ?? 0);
+  return Math.round((total / 10.5) * 100);
+};
+
 const defaultResults = {
   result_page_title: 'Nyfiken',
   level: 'Nyfiken',
@@ -57,7 +67,9 @@ const defaultResults = {
   ],
   comparative_statement: 'Du ligger bättre till än 65% av alla som tagit testet!',
   strategicMaturityPercent: 75,
-  kompetensgapPercent: 60
+  kompetensgapPercent: 60,
+  growthPotentialPercent: 70,
+  aiReadinessPercent: 65
 };
 
 interface AllAnswers {
@@ -69,6 +81,8 @@ interface ExtendedQuizResult extends QuizResult {
     industry_comparative_statement?: string;
     strategicMaturityPercent?: number;
     kompetensgapPercent?: number;
+    growthPotentialPercent?: number;
+    aiReadinessPercent?: number;
     result_page_title?: string;
 }
 
@@ -109,12 +123,17 @@ const QuizSection: React.FC = () => {
       .filter(q => q.type === 'multiple-choice')
       .reduce((sum, q) => sum + Math.max(...(q.options?.map(opt => opt.points || 0) || [0])), 0);
 
+    const growthPotentialPercent = calcGrowthPotential(numericAnswers);
+    const aiReadinessPercent = calcAIReadiness(numericAnswers);
+
     const payload = {
       answers: numericAnswers,
       totalScore: totalPoints,
       maxScore,
       timestamp: new Date().toISOString(),
-      quiz_version: '1.2'
+      quiz_version: '1.2',
+      growthPotentialPercent,
+      aiReadinessPercent
     };
 
     try {
@@ -145,7 +164,9 @@ const QuizSection: React.FC = () => {
       const enhancedResults = {
         ...apiResults,
         kompetensgapPercent: localKompetensgapPercent,
-        strategicMaturityPercent: localStrategicMaturityPercent
+        strategicMaturityPercent: localStrategicMaturityPercent,
+        growthPotentialPercent,
+        aiReadinessPercent
       };
 
       return enhancedResults;
@@ -318,36 +339,59 @@ const QuizSection: React.FC = () => {
                   </div>
                 )}
 
-                {((quizResults.strategicMaturityPercent !== undefined && quizResults.strategicMaturityPercent !== 0) ||
-                  (quizResults.kompetensgapPercent !== undefined && quizResults.kompetensgapPercent !== 0)) && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    {quizResults.strategicMaturityPercent !== undefined && quizResults.strategicMaturityPercent !== 0 && (
-                      <div className="quiz-metric-card">
-                        <div className="flex justify-center mb-4">
-                          <TrendingUp className="w-8 h-8 text-deep-purple" />
-                        </div>
-                        <h6 className="text-[23px] font-medium mb-4">AI strategisk mognad</h6>
-                        <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
-                          {quizResults.strategicMaturityPercent}%
-                        </div>
-                        <p className="quiz-body-text">Bedömning av hur väl AI är integrerad i företagets övergripande strategi</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                  {quizResults.strategicMaturityPercent !== undefined && (
+                    <div className="quiz-metric-card">
+                      <div className="flex justify-center mb-4">
+                        <TrendingUp className="w-8 h-8 text-deep-purple" />
                       </div>
-                    )}
+                      <h6 className="text-[23px] font-medium mb-4">AI strategisk mognad</h6>
+                      <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
+                        {quizResults.strategicMaturityPercent}%
+                      </div>
+                      <p className="quiz-body-text">Bedömning av hur väl AI är integrerad i företagets övergripande strategi</p>
+                    </div>
+                  )}
 
-                    {quizResults.kompetensgapPercent !== undefined && quizResults.kompetensgapPercent !== 0 && (
-                      <div className="quiz-metric-card">
-                        <div className="flex justify-center mb-4">
-                          <Users className="w-8 h-8 text-deep-purple" />
-                        </div>
-                        <h6 className="text-[23px] font-medium mb-4">Kompetensgap</h6>
-                        <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
-                          {quizResults.kompetensgapPercent}%
-                        </div>
-                        <p className="quiz-body-text">Skillnaden mellan nuvarande och önskad AI-kompetens i organisationen</p>
+                  {quizResults.kompetensgapPercent !== undefined && (
+                    <div className="quiz-metric-card">
+                      <div className="flex justify-center mb-4">
+                        <Users className="w-8 h-8 text-deep-purple" />
                       </div>
-                    )}
-                  </div>
-                )}
+                      <h6 className="text-[23px] font-medium mb-4">Kompetensgap</h6>
+                      <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
+                        {quizResults.kompetensgapPercent}%
+                      </div>
+                      <p className="quiz-body-text">Skillnaden mellan nuvarande och önskad AI-kompetens i organisationen</p>
+                    </div>
+                  )}
+
+                  {quizResults.growthPotentialPercent !== undefined && (
+                    <div className="quiz-metric-card">
+                      <div className="flex justify-center mb-4">
+                        <LineChart className="w-8 h-8 text-deep-purple" />
+                      </div>
+                      <h6 className="text-[23px] font-medium mb-4">AI-Tillväxtpotential</h6>
+                      <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
+                        {quizResults.growthPotentialPercent}%
+                      </div>
+                      <p className="quiz-body-text">Potential för framtida AI-utveckling och expansion</p>
+                    </div>
+                  )}
+
+                  {quizResults.aiReadinessPercent !== undefined && (
+                    <div className="quiz-metric-card">
+                      <div className="flex justify-center mb-4">
+                        <Zap className="w-8 h-8 text-deep-purple" />
+                      </div>
+                      <h6 className="text-[23px] font-medium mb-4">AI-Readiness</h6>
+                      <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
+                        {quizResults.aiReadinessPercent}%
+                      </div>
+                      <p className="quiz-body-text">Organisationens beredskap för AI-implementation</p>
+                    </div>
+                  )}
+                </div>
               </div>
             </AnimatedSection>
           )
