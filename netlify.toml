@@ -3,16 +3,12 @@
   publish   = "dist"
   functions = "netlify/functions"
 
-[dev]
-  command    = "npm run dev"
-  targetPort = 5173
-
 [[redirects]]
-  from    = "/api/quiz"
-  to      = "/.netlify/functions/quiz"
-  status  = 200
-  force   = true
-  headers = { Access-Control-Allow-Origin = "*" }
+  from   = "/api/quiz"
+  to     = "/.netlify/functions/quiz"
+  status = 200
+  force  = true
+  headers = { "Access-Control-Allow-Origin" = "*" }
 
 [[redirects]]
   from   = "/*"
