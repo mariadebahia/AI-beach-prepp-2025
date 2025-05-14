@@ -36,7 +36,6 @@ export const handler: Handler = async (event) => {
     const maxScore = Number(data.maxScore) || 1;
     const industry = data.industry;
     const companySize = data.companySize;
-    const strangeQ = data.strangeAIQuestion;
     const version = data.quiz_version || "";
     const timestamp = data.timestamp || new Date().toISOString();
 
@@ -45,7 +44,7 @@ export const handler: Handler = async (event) => {
     let description;
     let recommendations;
 
-    if (score <= 7) {
+    if (score <= 10) {
       level = 'Pappskalle';
       description = 'Du är som en nybörjare på gymmet som försöker lyfta de tyngsta vikterna direkt. Dags att börja med grunderna!';
       recommendations = [
@@ -53,7 +52,7 @@ export const handler: Handler = async (event) => {
         'Experimentera med ChatGPT (som att lära sig grundläggande övningar)',
         'Hitta ett litet projekt där AI kan hjälpa er (som att sätta upp ett enkelt träningsschema)'
       ];
-    } else if (score <= 14) {
+    } else if (score <= 20) {
       level = 'Nyfiken';
       description = 'Du har börjat din AI-resa, ungefär som någon som precis upptäckt att det finns mer på gymmet än löpbandet!';
       recommendations = [
@@ -101,13 +100,13 @@ export const handler: Handler = async (event) => {
       Number(answers[5]) || 0,                     // H: Q5 Score
       Number(answers[6]) || 0,                     // I: Q6 Score
       Number(answers[7]) || 0,                     // J: Q7 Score
-      score,                                       // K: Total Score
-      level,                                       // L: Result Level
-      strategicMaturityPercent,                    // M: Strategic Maturity %
-      kompetensgapPercent,                        // N: Competency Gap %
-      aiReadinessPercent,                         // O: AI-readiness %
-      version,                                     // P: Quiz Version
-      strangeQ                                     // Q: Strange AI Question
+      Number(answers[8]) || 0,                     // K: Q8 Score
+      Number(answers[9]) || 0,                     // L: Q9 Score
+      Number(answers[10]) || 0,                    // M: Q10 Score
+      score,                                       // N: Total Score
+      level,                                       // O: Result Level
+      strategicMaturityPercent,                    // P: Strategic Maturity %
+      kompetensgapPercent                         // Q: Competency Gap %
     ];
 
     // Append to Google Sheet

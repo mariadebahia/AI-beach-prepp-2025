@@ -9,7 +9,6 @@ interface QuizPayload {
   quiz_version: string;
   industry?: string;
   companySize?: string;
-  strangeAIQuestion?: string;
 }
 
 const handler: Handler = async (event) => {
@@ -33,14 +32,14 @@ const handler: Handler = async (event) => {
 
   try {
     const payload: QuizPayload = JSON.parse(event.body || '{}');
-    const { totalScore, answers, industry, companySize, strangeAIQuestion } = payload;
+    const { totalScore, answers, industry, companySize } = payload;
 
     // Calculate result level based on total score
     let level;
     let description;
     let recommendations;
 
-    if (totalScore <= 7) {
+    if (totalScore <= 10) {
       level = 'Pappskalle';
       description = 'Du är som en nybörjare på gymmet som försöker lyfta de tyngsta vikterna direkt. Dags att börja med grunderna!';
       recommendations = [
@@ -48,7 +47,7 @@ const handler: Handler = async (event) => {
         'Experimentera med ChatGPT (som att lära sig grundläggande övningar)',
         'Hitta ett litet projekt där AI kan hjälpa er (som att sätta upp ett enkelt träningsschema)'
       ];
-    } else if (totalScore <= 14) {
+    } else if (totalScore <= 20) {
       level = 'Nyfiken';
       description = 'Du har börjat din AI-resa, ungefär som någon som precis upptäckt att det finns mer på gymmet än löpbandet!';
       recommendations = [
@@ -88,23 +87,23 @@ const handler: Handler = async (event) => {
 
     // Prepare row data matching exactly 17 columns
     const rowData = [
-      new Date(payload.timestamp).toISOString(),    // 1. Timestamp
-      industry || '',                               // 2. Industry
-      companySize || '',                           // 3. Company Size
-      Number(answers[1]) || 0,                     // 4. Q1 Score
-      Number(answers[2]) || 0,                     // 5. Q2 Score
-      Number(answers[3]) || 0,                     // 6. Q3 Score
-      Number(answers[4]) || 0,                     // 7. Q4 Score
-      Number(answers[5]) || 0,                     // 8. Q5 Score
-      Number(answers[6]) || 0,                     // 9. Q6 Score
-      Number(answers[7]) || 0,                     // 10. Q7 Score
-      Number(totalScore) || 0,                     // 11. Total Score
-      level || 'Nyfiken',                          // 12. Result Level
-      strategicMaturityPercent,                    // 13. Strategic Maturity %
-      kompetensgapPercent,                        // 14. Competency Gap %
-      aiReadinessPercent,                         // 15. AI-readiness %
-      payload.quiz_version || '1.0',               // 16. Quiz Version
-      strangeAIQuestion || '',                     // 17. Strange AI Question
+      new Date(payload.timestamp).toISOString(),    // A: Timestamp
+      industry || '',                               // B: Industry
+      companySize || '',                           // C: Company Size
+      Number(answers[1]) || 0,                     // D: Q1 Score
+      Number(answers[2]) || 0,                     // E: Q2 Score
+      Number(answers[3]) || 0,                     // F: Q3 Score
+      Number(answers[4]) || 0,                     // G: Q4 Score
+      Number(answers[5]) || 0,                     // H: Q5 Score
+      Number(answers[6]) || 0,                     // I: Q6 Score
+      Number(answers[7]) || 0,                     // J: Q7 Score
+      Number(answers[8]) || 0,                     // K: Q8 Score
+      Number(answers[9]) || 0,                     // L: Q9 Score
+      Number(answers[10]) || 0,                    // M: Q10 Score
+      Number(totalScore) || 0,                     // N: Total Score
+      level || 'Nyfiken',                         // O: Result Level
+      strategicMaturityPercent,                    // P: Strategic Maturity %
+      kompetensgapPercent                         // Q: Competency Gap %
     ];
 
     // Debug logging for Sheets API call
@@ -157,5 +156,3 @@ const handler: Handler = async (event) => {
     };
   }
 };
-
-export { handler };

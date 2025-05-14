@@ -79,45 +79,42 @@ export const quizQuestions: QuizQuestion[] = [
     ]
   },
   {
-    id: 'industry',
-    question: 'Vilken bransch är ni verksamma inom?',
-    type: 'dropdown',
+    id: 8,
+    question: 'Vad är er vision för AI i framtiden?',
+    type: 'multiple-choice',
     options: [
-      { id: 'industry-eget', text: 'Eget företag' },
-      { id: 'industry-tech', text: 'Teknik / IT' },
-      { id: 'industry-finance', text: 'Finans / Försäkring' },
-      { id: 'industry-healthcare', text: 'Hälsovård / Medicin' },
-      { id: 'industry-retail', text: 'Handel / E-handel' },
-      { id: 'industry-education', text: 'Utbildning' },
-      { id: 'industry-marketing', text: 'Marknadsföring / Media' },
-      { id: 'industry-consulting', text: 'Konsultverksamhet' },
-      { id: 'industry-manufacturing', text: 'Tillverkning / Industri' },
-      { id: 'industry-public', text: 'Offentlig sektor' },
-      { id: 'industry-other', text: 'Annan' }
+      { id: '8a', text: 'Framtiden? Vi försöker överleva nuet', points: 0 },
+      { id: '8b', text: 'Vi hoppas AI inte tar över världen', points: 1 },
+      { id: '8c', text: 'Vi ser ljust på framtiden med AI som vår träningskompis', points: 2 },
+      { id: '8d', text: 'Vi planerar att bli AI-influencers och sälja proteinshakes', points: 3 }
     ]
   },
   {
-    id: 'companySize',
-    question: 'Hur många anställda har ert företag?',
-    type: 'dropdown',
+    id: 9,
+    question: 'Hur ser ert AI-kunskapsläge ut?',
+    type: 'multiple-choice',
     options: [
-      { id: 'size-1-10', text: '1-10' },
-      { id: 'size-11-50', text: '11-50' },
-      { id: 'size-51-200', text: '51-200' },
-      { id: 'size-201-500', text: '201-500' },
-      { id: 'size-501-plus', text: '501+' }
+      { id: '9a', text: 'Vi vet lika mycket om AI som om kvantfysik på mandarin', points: 0 },
+      { id: '9b', text: 'En person har sett en YouTube-video om ChatGPT', points: 1 },
+      { id: '9c', text: 'Vi har några självlärda AI-entusiaster i korridorerna', points: 2 },
+      { id: '9d', text: 'Vi har både formell och informell AI-utbildning för alla', points: 3 }
     ]
   },
   {
-    id: 'strangeAIQuestion',
-    question: 'Om er AI var en superhjälte i arbetslivet, vilken kraft skulle vara mest användbar för att lösa era största utmaningar?',
-    type: 'text',
-    placeholder: 'T.ex. "Superstyrka för att lyfta tunga datamängder" eller "Osynlighet för att arbeta i bakgrunden"'
+    id: 10,
+    question: 'Hur är er data förberedd för AI-implementering?',
+    type: 'multiple-choice',
+    options: [
+      { id: '10a', text: 'Vår data är som en tonårings rum - totalt kaos', points: 0 },
+      { id: '10b', text: 'Vi har börjat städa men hittar fortfarande inte strumporna', points: 1 },
+      { id: '10c', text: 'Vi har hyfsat organiserade datamappar och system', points: 2 },
+      { id: '10d', text: 'Vår data är mer välorganiserad än Marie Kondos garderob', points: 3 }
+    ]
   }
 ];
 
 export const getQuizResult = (score: number): QuizResult => {
-  if (score <= 7) {
+  if (score <= 10) {
     return {
       level: 'Pappskalle',
       description: 'Du är som en nybörjare på gymmet som försöker lyfta de tyngsta vikterna direkt. Dags att börja med grunderna!',
@@ -127,7 +124,7 @@ export const getQuizResult = (score: number): QuizResult => {
         'Hitta ett litet projekt där AI kan hjälpa er (som att sätta upp ett enkelt träningsschema)'
       ]
     };
-  } else if (score <= 14) {
+  } else if (score <= 20) {
     return {
       level: 'Nyfiken',
       description: 'Du har börjat din AI-resa, ungefär som någon som precis upptäckt att det finns mer på gymmet än löpbandet!',
