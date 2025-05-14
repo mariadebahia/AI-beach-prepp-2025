@@ -59,8 +59,7 @@ export const handler: Handler = async (event) => {
     } else if (score <= 16) {               // 9 – 16
       level = "AI-Utforskare";
       description =
-        "Bra jobbat så här långt! Ni har tagit viktiga första steg och börjat utforska AI-landskapet.\n" +
-        "AI-strategisk mognad: Medel-låg (26-50%)\nAI-Readiness: Medel (26-50%)";
+        "Bra jobbat så här långt! Ni har tagit viktiga första steg och börjat utforska AI-landskapet.";
       recommendations = [
         "Formalisera er AI-strategi med tydlig koppling till affärsmål och avsätt dedikerad budget",
         "Utveckla en strukturerad datainsamlings- och hanteringsstrategi för AI-implementering",
