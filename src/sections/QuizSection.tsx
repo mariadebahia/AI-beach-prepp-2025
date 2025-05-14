@@ -90,10 +90,13 @@ const QuizSection: React.FC = () => {
   const submitQuiz = async (allAnswers: AllAnswers) => {
     let totalPoints = 0;
     const numericAnswers: Record<number, number> = {};
-    const industry = allAnswers['industry'] || '';
-    const companySize = allAnswers['companySize'] || '';
-    const strangeAIQuestion = allAnswers['strangeAIQuestion'] || '';
+    
+    // Get the non-numeric answers
+    const industry = allAnswers['industry'];
+    const companySize = allAnswers['companySize'];
+    const strangeAIQuestion = allAnswers['strangeAIQuestion'];
 
+    // Process numeric answers (questions 1-10)
     for (let i = 1; i <= 10; i++) {
       const question = quizQuestions.find(q => q.id === i);
       const answerValue = allAnswers[i];
