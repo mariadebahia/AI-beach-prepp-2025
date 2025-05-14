@@ -4,7 +4,7 @@ import QuizOption from '../components/QuizOption';
 import ProgressBar from '../components/ProgressBar';
 import Button from '../components/Button';
 import AnimatedSection from '../components/AnimatedSection';
-import { Dumbbell, Brain, Rocket, TrendingUp, Users, LineChart, Zap } from 'lucide-react';
+import { Dumbbell, Brain, Rocket, TrendingUp, Users, LineChart, Zap, Check } from 'lucide-react';
 
 const QUIZ_ENDPOINT = '/api/quiz';
 
@@ -339,7 +339,7 @@ const QuizSection: React.FC = () => {
                   </div>
                 )}
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                   {quizResults.strategicMaturityPercent !== undefined && (
                     <div className="quiz-metric-card">
                       <div className="flex justify-center mb-4">
