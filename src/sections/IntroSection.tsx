@@ -52,7 +52,7 @@ const IntroSection: React.FC = () => {
       <div className="max-w-[860px] mx-auto">
         <AnimatedSection animation="fade-up">
           <h2 className="mb-4 h2-quiz-outline">
-            Känner ni AI-FOMO på jobbet?
+            Känner ni AI-FOMO på jobbet?<br />
             Ni är inte ensamma.
           </h2>
 
@@ -65,27 +65,33 @@ const IntroSection: React.FC = () => {
         <AnimatedSection animation="fade-up" delay="200">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-deep-purple">
             <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="flex items-center mb-4">
-                <Check size={24} className="text-deep-purple mr-3" />
-                <h3 className="text-xl font-semibold">Anmäl ditt företag</h3>
+              <div className="flex items-start gap-3">
+                <Check size={24} className="text-deep-purple flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">Anmäl ditt företag</h3>
+                  <p className="text-gray-600">Berätta varför ni vill bli AI-fit – vi vill höra er story.</p>
+                </div>
               </div>
-              <p className="text-gray-600">Berätta varför ni vill bli AI-fit – vi vill höra er story.</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="flex items-center mb-4">
-                <span className="text-2xl mr-3">🏖️</span>
-                <h3 className="text-xl font-semibold">Vi väljer ut vinnare varje vecka</h3>
+              <div className="flex items-start gap-3">
+                <span className="text-2xl flex-shrink-0 mt-1">🏖️</span>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">Vi väljer ut vinnare varje vecka</h3>
+                  <p className="text-gray-600">Vår jury plockar ut de mest AI-nyfikna och beach-prep-sugna.</p>
+                </div>
               </div>
-              <p className="text-gray-600">Vår jury plockar ut de mest AI-nyfikna och beach-prep-sugna.</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="flex items-center mb-4">
-                <span className="text-2xl mr-3">🚀</span>
-                <h3 className="text-xl font-semibold">Vi kommer till er och kör AI-workout</h3>
+              <div className="flex items-start gap-3">
+                <span className="text-2xl flex-shrink-0 mt-1">🚀</span>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">Vi kommer till er och kör AI-workout</h3>
+                  <p className="text-gray-600">På plats hos er. Utan krångel. Med AI-svettgaranti.</p>
+                </div>
               </div>
-              <p className="text-gray-600">På plats hos er. Utan krångel. Med AI-svettgaranti.</p>
             </div>
           </div>
         </AnimatedSection>
@@ -102,14 +108,12 @@ const IntroSection: React.FC = () => {
               <p className="text-2xl text-gray-700 mb-8">
                 Vi har registrerat er anmälan och hör snart av oss om ni går vidare till nästa steg. Urvalet görs av vår jury och baseras på er motivering, er nyfikenhet och potential att komma igång med AI. Vi bedömer alla ansökningar individuellt – bransch eller storlek spelar ingen roll. Redan nu kan ni börja AI-värma upp med vår guide!
               </p>
-              <div className="flex justify-start">
-                <Button 
-                  variant="outline"
-                  onClick={() => document.getElementById('quiz-section')?.scrollIntoView({ behavior: 'smooth' })}
-                >
-                  Testa din AI-Fitness nu
-                </Button>
-              </div>
+              <Button 
+                variant="outline"
+                onClick={() => document.getElementById('quiz-section')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Testa din AI-Fitness nu
+              </Button>
             </div>
           </AnimatedSection>
         ) : (
@@ -125,7 +129,7 @@ const IntroSection: React.FC = () => {
                   name="company_name"
                   placeholder="Ditt företag"
                   required
-                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
+                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg text-center"
                 />
               </div>
               
@@ -139,7 +143,7 @@ const IntroSection: React.FC = () => {
                   name="contact_name"
                   placeholder="Förnamn Efternamn"
                   required
-                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
+                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg text-center"
                 />
               </div>
               
@@ -154,7 +158,7 @@ const IntroSection: React.FC = () => {
                     name="email"
                     placeholder="din@email.se"
                     required
-                    className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
+                    className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg text-center"
                   />
                 </div>
                 
@@ -167,7 +171,7 @@ const IntroSection: React.FC = () => {
                     id="phone"
                     name="phone"
                     placeholder="070-123 45 67"
-                    className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
+                    className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg text-center"
                   />
                 </div>
               </div>
@@ -182,7 +186,7 @@ const IntroSection: React.FC = () => {
                   placeholder="Berätta för oss varför just ditt företag skulle gynnas av AI-träning"
                   required
                   rows={4}
-                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
+                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg text-center"
                 />
               </div>
 
@@ -207,7 +211,7 @@ const IntroSection: React.FC = () => {
                 </div>
               )}
               
-              <div>
+              <div className="text-center">
                 <Button 
                   type="submit" 
                   variant="purple" 
