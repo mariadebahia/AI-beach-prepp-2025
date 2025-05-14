@@ -31,13 +31,20 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
     const data = JSON.parse(event.body || "{}");
     const answers: Record<string, number> = data.numericAnswers ?? data.answers ?? {};
 
-    const score       = Number(data.totalScore) || 0;
-    const maxScore    = Number(data.maxScore)   || 1;
-    const industry    = String(data.industry || "");
-    const companySize = String(data.companySize || "");
-    const strangeQ    = String(data.strangeAIQuestion || "");
-    const version     = String(data.quiz_version || "");
-    const timestamp   = String(data.timestamp || new Date().toISOString());
+    // Ensure numeric values
+    const score = Number(data.totalScore) || 0;
+    const maxScore = Number(data.maxScore) || 1;
+    const industry = data.industry;
+    const companySize = data.companySize;
+    const strangeQ = data.strangeAIQuestion;
+    const version = data.quiz_version || "";
+    const timestamp = data.timestamp || new Date().toISOString();
+
+    // Calculate result level based on total score
+    let level;
+    let description;
+    let recommendations;
+>>>>>>> vodka-redbull
 
     // 4) Beräkna nivå, beskrivning och rekommendationer
     let level: string;
@@ -86,15 +93,33 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
     const spreadsheetId = process.env.GOOGLE_SHEETS_ID!;
     const range = "Quiz Results!A:T";
 
-    // Förbered raden (A-T)
+    const sheets = google.sheets({ version: 'v4', auth });
+    const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+    const range = 'Quiz Results!A:T'; // Exact tab name and range
+
+    // Prepare row data matching exactly 20 columns (A through T)
     const rowData = [
-      timestamp, industry, companySize,
-      ...Array.from({ length: 10 }, (_, i) => Number(answers[String(i+1)] ?? 0)),
-      score, level,
-      strategicMaturityPercent,
-      kompetensgapPercent,
-      aiReadinessPercent,
-      version, strangeQ
+      timestamp,                                    // A: Timestamp
+      industry,                                     // B: Industry
+      companySize,                                 // C: Company Size
+      Number(answers[1]) || 0,                     // D: Q1 Score
+      Number(answers[2]) || 0,                     // E: Q2 Score
+      Number(answers[3]) || 0,                     // F: Q3 Score
+      Number(answers[4]) || 0,                     // G: Q4 Score
+      Number(answers[5]) || 0,                     // H: Q5 Score
+      Number(answers[6]) || 0,                     // I: Q6 Score
+      Number(answers[7]) || 0,                     // J: Q7 Score
+      Number(answers[8]) || 0,                     // K: Q8 Score
+      Number(answers[9]) || 0,                     // L: Q9 Score
+      Number(answers[10]) || 0,                    // M: Q10 Score
+      score,                                       // N: Total Score
+      level,                                       // O: Result Level
+      strategicMaturityPercent,                    // P: Strategic Maturity %
+      kompetensgapPercent,                        // Q: Competency Gap %
+      aiReadinessPercent,                         // R: AI-readiness %
+      version,                                     // S: Quiz Version
+      strangeQ                                     // T: Strange AI Question
+>>>>>>> vodka-redbull
     ];
 
     // 7) Skriv till arket
