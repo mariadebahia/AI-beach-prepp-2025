@@ -100,7 +100,7 @@ const Footer: React.FC = () => {
                   />
                 </div>
               </div>
-              <h3 className="text-2xl font-thin mb-2">Ellino Aaby Olsson</h3>
+              <h3 className="text-2xl font-thin mb-2">Ellinor Aaby Olsson</h3>
               <div className="flex justify-center space-x-4">
                 <a 
                   href="https://www.linkedin.com/in/ellino-aaby-olsson" 
