@@ -2,15 +2,18 @@ import { Handler } from "@netlify/functions";
 import { google } from "googleapis";
 
 export const handler: Handler = async (event) => {
+  const HEADERS = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  };
+
   // CORS-preflight
   if (event.httpMethod === "OPTIONS") {
     return {
       statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
-      },
+      headers: HEADERS,
       body: "",
     };
   }
@@ -19,8 +22,11 @@ export const handler: Handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: "Method not allowed" }),
+      headers: HEADERS,
+      body: JSON.stringify({ 
+        success: false, 
+        error: "Method not allowed" 
+      }),
     };
   }
 
@@ -119,6 +125,7 @@ export const handler: Handler = async (event) => {
     });
 
     const response = {
+      success: true,
       level,
       description,
       recommendations,
@@ -129,22 +136,19 @@ export const handler: Handler = async (event) => {
 
     return {
       statusCode: 200,
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
+      headers: HEADERS,
       body: JSON.stringify(response),
     };
 
-  } catch (error) {
-    console.error('Error processing quiz submission:', error);
+  } catch (err: any) {
+    console.error('Quiz error:', err);
     return {
       statusCode: 500,
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({ error: "Internal server error" }),
+      headers: HEADERS,
+      body: JSON.stringify({ 
+        success: false, 
+        error: err.message ?? "Unknown error" 
+      }),
     };
   }
 };
