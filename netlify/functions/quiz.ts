@@ -3,6 +3,7 @@
 import type { Handler, HandlerResponse } from "@netlify/functions";
 import { google } from "googleapis";
 
+<<<<<<< HEAD
 export const handler: Handler = async (event): Promise<HandlerResponse> => {
   // common headers for all responses
   const headers = {
@@ -13,6 +14,10 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
   };
 
   // 1) CORS preflight
+=======
+export const handler: Handler = async (event) => {
+  // CORS-preflight
+>>>>>>> vodka-redbull
   if (event.httpMethod === "OPTIONS") {
     return {
       statusCode: 200,
@@ -21,7 +26,11 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
     };
   }
 
+<<<<<<< HEAD
   // 2) Only POST allowed
+=======
+  // Only allow POST
+>>>>>>> vodka-redbull
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
@@ -31,10 +40,15 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
   }
 
   try {
+<<<<<<< HEAD
     // 3) Parse payload
+=======
+    // Parse payload
+>>>>>>> vodka-redbull
     const data = JSON.parse(event.body || "{}");
     const answers: Record<string, number> = data.numericAnswers ?? data.answers ?? {};
 
+<<<<<<< HEAD
     const score       = Number(data.totalScore) || 0;
     const maxScore    = Number(data.maxScore)   || 1;
     const industry    = data.industry           || "";
@@ -42,6 +56,24 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
     const strangeQ    = data.strangeAIQuestion  || "";
     const version     = data.quiz_version       || "";
     const timestamp   = data.timestamp          || new Date().toISOString();
+=======
+    // Fallback if data.numericAnswers or data.answers is missing
+    const answers: Record<string, number> = data.numericAnswers ?? data.answers ?? {};
+
+    // Ensure numeric values
+    const score = Number(data.totalScore) || 0;
+    const maxScore = Number(data.maxScore) || 1;
+    const industry = data.industry || "";
+    const companySize = data.companySize || "";
+    const strangeQ = data.strangeAIQuestion || "";
+    const version = data.quiz_version || "";
+    const timestamp = data.timestamp || new Date().toISOString();
+
+    // Calculate result level based on total score
+    let level;
+    let description;
+    let recommendations;
+>>>>>>> vodka-redbull
 
     // 4) Compute level & text
     let level: string, description: string, recommendations: string[];
@@ -64,6 +96,7 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
     const kompetensgapPercent       = Math.min(100, Math.max(0, Math.round(100 - (score / maxScore) * 100)));
     const aiReadinessPercent        = strategicMaturityPercent;
 
+<<<<<<< HEAD
     // 6) Build row for Sheets
     const rowData = [
       timestamp, industry, companySize,
@@ -95,6 +128,50 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
     // 8) Return quiz result
     const responsePayload = {
       success: true,
+=======
+    // Google Sheets Integration
+    const auth = new google.auth.GoogleAuth({
+      credentials: {
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      },
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    });
+
+    const sheets = google.sheets({ version: 'v4', auth });
+    const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+    const range = 'Quiz Results!A:T';
+
+    // Prepare row data
+    const rowData = [
+      timestamp,                                    // A: Timestamp
+      industry,                                     // B: Industry
+      companySize,                                 // C: Company Size
+      ...Array.from({ length: 10 }, (_, i) =>      // D-M: Q1-Q10 Scores
+        Number(answers[String(i + 1)] ?? 0)
+      ),
+      score,                                       // N: Total Score
+      level,                                       // O: Result Level
+      strategicMaturityPercent,                    // P: Strategic Maturity %
+      kompetensgapPercent,                        // Q: Competency Gap %
+      aiReadinessPercent,                         // R: AI-readiness %
+      version,                                     // S: Quiz Version
+      strangeQ,                                    // T: Strange AI Question
+    ];
+
+    // Append to Google Sheet
+    await sheets.spreadsheets.values.append({
+      spreadsheetId,
+      range,
+      valueInputOption: 'USER_ENTERED',
+      insertDataOption: 'INSERT_ROWS',
+      resource: {
+        values: [rowData],
+      },
+    });
+
+    const response = {
+>>>>>>> vodka-redbull
       level,
       description,
       recommendations,

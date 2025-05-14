@@ -4,7 +4,7 @@ import QuizOption from '../components/QuizOption';
 import ProgressBar from '../components/ProgressBar';
 import Button from '../components/Button';
 import AnimatedSection from '../components/AnimatedSection';
-import { Dumbbell, Brain, Rocket, TrendingUp, Users } from 'lucide-react';
+import { Dumbbell, Brain, Rocket, TrendingUp, Users, Check } from 'lucide-react';
 
 const QUIZ_ENDPOINT = '/api/quiz';
 
@@ -404,8 +404,9 @@ const QuizSection: React.FC = () => {
                   <h6 className="text-[23px] font-medium mb-4">Rekommendationer för din nivå:</h6>
                   <ul className="quiz-recommendations">
                     {quizResults.recommendations.map((rec, index) => (
-                      <li key={index} className="flex items-center justify-center gap-3 mb-4">
-                        <span className="text-center leading-snug">{rec}</span>
+                      <li key={index} className="flex items-center gap-3 mb-4">
+                        <Check className="text-green-500 flex-shrink-0" size={24} />
+                        <span className="text-left leading-snug">{rec}</span>
                       </li>
                     ))}
                   </ul>

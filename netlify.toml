@@ -1,5 +1,3 @@
-# netlify.toml
-
 [build]
   command   = "npm run build"
   publish   = "dist"
@@ -11,11 +9,11 @@
 
 # Proxy all /api/quiz calls to your Netlify Function
 [[redirects]]
-  from   = "/api/quiz"
-  to     = "/.netlify/functions/quiz"
-  status = 200
-  force  = true
-  headers = { "Access-Control-Allow-Origin" = "*" }
+  from    = "/api/quiz"
+  to      = "/.netlify/functions/quiz"
+  status  = 200
+  force   = true
+  headers = { Access-Control-Allow-Origin = "*" }
 
 # Single‐page‐app fallback
 [[redirects]]
