@@ -36,7 +36,6 @@ export const handler: Handler = async (event) => {
     const maxScore = Number(data.maxScore) || 1;
     const industry = data.industry;
     const companySize = data.companySize;
-    const version = data.quiz_version || "";
     const timestamp = data.timestamp || new Date().toISOString();
 
     // Calculate result level based on total score
@@ -73,7 +72,6 @@ export const handler: Handler = async (event) => {
     // Calculate percentages
     const strategicMaturityPercent = Math.min(100, Math.max(0, Math.round((score / maxScore) * 100))) || 0;
     const kompetensgapPercent = Math.min(100, Math.max(0, Math.round(100 - ((score / maxScore) * 100)))) || 0;
-    const aiReadinessPercent = Math.min(100, Math.max(0, Math.round((score / maxScore) * 100))) || 0;
 
     // Google Sheets Integration
     const auth = new google.auth.GoogleAuth({
@@ -91,8 +89,8 @@ export const handler: Handler = async (event) => {
     // Prepare row data matching exactly 17 columns (A through Q)
     const rowData = [
       timestamp,                                    // A: Timestamp
-      industry,                                     // B: Industry
-      companySize,                                 // C: Company Size
+      industry || '',                              // B: Industry
+      companySize || '',                           // C: Company Size
       Number(answers[1]) || 0,                     // D: Q1 Score
       Number(answers[2]) || 0,                     // E: Q2 Score
       Number(answers[3]) || 0,                     // F: Q3 Score
@@ -126,8 +124,7 @@ export const handler: Handler = async (event) => {
       recommendations,
       comparative_statement: `Du ligger bättre till än ${Math.floor(Math.random() * 30) + 60}% av alla som tagit testet!`,
       strategicMaturityPercent,
-      kompetensgapPercent,
-      aiReadinessPercent
+      kompetensgapPercent
     };
 
     return {
