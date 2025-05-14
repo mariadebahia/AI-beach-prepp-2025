@@ -40,34 +40,54 @@ export const handler: Handler = async (event) => {
     const timestamp = data.timestamp || new Date().toISOString();
     const answers = data.answers || {};
 
-    // Calculate result level based on total score
-    let level;
-    let description;
-    let recommendations;
+    // 4) Beräkna nivå, beskrivning och rekommendationer enligt nya intervall
+    let level: string;
+    let description: string;
+    let recommendations: string[];
 
-    if (score <= 10) {
-      level = 'Pappskalle';
-      description = 'Du är som en nybörjare på gymmet som försöker lyfta de tyngsta vikterna direkt. Dags att börja med grunderna!';
+    if (score <= 8) {                       // 0 – 8
+      level = "AI-Nybörjare";
+      description =
+        "Ni står fortfarande i startgroparna när det gäller AI-användning. Det är helt ok – alla börjar någonstans!\n" +
+        "AI-strategisk mognad: Låg (0-25%)\nAI-Readiness: Låg (0-25%)";
       recommendations = [
-        'Börja med en AI-introduktionskurs (tänk personlig tränare för nybörjare)',
-        'Experimentera med ChatGPT (som att lära sig grundläggande övningar)',
-        'Hitta ett litet projekt där AI kan hjälpa er (som att sätta upp ett enkelt träningsschema)'
+        "Utse en AI-ansvarig som kan driva initiativ och skapa en första enkel strategi",
+        "Arrangera en inspirationsföreläsning om AI för hela organisationen",
+        "Börja med en workshop där ni testar ChatGPT tillsammans på konkreta arbetsuppgifter",
+        "Identifiera ett enkelt pilotprojekt där AI kan skapa direkt värde för verksamheten",
       ];
-    } else if (score <= 20) {
-      level = 'Nyfiken';
-      description = 'Du har börjat din AI-resa, ungefär som någon som precis upptäckt att det finns mer på gymmet än löpbandet!';
+    } else if (score <= 16) {               // 9 – 16
+      level = "AI-Utforskare";
+      description =
+        "Bra jobbat så här långt! Ni har tagit viktiga första steg och börjat utforska AI-landskapet.\n" +
+        "AI-strategisk mognad: Medel-låg (26-50%)\nAI-Readiness: Medel (26-50%)";
       recommendations = [
-        'Utveckla en AI-strategi (som en personlig träningsplan)',
-        'Utbilda teamet i AI-användning (gruppträning är alltid roligare)',
-        'Testa mer avancerade verktyg (dags att prova den där nya maskinen på gymmet)'
+        "Formalisera er AI-strategi med tydlig koppling till affärsmål och avsätt dedikerad budget",
+        "Utveckla en strukturerad datainsamlings- och hanteringsstrategi för AI-implementering",
+        "Investera i strukturerad kompetensutveckling för nyckelpersoner och team",
+        "Integrera fler AI-verktyg i era dagliga arbetsflöden med uppföljning av användning",
       ];
-    } else {
-      level = 'Beach Ready';
-      description = 'Wow! Du är AI-fit och redo för stranden! Din organisation flexar sina AI-muskler som en erfaren bodybuilder!';
+    } else if (score <= 24) {               // 17 – 24
+      level = "AI-Pionjärer";
+      description =
+        "Imponerande! Ni ligger långt fram i AI-användning och har byggt en solid grund.\n" +
+        "AI-strategisk mognad: Hög (51-75%)\nAI-Readiness: Hög (51-75%)";
       recommendations = [
-        'Förfina er AI-strategi (även proffs behöver justera sin träningsplan)',
-        'Utforska cutting-edge AI-implementeringar (som att testa nya träningsmetoder)',
-        'Bli en AI-influencer i er bransch (dela med er av era gains!)'
+        "Utveckla mätmetoder för att kvantifiera affärsresultat från era AI-satsningar",
+        "Fördjupa integrationen mellan AI och övergripande affärsstrategi på ledningsnivå",
+        "Etablera ett AI Center of Excellence för att koordinera och accelerera initiativ",
+        "Utforska avancerade AI-användningsområden med potential att transformera verksamheten",
+      ];
+    } else {                                // 25 – 30
+      level = "AI-Transformatörer";
+      description =
+        "Ni är i en klass för er själva! AI är en integrerad del av hela er verksamhet.\n" +
+        "AI-strategisk mognad: Mycket hög (76-100%)\nAI-Readiness: Mycket hög (76-100%)";
+      recommendations = [
+        "Utveckla en strategi för att identifiera och hantera framtida AI-teknologier",
+        "Utvärdera möjligheter att skapa helt nya affärsmodeller baserade på AI",
+        "Bygg strategiska partnerskap med teknikleverantörer och akademin",
+        "Balansera innovation med robusta ramverk för ansvarsfull AI-användning",
       ];
     }
 
