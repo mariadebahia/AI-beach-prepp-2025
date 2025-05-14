@@ -94,16 +94,23 @@ export const handler: Handler = async (event) => {
       timestamp,                                    // A: Timestamp
       industry,                                     // B: Industry
       companySize,                                 // C: Company Size
-      ...Array.from({ length: 10 }, (_, i) =>      // D-M: Q1-Q10 Scores
-        Number(answers[String(i + 1)] ?? 0)
-      ),
+      Number(answers[1]) || 0,                     // D: Q1 Score
+      Number(answers[2]) || 0,                     // E: Q2 Score
+      Number(answers[3]) || 0,                     // F: Q3 Score
+      Number(answers[4]) || 0,                     // G: Q4 Score
+      Number(answers[5]) || 0,                     // H: Q5 Score
+      Number(answers[6]) || 0,                     // I: Q6 Score
+      Number(answers[7]) || 0,                     // J: Q7 Score
+      Number(answers[8]) || 0,                     // K: Q8 Score
+      Number(answers[9]) || 0,                     // L: Q9 Score
+      Number(answers[10]) || 0,                    // M: Q10 Score
       score,                                       // N: Total Score
       level,                                       // O: Result Level
       strategicMaturityPercent,                    // P: Strategic Maturity %
       kompetensgapPercent,                        // Q: Competency Gap %
       aiReadinessPercent,                         // R: AI-readiness %
       version,                                     // S: Quiz Version
-      strangeQ,                                    // T: Strange AI Question
+      strangeQ                                     // T: Strange AI Question
     ];
 
     // Append to Google Sheet
