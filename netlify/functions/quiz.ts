@@ -34,15 +34,11 @@ export const handler: Handler = async (event) => {
     // Parse payload
     const data = JSON.parse(event.body || "{}");
 
-    // Fallback if data.numericAnswers or data.answers is missing
-    const answers: Record<string, number> = data.numericAnswers ?? data.answers ?? {};
-
     // Ensure numeric values
     const score = Number(data.totalScore) || 0;
     const maxScore = Number(data.maxScore) || 1;
-    const industry = data.industry;
-    const companySize = data.companySize;
     const timestamp = data.timestamp || new Date().toISOString();
+    const answers = data.answers || {};
 
     // Calculate result level based on total score
     let level;
@@ -90,13 +86,13 @@ export const handler: Handler = async (event) => {
 
     const sheets = google.sheets({ version: 'v4', auth });
     const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
-    const range = 'Quiz Results!A:Q'; // Updated range for 17 columns
+    const range = 'Quiz Results!A:Q'; // 17 columns
 
     // Prepare row data matching exactly 17 columns (A through Q)
     const rowData = [
       timestamp,                                    // A: Timestamp
-      industry || '',                              // B: Industry
-      companySize || '',                           // C: Company Size
+      '',                                          // B: Industry (empty)
+      '',                                          // C: Company Size (empty)
       Number(answers[1]) || 0,                     // D: Q1 Score
       Number(answers[2]) || 0,                     // E: Q2 Score
       Number(answers[3]) || 0,                     // F: Q3 Score

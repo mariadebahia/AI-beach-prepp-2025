@@ -79,11 +79,8 @@ const QuizSection: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [quizResults, setQuizResults] = useState<ExtendedQuizResult | null>(null);
-  const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null);
 
-  const currentQuestion = quizQuestions.length > 0 && currentQuestionIndex < quizQuestions.length
-    ? quizQuestions[currentQuestionIndex]
-    : null;
+  const currentQuestion = quizQuestions[currentQuestionIndex];
 
   const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -91,10 +88,6 @@ const QuizSection: React.FC = () => {
     let totalPoints = 0;
     const numericAnswers: Record<number, number> = {};
     
-    const industry = allAnswers['industry'];
-    const companySize = allAnswers['companySize'];
-    const strangeAIQuestion = allAnswers['strangeAIQuestion'];
-
     for (let i = 1; i <= 10; i++) {
       const question = quizQuestions.find(q => q.id === i);
       const answerValue = allAnswers[i];
@@ -112,17 +105,12 @@ const QuizSection: React.FC = () => {
       }
     }
 
-    console.log('numericAnswers being sent:', numericAnswers);
-
     const maxScore = quizQuestions
       .filter(q => q.type === 'multiple-choice')
       .reduce((sum, q) => sum + Math.max(...(q.options?.map(opt => opt.points || 0) || [0])), 0);
 
     const payload = {
       answers: numericAnswers,
-      industry,
-      companySize,
-      strangeAIQuestion,
       totalScore: totalPoints,
       maxScore,
       timestamp: new Date().toISOString(),
@@ -142,18 +130,13 @@ const QuizSection: React.FC = () => {
       });
 
       if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText || response.statusText}`);
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      const contentType = response.headers.get('content-type');
-      let apiResults;
-      
-      if (contentType && contentType.includes('application/json')) {
-        apiResults = await response.json();
-      } else {
-        console.log('Response was not JSON, using default results');
-        apiResults = defaultResults;
+      const apiResults = await response.json();
+
+      if (!apiResults.success) {
+        throw new Error(apiResults.error || 'Failed to submit quiz');
       }
 
       const localKompetensgapPercent = calculateKompetensgapPercent(allAnswers);
@@ -164,16 +147,6 @@ const QuizSection: React.FC = () => {
         kompetensgapPercent: localKompetensgapPercent,
         strategicMaturityPercent: localStrategicMaturityPercent
       };
-
-      localStorage.setItem('lastQuizResult', JSON.stringify({
-        timestamp: new Date().toISOString(),
-        answers: allAnswers,
-        calculatedResults: {
-          kompetensgapPercent: localKompetensgapPercent,
-          strategicMaturityPercent: localStrategicMaturityPercent
-        },
-        backendResults: apiResults
-      }));
 
       return enhancedResults;
 
@@ -189,7 +162,7 @@ const QuizSection: React.FC = () => {
     while (retries <= maxRetries) {
       try {
         if (retries > 0) {
-          console.log(`Försöker igen... (${retries}/${maxRetries})`);
+          console.log(`Retry attempt ${retries}/${maxRetries}`);
         }
         return await submitQuiz(allAnswers);
       } catch (error) {
@@ -202,69 +175,39 @@ const QuizSection: React.FC = () => {
         await delay(1000 * retries);
       }
     }
-    console.log('Max retries reached, returning default results');
     return defaultResults;
   };
 
   const handleOptionSelect = (optionId: string) => {
-     if (isSubmitting) return;
+    if (isSubmitting) return;
 
-     const newAnswers = { ...answers, [currentQuestion!.id]: optionId };
-     setAnswers(newAnswers);
+    const newAnswers = { ...answers, [currentQuestion.id]: optionId };
+    setAnswers(newAnswers);
 
-     if (currentQuestion!.id === 'industry') {
-         setSelectedIndustry(optionId);
-     }
-
-     if (currentQuestion!.type === 'multiple-choice' && currentQuestionIndex < quizQuestions.length - 1) {
-       setCurrentQuestionIndex(prevIndex => prevIndex + 1);
-     } else if (currentQuestion!.type === 'multiple-choice' && currentQuestionIndex === quizQuestions.length - 1) {
-        submitAllAnswers(newAnswers);
-     }
-  };
-
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-     if (isSubmitting) return;
-
-     const newAnswers = { ...answers, [currentQuestion!.id]: event.target.value };
-     setAnswers(newAnswers);
-
-     if (currentQuestion!.id === 'industry') {
-         setSelectedIndustry(event.target.value);
-     }
-  };
-
-  const handleNextQuestion = () => {
-      if (!currentQuestion || !answers[currentQuestion.id]) {
-          setError("Vänligen välj ett svar eller fyll i fältet.");
-          return;
-      }
-      setError(null);
-
-      if (currentQuestionIndex === quizQuestions.length - 1) {
-          submitAllAnswers(answers);
-      } else {
-          setCurrentQuestionIndex(prevIndex => prevIndex + 1);
-      }
+    if (currentQuestionIndex < quizQuestions.length - 1) {
+      setCurrentQuestionIndex(prevIndex => prevIndex + 1);
+    } else {
+      submitAllAnswers(newAnswers);
+    }
   };
 
   const submitAllAnswers = async (finalAnswers: AllAnswers) => {
-     setIsSubmitting(true);
-     setError(null);
+    setIsSubmitting(true);
+    setError(null);
 
-     try {
-       const results = await submitWithRetry(finalAnswers);
-       setQuizResults(results);
-       setShowResults(true);
-     } catch (err) {
-       console.error("Failed to submit quiz:", err);
-       const errorMessage = err instanceof Error ? err.message : 'Ett oväntat fel inträffade';
-       setError(`Det gick inte att skicka dina svar. ${errorMessage}`);
-       setQuizResults(defaultResults);
-       setShowResults(true);
-     } finally {
-       setIsSubmitting(false);
-     }
+    try {
+      const results = await submitWithRetry(finalAnswers);
+      setQuizResults(results);
+      setShowResults(true);
+    } catch (err) {
+      console.error("Failed to submit quiz:", err);
+      const errorMessage = err instanceof Error ? err.message : 'Ett oväntat fel inträffade';
+      setError(`Det gick inte att skicka dina svar. ${errorMessage}`);
+      setQuizResults(defaultResults);
+      setShowResults(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const getResultIcon = (level?: string) => {
@@ -321,156 +264,92 @@ const QuizSection: React.FC = () => {
                     {currentQuestion.question}
                   </h3>
 
-                  {currentQuestion.type === 'multiple-choice' && Array.isArray(currentQuestion.options) && (
-                    <div className="space-y-4">
-                      {currentQuestion.options.map((option) => (
-                        <QuizOption
-                          key={option.id}
-                          id={`question-${currentQuestion.id}-option-${option.id}`}
-                          name={`question-${currentQuestion.id}`}
-                          text={option.text}
-                          isSelected={answers[currentQuestion.id] === option.id}
-                          onSelect={() => handleOptionSelect(option.id)}
-                        />
-                      ))}
-                    </div>
-                  )}
-
-                  {currentQuestion.type === 'dropdown' && Array.isArray(currentQuestion.options) && (
-                    <div className="mb-4">
-                      <select
-                        id={`question-${currentQuestion.id}`}
+                  <div className="space-y-4">
+                    {currentQuestion.options?.map((option) => (
+                      <QuizOption
+                        key={option.id}
+                        id={`question-${currentQuestion.id}-option-${option.id}`}
                         name={`question-${currentQuestion.id}`}
-                        value={answers[currentQuestion.id] || ''}
-                        onChange={handleInputChange}
-                        className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        disabled={isSubmitting}
-                        aria-label={currentQuestion.question}
-                      >
-                        <option value="" disabled>Välj...</option>
-                        {currentQuestion.options.map(option => (
-                          <option key={option.id} value={option.id}>{option.text}</option>
-                        ))}
-                      </select>
-                    </div>
-                  )}
-
-                  {currentQuestion.type === 'text' && (
-                    <div className="mb-4">
-                      <input
-                        type="text"
-                        id={`question-${currentQuestion.id}`}
-                        name={`question-${currentQuestion.id}`}
-                        value={answers[currentQuestion.id] || ''}
-                        onChange={handleInputChange}
-                        placeholder={currentQuestion.placeholder || ''}
-                        className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        disabled={isSubmitting}
-                        aria-label={currentQuestion.question}
+                        text={option.text}
+                        isSelected={answers[currentQuestion.id] === option.id}
+                        onSelect={() => handleOptionSelect(option.id)}
                       />
-                    </div>
-                  )}
-
-                  {(currentQuestion.type !== 'multiple-choice' || currentQuestionIndex === quizQuestions.length - 1) && (
-                    <div className="mt-6">
-                      <Button
-                        onClick={handleNextQuestion}
-                        variant="purple"
-                        className="w-full bg-beach-purple text-white py-3 rounded-md disabled:opacity-50"
-                        disabled={isSubmitting || !answers[currentQuestion.id]}
-                      >
-                        {currentQuestionIndex < quizQuestions.length - 1 ? 'Nästa fråga' : 'Skicka svar'}
-                      </Button>
-                    </div>
-                  )}
+                    ))}
+                  </div>
                 </>
               )}
             </div>
           </AnimatedSection>
         ) : (
           showResults && quizResults && (
-            (() => {
-              const qr = quizResults!;
+            <AnimatedSection animation="fade-up" delay="300">
+              <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl text-center">
+                {getResultIcon(quizResults.level)}
 
-              return (
-                <AnimatedSection animation="fade-up" delay="300">
-                  <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl text-center">
-                    {getResultIcon(qr.level)}
+                <h2 className="font-['Bricolage_Grotesque'] text-[3.75rem] mb-8 text-center leading-[1.2]">
+                  Din AI-fitness nivå: {quizResults.level}
+                </h2>
 
-                    <h2 className="font-['Bricolage_Grotesque'] text-[3.75rem] mb-8 text-center leading-[1.2]">
-                      Din AI-fitness nivå: {qr.level}
-                    </h2>
+                {quizResults.description && (
+                  <p className="quiz-body-text mb-6 text-xl font-bold">
+                    {quizResults.description}
+                  </p>
+                )}
 
-                    {qr.description && (
-                      <p className="quiz-body-text mb-6 text-xl font-bold">
-                        {qr.description}
-                      </p>
-                    )}
+                {quizResults.recommendations && quizResults.recommendations.length > 0 && (
+                  <div className="level-recommendations mt-8">
+                    <h6 className="text-[23px] font-medium mb-4">Rekommendationer för din nivå:</h6>
+                    <ul className="quiz-recommendations">
+                      {quizResults.recommendations.map((rec, index) => (
+                        <li key={index} className="flex items-center gap-3 mb-4">
+                          <Check className="text-green-500 flex-shrink-0" size={24} />
+                          <span className="text-left leading-snug">{rec}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
-                    {qr.recommendations && qr.recommendations.length > 0 && (
-                      <div className="level-recommendations mt-8">
-                        <h6 className="text-[23px] font-medium mb-4">Rekommendationer för din nivå:</h6>
-                        <ul className="quiz-recommendations">
-                          {qr.recommendations.map((rec, index) => (
-                            <li key={index} className="flex items-center gap-3 mb-4">
-                              <Check className="text-green-500 flex-shrink-0" size={24} />
-                              <span className="text-left leading-snug">{rec}</span>
-                            </li>
-                          ))}
-                        </ul>
+                {quizResults.comparative_statement && (
+                  <div className="bg-gray-50 rounded-lg p-6 mb-4">
+                    <p className="quiz-percentile">
+                      {quizResults.comparative_statement}
+                    </p>
+                  </div>
+                )}
+
+                {((quizResults.strategicMaturityPercent !== undefined && quizResults.strategicMaturityPercent !== 0) ||
+                  (quizResults.kompetensgapPercent !== undefined && quizResults.kompetensgapPercent !== 0)) && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    {quizResults.strategicMaturityPercent !== undefined && quizResults.strategicMaturityPercent !== 0 && (
+                      <div className="quiz-metric-card">
+                        <div className="flex justify-center mb-4">
+                          <TrendingUp className="w-8 h-8 text-deep-purple" />
+                        </div>
+                        <h6 className="text-[23px] font-medium mb-4">AI strategisk mognad</h6>
+                        <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
+                          {quizResults.strategicMaturityPercent}%
+                        </div>
+                        <p className="quiz-body-text">Bedömning av hur väl AI är integrerad i företagets övergripande strategi</p>
                       </div>
                     )}
 
-                    {qr.comparative_statement && (
-                      <div className="bg-gray-50 rounded-lg p-6 mb-4">
-                        <p className="quiz-percentile">
-                          {qr.comparative_statement}
-                        </p>
-                      </div>
-                    )}
-
-                    {qr.industry_comparative_statement && qr.industry_comparative_statement.trim() !== '' && (
-                      <div className="bg-gray-50 rounded-lg p-6 mb-8">
-                        <p className="quiz-percentile">
-                          {qr.industry_comparative_statement}
-                        </p>
-                      </div>
-                    )}
-
-                    {((qr.strategicMaturityPercent !== undefined && qr.strategicMaturityPercent !== 0) ||
-                      (qr.kompetensgapPercent !== undefined && qr.kompetensgapPercent !== 0)) && (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        {qr.strategicMaturityPercent !== undefined && qr.strategicMaturityPercent !== 0 && (
-                          <div className="quiz-metric-card">
-                            <div className="flex justify-center mb-4">
-                              <TrendingUp className="w-8 h-8 text-deep-purple" />
-                            </div>
-                            <h6 className="text-[23px] font-medium mb-4">AI strategisk mognad</h6>
-                            <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
-                              {qr.strategicMaturityPercent}%
-                            </div>
-                            <p className="quiz-body-text">Bedömning av hur väl AI är integrerad i företagets övergripande strategi</p>
-                          </div>
-                        )}
-
-                        {qr.kompetensgapPercent !== undefined && qr.kompetensgapPercent !== 0 && (
-                          <div className="quiz-metric-card">
-                            <div className="flex justify-center mb-4">
-                              <Users className="w-8 h-8 text-deep-purple" />
-                            </div>
-                            <h6 className="text-[23px] font-medium mb-4">Kompetensgap</h6>
-                            <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
-                              {qr.kompetensgapPercent}%
-                            </div>
-                            <p className="quiz-body-text">Skillnaden mellan nuvarande och önskad AI-kompetens i organisationen</p>
-                          </div>
-                        )}
+                    {quizResults.kompetensgapPercent !== undefined && quizResults.kompetensgapPercent !== 0 && (
+                      <div className="quiz-metric-card">
+                        <div className="flex justify-center mb-4">
+                          <Users className="w-8 h-8 text-deep-purple" />
+                        </div>
+                        <h6 className="text-[23px] font-medium mb-4">Kompetensgap</h6>
+                        <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
+                          {quizResults.kompetensgapPercent}%
+                        </div>
+                        <p className="quiz-body-text">Skillnaden mellan nuvarande och önskad AI-kompetens i organisationen</p>
                       </div>
                     )}
                   </div>
-                </AnimatedSection>
-              );
-            })()
+                )}
+              </div>
+            </AnimatedSection>
           )
         )}
       </div>
