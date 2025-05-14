@@ -117,4 +117,4 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
       body: JSON.stringify({ success: false, error: error.message }),
     };
   }
-};
+fix: remove merge conflict markers from quiz.ts};
