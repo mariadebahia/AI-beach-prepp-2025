@@ -91,12 +91,10 @@ const QuizSection: React.FC = () => {
     let totalPoints = 0;
     const numericAnswers: Record<number, number> = {};
     
-    // Get the non-numeric answers without default values
     const industry = allAnswers['industry'];
     const companySize = allAnswers['companySize'];
     const strangeAIQuestion = allAnswers['strangeAIQuestion'];
 
-    // Process numeric answers (questions 1-10)
     for (let i = 1; i <= 10; i++) {
       const question = quizQuestions.find(q => q.id === i);
       const answerValue = allAnswers[i];
@@ -105,7 +103,7 @@ const QuizSection: React.FC = () => {
         const selectedOption = question.options?.find(opt => opt.id === answerValue);
         if (selectedOption && selectedOption.points !== undefined) {
           totalPoints += selectedOption.points;
-          numericAnswers[i] = selectedOption.points;  // Store the points value
+          numericAnswers[i] = selectedOption.points;
         } else {
           numericAnswers[i] = 0;
         }
@@ -114,7 +112,6 @@ const QuizSection: React.FC = () => {
       }
     }
 
-    // Log the numeric answers before sending
     console.log('numericAnswers being sent:', numericAnswers);
 
     const maxScore = quizQuestions
@@ -122,7 +119,7 @@ const QuizSection: React.FC = () => {
       .reduce((sum, q) => sum + Math.max(...(q.options?.map(opt => opt.points || 0) || [0])), 0);
 
     const payload = {
-      answers: numericAnswers,  // Contains point values for questions 1-10
+      answers: numericAnswers,
       industry,
       companySize,
       strangeAIQuestion,
@@ -270,10 +267,10 @@ const QuizSection: React.FC = () => {
      }
   };
 
-  const getResultIcon = () => {
-    if (!quizResults) return null;
+  const getResultIcon = (level?: string) => {
+    if (!level) return null;
 
-    const levelKey = (quizResults.level || quizResults.result_page_title)?.toLowerCase();
+    const levelKey = level.toLowerCase();
 
     switch (levelKey) {
       case 'pappskalle':
@@ -390,83 +387,91 @@ const QuizSection: React.FC = () => {
               )}
             </div>
           </AnimatedSection>
-        ) : quizResults && (
-          <AnimatedSection animation="fade-up" delay="300">
-            <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl text-center">
-              {getResultIcon()}
+        ) : (
+          {showResults && quizResults && (
+            (() => {
+              const qr = quizResults!;
 
-              <h2 className="font-['Bricolage_Grotesque'] text-[3.75rem] mb-8 text-center leading-[1.2]">
-                Din AI-fitness nivå: {quizResults.level || quizResults.result_page_title}
-              </h2>
+              return (
+                <AnimatedSection animation="fade-up" delay="300">
+                  <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl text-center">
+                    {getResultIcon(qr.level)}
 
-              {quizResults.description && (
-                <p className="quiz-body-text mb-6 text-xl font-bold">
-                  {quizResults.description}
-                </p>
-              )}
+                    <h2 className="font-['Bricolage_Grotesque'] text-[3.75rem] mb-8 text-center leading-[1.2]">
+                      Din AI-fitness nivå: {qr.level}
+                    </h2>
 
-              {quizResults.recommendations && quizResults.recommendations.length > 0 && (
-                <div className="level-recommendations mt-8">
-                  <h6 className="text-[23px] font-medium mb-4">Rekommendationer för din nivå:</h6>
-                  <ul className="quiz-recommendations">
-                    {quizResults.recommendations.map((rec, index) => (
-                      <li key={index} className="flex items-center gap-3 mb-4">
-                        <Check className="text-green-500 flex-shrink-0" size={24} />
-                        <span className="text-left leading-snug">{rec}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+                    {qr.description && (
+                      <p className="quiz-body-text mb-6 text-xl font-bold">
+                        {qr.description}
+                      </p>
+                    )}
 
-              {quizResults.comparative_statement && (
-                <div className="bg-gray-50 rounded-lg p-6 mb-4">
-                  <p className="quiz-percentile">
-                    {quizResults.comparative_statement}
-                  </p>
-                </div>
-              )}
-
-              {quizResults.industry_comparative_statement && quizResults.industry_comparative_statement.trim() !== '' && (
-                <div className="bg-gray-50 rounded-lg p-6 mb-8">
-                  <p className="quiz-percentile">
-                    {quizResults.industry_comparative_statement}
-                  </p>
-                </div>
-              )}
-
-              {((quizResults.strategicMaturityPercent !== undefined && quizResults.strategicMaturityPercent !== 0) ||
-                (quizResults.kompetensgapPercent !== undefined && quizResults.kompetensgapPercent !== 0)) && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  {quizResults.strategicMaturityPercent !== undefined && quizResults.strategicMaturityPercent !== 0 && (
-                    <div className="quiz-metric-card">
-                      <div className="flex justify-center mb-4">
-                        <TrendingUp className="w-8 h-8 text-deep-purple" />
+                    {qr.recommendations && qr.recommendations.length > 0 && (
+                      <div className="level-recommendations mt-8">
+                        <h6 className="text-[23px] font-medium mb-4">Rekommendationer för din nivå:</h6>
+                        <ul className="quiz-recommendations">
+                          {qr.recommendations.map((rec, index) => (
+                            <li key={index} className="flex items-center gap-3 mb-4">
+                              <Check className="text-green-500 flex-shrink-0" size={24} />
+                              <span className="text-left leading-snug">{rec}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                      <h6 className="text-[23px] font-medium mb-4">AI strategisk mognad</h6>
-                      <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
-                        {quizResults.strategicMaturityPercent}%
-                      </div>
-                      <p className="quiz-body-text">Bedömning av hur väl AI är integrerad i företagets övergripande strategi</p>
-                    </div>
-                  )}
+                    )}
 
-                  {quizResults.kompetensgapPercent !== undefined && quizResults.kompetensgapPercent !== 0 && (
-                    <div className="quiz-metric-card">
-                      <div className="flex justify-center mb-4">
-                        <Users className="w-8 h-8 text-deep-purple" />
+                    {qr.comparative_statement && (
+                      <div className="bg-gray-50 rounded-lg p-6 mb-4">
+                        <p className="quiz-percentile">
+                          {qr.comparative_statement}
+                        </p>
                       </div>
-                      <h6 className="text-[23px] font-medium mb-4">Kompetensgap</h6>
-                      <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
-                        {quizResults.kompetensgapPercent}%
+                    )}
+
+                    {qr.industry_comparative_statement && qr.industry_comparative_statement.trim() !== '' && (
+                      <div className="bg-gray-50 rounded-lg p-6 mb-8">
+                        <p className="quiz-percentile">
+                          {qr.industry_comparative_statement}
+                        </p>
                       </div>
-                      <p className="quiz-body-text">Skillnaden mellan nuvarande och önskad AI-kompetens i organisationen</p>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </AnimatedSection>
+                    )}
+
+                    {((qr.strategicMaturityPercent !== undefined && qr.strategicMaturityPercent !== 0) ||
+                      (qr.kompetensgapPercent !== undefined && qr.kompetensgapPercent !== 0)) && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        {qr.strategicMaturityPercent !== undefined && qr.strategicMaturityPercent !== 0 && (
+                          <div className="quiz-metric-card">
+                            <div className="flex justify-center mb-4">
+                              <TrendingUp className="w-8 h-8 text-deep-purple" />
+                            </div>
+                            <h6 className="text-[23px] font-medium mb-4">AI strategisk mognad</h6>
+                            <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
+                              {qr.strategicMaturityPercent}%
+                            </div>
+                            <p className="quiz-body-text">Bedömning av hur väl AI är integrerad i företagets övergripande strategi</p>
+                          </div>
+                        )}
+
+                        {qr.kompetensgapPercent !== undefined && qr.kompetensgapPercent !== 0 && (
+                          <div className="quiz-metric-card">
+                            <div className="flex justify-center mb-4">
+                              <Users className="w-8 h-8 text-deep-purple" />
+                            </div>
+                            <h6 className="text-[23px] font-medium mb-4">Kompetensgap</h6>
+                            <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
+                              {qr.kompetensgapPercent}%
+                            </div>
+                            <p className="quiz-body-text">Skillnaden mellan nuvarande och önskad AI-kompetens i organisationen</p>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </AnimatedSection>
+              );
+            })()
+          )}
         )}
       </div>
     </section>
