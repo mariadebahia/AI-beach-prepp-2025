@@ -87,9 +87,9 @@ export const handler: Handler = async (event) => {
 
     const sheets = google.sheets({ version: 'v4', auth });
     const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
-    const range = 'Quiz Results!A:T';
+    const range = 'Quiz Results!A:T'; // Exact tab name and range
 
-    // Prepare row data
+    // Prepare row data matching exactly 20 columns (A through T)
     const rowData = [
       timestamp,                                    // A: Timestamp
       industry,                                     // B: Industry
