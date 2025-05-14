@@ -260,7 +260,7 @@ const QuizSection: React.FC = () => {
 
               {currentQuestion && (
                 <>
-                  <h3 className="text-xl font-semibold mb-6">
+                  <h3 className="text-2xl font-semibold mb-6">
                     {currentQuestion.question}
                   </h3>
 
