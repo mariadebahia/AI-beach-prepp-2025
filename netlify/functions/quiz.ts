@@ -34,7 +34,7 @@ import { Handler } from "@netlify/functions";
 import { google } from "googleapis";
 
 export const handler: Handler = async (event) => {
-  // 1) CORS‐preflight
+  // CORS-preflight
   if (event.httpMethod === "OPTIONS") {
     return {
       statusCode: 200,
@@ -47,7 +47,7 @@ export const handler: Handler = async (event) => {
     };
   }
 
-  // Endast POST tillåtet här
+  // Only allow POST
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
@@ -59,17 +59,20 @@ export const handler: Handler = async (event) => {
 
   try {
 <<<<<<< HEAD
+<<<<<<< HEAD
     const payload: QuizPayload = JSON.parse(event.body || '{}');
     const { totalScore, answers, industry, companySize, strangeAIQuestion } = payload;
 =======
     // 2) Läs in payload
+=======
+    // Parse payload
+>>>>>>> vodka-redbull
     const data = JSON.parse(event.body || "{}");
 
-    // Fallback om data.numericAnswers eller data.answers saknas
-    const answers: Record<string, number> =
-      data.numericAnswers ?? data.answers ?? {};
+    // Fallback if data.numericAnswers or data.answers is missing
+    const answers: Record<string, number> = data.numericAnswers ?? data.answers ?? {};
 
-    // Säkerställ att vi har siffror
+    // Ensure numeric values
     const score = Number(data.totalScore) || 0;
     const maxScore = Number(data.maxScore) || 1;
     const industry = data.industry || "";
@@ -188,6 +191,47 @@ export const handler: Handler = async (event) => {
     const kompetensgapPercent = Math.min(100, Math.max(0, Math.round(100 - ((score / maxScore) * 100)))) || 0;
     const aiReadinessPercent = Math.min(100, Math.max(0, Math.round((score / maxScore) * 100))) || 0;
 >>>>>>> vodka-redbull
+
+    // Google Sheets Integration
+    const auth = new google.auth.GoogleAuth({
+      credentials: {
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      },
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    });
+
+    const sheets = google.sheets({ version: 'v4', auth });
+    const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+    const range = 'Quiz Results!A:T';
+
+    // Prepare row data
+    const rowData = [
+      timestamp,                                    // A: Timestamp
+      industry,                                     // B: Industry
+      companySize,                                 // C: Company Size
+      ...Array.from({ length: 10 }, (_, i) =>      // D-M: Q1-Q10 Scores
+        Number(answers[String(i + 1)] ?? 0)
+      ),
+      score,                                       // N: Total Score
+      level,                                       // O: Result Level
+      strategicMaturityPercent,                    // P: Strategic Maturity %
+      kompetensgapPercent,                        // Q: Competency Gap %
+      aiReadinessPercent,                         // R: AI-readiness %
+      version,                                     // S: Quiz Version
+      strangeQ,                                    // T: Strange AI Question
+    ];
+
+    // Append to Google Sheet
+    await sheets.spreadsheets.values.append({
+      spreadsheetId,
+      range,
+      valueInputOption: 'USER_ENTERED',
+      insertDataOption: 'INSERT_ROWS',
+      resource: {
+        values: [rowData],
+      },
+    });
 
     const response = {
       level,

@@ -389,18 +389,14 @@ const QuizSection: React.FC = () => {
             <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl text-center">
               {getResultIcon()}
 
-              <h2
-                style={{
-                  fontFamily: 'Gloock, serif',
-                  fontWeight: 400
-                }}
-                className="text-[3.75rem] mb-8 text-center leading-[1.2]"
-              >
+              <h2 className="font-['Bricolage_Grotesque'] text-[3.75rem] mb-8 text-center leading-[1.2]">
                 Din AI-fitness nivå: {quizResults.level || quizResults.result_page_title}
               </h2>
 
               {quizResults.description && (
-                <p className="quiz-body-text mb-6">{quizResults.description}</p>
+                <p className="quiz-body-text mb-6 text-xl font-bold">
+                  {quizResults.description}
+                </p>
               )}
 
               {quizResults.recommendations && quizResults.recommendations.length > 0 && (

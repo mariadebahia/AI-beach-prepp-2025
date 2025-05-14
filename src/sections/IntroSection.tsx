@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../components/Button';
 import AnimatedSection from '../components/AnimatedSection';
-import { Dumbbell, Trophy, Rocket } from 'lucide-react';
+import { Check, Trophy, Rocket } from 'lucide-react';
 
 const MAKE_WEBHOOK_URL = 'https://hook.eu2.make.com/abhs8xzl3ssmsqjeglpldt8aj84hihfo';
 
@@ -66,7 +66,9 @@ const IntroSection: React.FC = () => {
         <AnimatedSection animation="fade-up" delay="200">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-deep-purple">
             <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 text-center flex flex-col items-center">
-              <div className="text-4xl mb-4 flex justify-center">🏋️</div>
+              <div className="text-4xl mb-4 flex justify-center">
+                <Check size={48} className="text-deep-purple" />
+              </div>
               <h3 className="text-xl font-semibold mb-4">Anmäl ditt företag</h3>
               <p className="text-gray-600">Berätta varför ni vill bli AI-fit – vi vill höra er story.</p>
             </div>
