@@ -34,9 +34,9 @@ export const handler: Handler = async (event) => {
     // Ensure numeric values
     const score = Number(data.totalScore) || 0;
     const maxScore = Number(data.maxScore) || 1;
-    const industry = data.industry || "";
-    const companySize = data.companySize || "";
-    const strangeQ = data.strangeAIQuestion || "";
+    const industry = data.industry;
+    const companySize = data.companySize;
+    const strangeQ = data.strangeAIQuestion;
     const version = data.quiz_version || "";
     const timestamp = data.timestamp || new Date().toISOString();
 
