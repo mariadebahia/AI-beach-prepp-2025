@@ -388,7 +388,7 @@ const QuizSection: React.FC = () => {
             </div>
           </AnimatedSection>
         ) : (
-          {showResults && quizResults && (
+          showResults && quizResults && (
             (() => {
               const qr = quizResults!;
 
@@ -471,7 +471,7 @@ const QuizSection: React.FC = () => {
                 </AnimatedSection>
               );
             })()
-          )}
+          )
         )}
       </div>
     </section>
