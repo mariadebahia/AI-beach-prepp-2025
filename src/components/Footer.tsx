@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
                   />
                 </div>
               </div>
-              <h3 className="text-2xl font-bold mb-2">Maria Zerihoun</h3>
+              <h3 className="text-2xl font-light mb-2">Maria Zerihoun</h3>
               <div className="flex justify-center space-x-4">
                 <a 
                   href="https://www.linkedin.com/in/mariazerihoun/" 
@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
                   />
                 </div>
               </div>
-              <h3 className="text-2xl font-bold mb-2">Noah Dagger</h3>
+              <h3 className="text-2xl font-light mb-2">Noah Dagger</h3>
               <div className="flex justify-center space-x-4">
                 <a 
                   href="https://www.linkedin.com/in/noah-dagger-b3b4b9168" 
@@ -100,7 +100,7 @@ const Footer: React.FC = () => {
                   />
                 </div>
               </div>
-              <h3 className="text-2xl font-bold mb-2">Ellino Aaby Olsson</h3>
+              <h3 className="text-2xl font-light mb-2">Ellino Aaby Olsson</h3>
               <div className="flex justify-center space-x-4">
                 <a 
                   href="https://www.linkedin.com/in/ellino-aaby-olsson" 
@@ -131,7 +131,7 @@ const Footer: React.FC = () => {
             alt="3AImigos Logo - Hand with three fingers"
             className="w-16 h-16 mx-auto hover:scale-110 transition-transform duration-300"
           />
-          <h3 className="font-gloock text-base font-bold mt-4">Tres AImigos</h3>
+          <h3 className="font-gloock text-base font-light mt-4">Tres AImigos</h3>
           <a href="mailto:lostresAImigos@gmail.com" className="font-gloock hover:text-gray-700 transition-colors">
             lostresAImigos@gmail.com
           </a>
