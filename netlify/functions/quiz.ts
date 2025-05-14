@@ -1,35 +1,3 @@
-<<<<<<< HEAD
-import { Handler } from '@netlify/functions';
-import { google } from 'googleapis';
-
-interface QuizPayload {
-  answers: Record<string, number>;
-  totalScore: number;
-  maxScore: number;
-  timestamp: string;
-  quiz_version: string;
-  industry?: string;
-  companySize?: string;
-  strangeAIQuestion?: string;
-}
-
-const handler: Handler = async (event) => {
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      },
-    };
-  }
-
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      body: JSON.stringify({ error: 'Method not allowed' }),
-=======
 import { Handler } from "@netlify/functions";
 import { google } from "googleapis";
 
