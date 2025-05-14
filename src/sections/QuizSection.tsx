@@ -184,7 +184,7 @@ const QuizSection: React.FC = () => {
     const newAnswers = { ...answers, [currentQuestion.id]: optionId };
     setAnswers(newAnswers);
 
-    if (currentQuestionIndex < quizQuestions.length - 1) {
+    if (currentQuestion.type === 'multiple-choice' && currentQuestionIndex < 9) {
       setCurrentQuestionIndex(prevIndex => prevIndex + 1);
     } else {
       submitAllAnswers(newAnswers);
@@ -255,7 +255,7 @@ const QuizSection: React.FC = () => {
             <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl">
               <ProgressBar
                 currentStep={currentQuestionIndex + 1}
-                totalSteps={quizQuestions.length}
+                totalSteps={10}
               />
 
               {currentQuestion && (
@@ -276,6 +276,17 @@ const QuizSection: React.FC = () => {
                       />
                     ))}
                   </div>
+
+                  {currentQuestion.type === 'multiple-choice' && currentQuestionIndex < 9 && (
+                    <div className="mt-6 text-center">
+                      <Button
+                        onClick={() => handleOptionSelect(answers[currentQuestion.id] || '')}
+                        disabled={!answers[currentQuestion.id]}
+                      >
+                        {currentQuestionIndex < 9 ? 'Nästa fråga' : 'Skicka svar'}
+                      </Button>
+                    </div>
+                  )}
                 </>
               )}
             </div>
