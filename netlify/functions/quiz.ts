@@ -1,3 +1,5 @@
+
+import QuizSection from "./sections/QuizSection";
 import { Handler } from "@netlify/functions";
 import { google } from "googleapis";
 
