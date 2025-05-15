@@ -6,6 +6,8 @@ import Button from '../components/Button';
 import AnimatedSection from '../components/AnimatedSection';
 import { Dumbbell, Brain, Rocket, TrendingUp, Users, LineChart, Zap, Check } from 'lucide-react';
 
+const enc = encodeURIComponent;
+
 const QUIZ_ENDPOINT = '/api/quiz';
 
 const calculateKompetensgapPercent = (answers: Record<string | number, string>): number => {
@@ -248,14 +250,13 @@ const QuizSection: React.FC = () => {
     }
   };
 
-  // --- Share-via-mail data ------------------------------
   const levelLabel = quizResults?.level || quizResults?.result_page_title || 'AI-nivå';
   const percentile = quizResults?.comparative_statement?.match(/\d+/)?.[0] || '??';
   const stratMaturity = `${quizResults?.strategicMaturityPercent ?? '??'}%`;
   const aiGrowth = `${quizResults?.growthPotentialPercent ?? '??'}%`;
 
-  const mailSubject = encodeURIComponent('Mitt resultat i AI-fitnesstestet');
-  const mailBody = encodeURIComponent(
+  const mailSubject = enc('Mitt resultat i AI-fitnesstestet');
+  const mailBody = enc(
     `Hej,
 
 Jag har just gjort ett AI-fitnesstest för jobbet. Vi är på nivån ${levelLabel} och ligger bättre till än ${percentile}% av alla som tagit testet! Än mer intressant är att vi har ${stratMaturity} i AI-strategisk mognad och ${aiGrowth} i tillväxtpotential för framtida AI-utveckling.
