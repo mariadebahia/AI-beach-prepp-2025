@@ -204,22 +204,24 @@ const QuizSection: React.FC = () => {
   return (
     <section className="py-32 px-8 bg-[#d8d355]" id="quiz-section">
       <div className="max-w-3xl mx-auto">
-        {showResults && quizResults && (
-          <AnimatedSection animation="fade-up" delay="300">
-            <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl text-center">
-              <div className="flex flex-col sm:flex-row gap-4 mt-10">
-                <Button
-                  as="a"
-                  href="#intro-section"
-                  variant="purple"
-                  className="w-full sm:w-auto px-6 py-3"
-                >
-                  Vinn en AI-workout för jobbet
-                </Button>
+        {showResults && quizResults ? (() => {
+          const qr = quizResults!;
+          return (
+            <AnimatedSection animation="fade-up" delay="300">
+              <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl text-center">
+                <div className="flex flex-col sm:flex-row gap-4 mt-10">
+                  <Button
+                    as="a"
+                    href="#intro-section"
+                    variant="purple"
+                    className="w-full sm:w-auto px-6 py-3"
+                  >
+                    Vinn en AI-workout för jobbet
+                  </Button>
 
-                <a
-                  href={`mailto:?subject=${enc("// OMG, du kan aldrig gissa vad jobbet fick i ett AI-fitnesstest! - AIbeachprep.se //")}&body=${enc(
-                    `OMG! Jag har precis gjort ett AI-fitnesstest för jobbet och resultaten är faktiskt rätt intressanta! \
+                  <a
+                    href={`mailto:?subject=${enc("// OMG, du kan aldrig gissa vad jobbet fick i ett AI-fitnesstest! - AIbeachprep.se //")}&body=${enc(
+                      `OMG! Jag har precis gjort ett AI-fitnesstest för jobbet och resultaten är faktiskt rätt intressanta! \
 Vi ligger tydligen på ${quizResults?.level ?? "[AI-level]"}-nivån och slår tydligen ${quizResults?.comparative_statement?.match(/\d+/)?.[0] ?? "??"}% av alla andra som tagit testet 💪
 
 Det som verkligen fick mig att höja på ögonbrynen var att vi fick ${quizResults?.strategicMaturityPercent ?? "[AI strategic maturity]"} % \
@@ -229,15 +231,16 @@ Gör testet du också! Man får även en analys av gapet mellan nuvarande och ö
 Ah, och glöm inte att man kan vinna en gratis AI-workshop! Kolla in AIbeachprep.se!
 
 Allt gott!`
-                  )}`}
-                  className="inline-flex items-center justify-center px-6 py-3 border-2 border-beach-purple text-beach-purple rounded-lg font-medium hover:bg-beach-purple/10 transition"
-                >
-                  Dela till chefen / kollegan
-                </a>
+                    )}`}
+                    className="inline-flex items-center justify-center px-6 py-3 border-2 border-beach-purple text-beach-purple rounded-lg font-medium hover:bg-beach-purple/10 transition"
+                  >
+                    Dela till chefen / kollegan
+                  </a>
+                </div>
               </div>
-            </div>
-          </AnimatedSection>
-        )}
+            </AnimatedSection>
+          );
+        })() : null}
       </div>
     </section>
   );
