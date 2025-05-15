@@ -422,14 +422,12 @@ Gör testet du också – du får dessutom en indikator på kompetensgapet och j
                     Vinn en AI-workout för jobbet
                   </Button>
 
-                  <Button
-                    as="a"
-                    variant="outline-purple"
+                  <a
                     href={mailHref}
-                    className="w-full sm:w-auto px-6 py-3"
+                    className="inline-flex items-center justify-center px-6 py-3 border-2 border-beach-purple text-beach-purple rounded-lg font-medium hover:bg-beach-purple/10 transition"
                   >
                     Dela till chef / kollega
-                  </Button>
+                  </a>
                 </div>
               </div>
             </AnimatedSection>
