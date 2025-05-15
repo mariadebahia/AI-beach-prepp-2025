@@ -48,7 +48,7 @@ const IntroSection: React.FC = () => {
   };
 
   return (
-    <section className="py-32 px-8 bg-[#fbf9f9]" id="intro-section">
+    <section className="py-31 px-8 bg-[#fbf9f9]" id="intro-section">
       <div className="max-w-[860px] mx-auto">
         <AnimatedSection animation="fade-up">
           <h2 className="mb-4 h2-quiz-outline">
