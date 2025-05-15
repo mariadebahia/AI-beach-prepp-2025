@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../components/Button';
 import AnimatedSection from '../components/AnimatedSection';
-import { Check } from 'lucide-react';
+import { Check, Trophy } from 'lucide-react';
 
 const MAKE_WEBHOOK_URL = 'https://hook.eu2.make.com/abhs8xzl3ssmsqjeglpldt8aj84hihfo';
 
@@ -76,7 +76,7 @@ const IntroSection: React.FC = () => {
 
             <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
               <div className="flex items-start gap-3">
-                <span className="text-2xl flex-shrink-0 mt-1">🏖️</span>
+                <Trophy size={24} className="text-deep-purple flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Vi väljer ut vinnare varje vecka</h3>
                   <p className="text-black">Vår jury plockar ut de mest AI-nyfikna och beach-prep-sugna.</p>
