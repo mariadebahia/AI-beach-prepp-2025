@@ -248,6 +248,25 @@ const QuizSection: React.FC = () => {
     }
   };
 
+  // --- Share-via-mail data ------------------------------
+  const levelLabel = quizResults?.level || quizResults?.result_page_title || 'AI-nivå';
+  const percentile = quizResults?.comparative_statement?.match(/\d+/)?.[0] || '??';
+  const stratMaturity = `${quizResults?.strategicMaturityPercent ?? '??'}%`;
+  const aiGrowth = `${quizResults?.growthPotentialPercent ?? '??'}%`;
+
+  const mailSubject = encodeURIComponent('Mitt resultat i AI-fitnesstestet');
+  const mailBody = encodeURIComponent(
+    `Hej,
+
+Jag har just gjort ett AI-fitnesstest för jobbet. Vi är på nivån ${levelLabel} och ligger bättre till än ${percentile}% av alla som tagit testet! Än mer intressant är att vi har ${stratMaturity} i AI-strategisk mognad och ${aiGrowth} i tillväxtpotential för framtida AI-utveckling.
+
+Gör testet du också – du får dessutom en indikator på kompetensgapet och jobbets beredskap för AI-implementering. Och man kan vinna en AI-workshop!
+
+>> AIbeachprep.se
+`
+  );
+  const mailHref = `mailto:?subject=${mailSubject}&body=${mailBody}`;
+
   return (
     <section className="py-32 px-8 bg-[#d8d355]" id="quiz-section">
       <div className="max-w-3xl mx-auto">
@@ -406,9 +425,7 @@ const QuizSection: React.FC = () => {
                   <Button
                     as="a"
                     variant="outline-purple"
-                    href={`mailto:?subject=Kolla%20min%20AI-fitness!&body=Hej!%0A%0AMitt%20företag%20fick%20nivån%20${encodeURIComponent(
-                      quizResults!.level
-                    )}%20i%20AI-fitness-testet.%0AKolla%20själv%20här:%20${window.location.href}`}
+                    href={mailHref}
                     className="w-full sm:w-auto px-6 py-3"
                   >
                     Dela till chef / kollega
