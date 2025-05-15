@@ -117,7 +117,7 @@ export const getQuizResult = (score: number): QuizResult => {
   if (score <= 10) {
     return {
       level: 'Pappskalle',
-      description: 'Du är som en nybörjare på gymmet som försöker lyfta de tyngsta vikterna direkt. Dags att börja med grunderna!',
+      description: 'Du är som en nybörjare på gymmet som försöker lyfta de tyngsta vikterna direkt.',
       recommendations: [
         'Börja med en AI-introduktionskurs (tänk personlig tränare för nybörjare)',
         'Experimentera med ChatGPT (som att lära sig grundläggande övningar)',
