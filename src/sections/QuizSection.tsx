@@ -201,14 +201,199 @@ const QuizSection: React.FC = () => {
     return defaultResults;
   };
 
+  const handleOptionSelect = (optionId: string) => {
+    if (isSubmitting) return;
+
+    const newAnswers = { ...answers, [currentQuestion.id]: optionId };
+    setAnswers(newAnswers);
+
+    if (currentQuestionIndex < quizQuestions.length - 1) {
+      setCurrentQuestionIndex(prevIndex => prevIndex + 1);
+    } else {
+      submitAllAnswers(newAnswers);
+    }
+  };
+
+  const submitAllAnswers = async (finalAnswers: AllAnswers) => {
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const results = await submitWithRetry(finalAnswers);
+      setQuizResults(results);
+      setShowResults(true);
+    } catch (err) {
+      console.error("Failed to submit quiz:", err);
+      const errorMessage = err instanceof Error ? err.message : 'Ett oväntat fel inträffade';
+      setError(`Det gick inte att skicka dina svar. ${errorMessage}`);
+      setQuizResults(defaultResults);
+      setShowResults(true);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const getResultIcon = (level?: string) => {
+    if (!level) return null;
+    
+    switch (level.toLowerCase()) {
+      case 'pappskalle':
+        return <Dumbbell className="w-16 h-16 text-red-500 mx-auto mb-6" />;
+      case 'nyfiken':
+        return <Brain className="w-16 h-16 text-yellow-500 mx-auto mb-6" />;
+      case 'beach ready':
+        return <Rocket className="w-16 h-16 text-green-500 mx-auto mb-6" />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <section className="py-32 px-8 bg-[#d8d355]" id="quiz-section">
       <div className="max-w-3xl mx-auto">
-        {showResults && quizResults ? (() => {
+        <AnimatedSection animation="fade-up">
+          <h2 className="h2-quiz-outline mb-8 text-left leading-[1.2]">
+            Hur är det med AI-formen? Ta vårt AI-fitnesstest!
+          </h2>
+        </AnimatedSection>
+
+        <AnimatedSection animation="fade-up" delay="200">
+          <h5 className="text-[1.4375rem] leading-relaxed mb-8 text-left">
+            Vårt AI-fitnesstest är inte bara kul – det mäter er strategiska AI-mognad och visar på eventuellt kompetensgap samt levererar tre konkreta rekommendationer.
+            <br /><br />
+            På bara 2 minuter får ni koll på läget. Och nästa steg.
+          </h5>
+        </AnimatedSection>
+
+        {error && (
+          <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6">
+            {error}
+          </div>
+        )}
+
+        {!showResults ? (
+          <AnimatedSection animation="fade-up" delay="300">
+            <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl">
+              <ProgressBar
+                currentStep={currentQuestionIndex + 1}
+                totalSteps={quizQuestions.length}
+              />
+
+              {currentQuestion && (
+                <>
+                  <h3 className="text-2xl font-semibold mb-6">
+                    {currentQuestion.question}
+                  </h3>
+
+                  <div className="space-y-4">
+                    {currentQuestion.options?.map((option) => (
+                      <QuizOption
+                        key={option.id}
+                        id={`question-${currentQuestion.id}-option-${option.id}`}
+                        name={`question-${currentQuestion.id}`}
+                        text={option.text}
+                        isSelected={answers[currentQuestion.id] === option.id}
+                        onSelect={() => handleOptionSelect(option.id)}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+          </AnimatedSection>
+        ) : showResults && quizResults ? (() => {
           const qr = quizResults!;
           return (
             <AnimatedSection animation="fade-up" delay="300">
               <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl text-center">
+                {getResultIcon(qr.level)}
+
+                <h2 className="font-['Bricolage_Grotesque'] text-[3.75rem] mb-8 text-center leading-[1.2]">
+                  Din AI-fitness nivå: {qr.level}
+                </h2>
+
+                {qr.description && (
+                  <p className="quiz-body-text mb-6 text-xl font-bold">
+                    {qr.description}
+                  </p>
+                )}
+
+                {qr.recommendations && qr.recommendations.length > 0 && (
+                  <div className="level-recommendations mt-8">
+                    <h6 className="text-[23px] font-medium mb-4">Rekommendationer för din nivå:</h6>
+                    <ul className="quiz-recommendations">
+                      {qr.recommendations.map((rec, index) => (
+                        <li key={index} className="flex items-center gap-3 mb-4">
+                          <Check className="text-green-500 flex-shrink-0" size={24} />
+                          <span className="text-left leading-snug">{rec}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {qr.comparative_statement && (
+                  <div className="bg-gray-50 rounded-lg p-6 mb-4">
+                    <p className="quiz-percentile">
+                      {qr.comparative_statement}
+                    </p>
+                  </div>
+                )}
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                  {qr.strategicMaturityPercent !== undefined && (
+                    <div className="quiz-metric-card">
+                      <div className="flex justify-center mb-4">
+                        <TrendingUp className="w-8 h-8 text-deep-purple" />
+                      </div>
+                      <h6 className="text-[23px] font-medium mb-4">AI strategisk mognad</h6>
+                      <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
+                        {qr.strategicMaturityPercent}%
+                      </div>
+                      <p className="quiz-body-text">Bedömning av hur väl AI är integrerad i företagets övergripande strategi</p>
+                    </div>
+                  )}
+
+                  {qr.kompetensgapPercent !== undefined && (
+                    <div className="quiz-metric-card">
+                      <div className="flex justify-center mb-4">
+                        <Users className="w-8 h-8 text-deep-purple" />
+                      </div>
+                      <h6 className="text-[23px] font-medium mb-4">Kompetensgap</h6>
+                      <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
+                        {qr.kompetensgapPercent}%
+                      </div>
+                      <p className="quiz-body-text">Skillnaden mellan nuvarande och önskad AI-kompetens i organisationen</p>
+                    </div>
+                  )}
+
+                  {qr.growthPotentialPercent !== undefined && (
+                    <div className="quiz-metric-card">
+                      <div className="flex justify-center mb-4">
+                        <LineChart className="w-8 h-8 text-deep-purple" />
+                      </div>
+                      <h6 className="text-[23px] font-medium mb-4">AI-Tillväxtpotential</h6>
+                      <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
+                        {qr.growthPotentialPercent}%
+                      </div>
+                      <p className="quiz-body-text">Potential för framtida AI-utveckling och expansion</p>
+                    </div>
+                  )}
+
+                  {qr.aiReadinessPercent !== undefined && (
+                    <div className="quiz-metric-card">
+                      <div className="flex justify-center mb-4">
+                        <Zap className="w-8 h-8 text-deep-purple" />
+                      </div>
+                      <h6 className="text-[23px] font-medium mb-4">AI-Readiness</h6>
+                      <div className="text-[3.75rem] font-bold text-deep-purple mb-4 py-4">
+                        {qr.aiReadinessPercent}%
+                      </div>
+                      <p className="quiz-body-text">Organisationens beredskap för AI-implementation</p>
+                    </div>
+                  )}
+                </div>
+
                 <div className="flex flex-col sm:flex-row gap-4 mt-10">
                   <Button
                     as="a"
@@ -222,10 +407,10 @@ const QuizSection: React.FC = () => {
                   <a
                     href={`mailto:?subject=${enc("// OMG, du kan aldrig gissa vad jobbet fick i ett AI-fitnesstest! - AIbeachprep.se //")}&body=${enc(
                       `OMG! Jag har precis gjort ett AI-fitnesstest för jobbet och resultaten är faktiskt rätt intressanta! \
-Vi ligger tydligen på ${quizResults?.level ?? "[AI-level]"}-nivån och slår tydligen ${quizResults?.comparative_statement?.match(/\d+/)?.[0] ?? "??"}% av alla andra som tagit testet 💪
+Vi ligger tydligen på ${qr.level ?? "[AI-level]"}-nivån och slår tydligen ${qr.comparative_statement?.match(/\d+/)?.[0] ?? "??"}% av alla andra som tagit testet 💪
 
-Det som verkligen fick mig att höja på ögonbrynen var att vi fick ${quizResults?.strategicMaturityPercent ?? "[AI strategic maturity]"} % \
-i strategisk AI-mognad och har en potential på ${quizResults?.growthPotentialPercent ?? "[AI Growth]"} % för framtida AI-utveckling.
+Det som verkligen fick mig att höja på ögonbrynen var att vi fick ${qr.strategicMaturityPercent ?? "[AI strategic maturity]"} % \
+i strategisk AI-mognad och har en potential på ${qr.growthPotentialPercent ?? "[AI Growth]"} % för framtida AI-utveckling.
 
 Gör testet du också! Man får även en analys av gapet mellan nuvarande och önskad AI-kompetens plus hur redo jobbet är för AI-implementering. \
 Ah, och glöm inte att man kan vinna en gratis AI-workshop! Kolla in AIbeachprep.se!

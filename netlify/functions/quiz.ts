@@ -39,8 +39,8 @@ export const handler: Handler = async (event) => {
     const maxScore = Number(data.maxScore) || 1;
     const timestamp = data.timestamp || new Date().toISOString();
     const answers = data.answers || {};
-    const growthPotentialPercent = data.growthPotentialPercent || 0;
-    const aiReadinessPercent = data.aiReadinessPercent || 0;
+    const growthPotentialPercent = Number(data.growthPotentialPercent) || 0;
+    const aiReadinessPercent = Number(data.aiReadinessPercent) || 0;
 
     // 4) Beräkna nivå, beskrivning och rekommendationer enligt nya intervall
     let level: string;
@@ -107,9 +107,9 @@ export const handler: Handler = async (event) => {
 
     const sheets = google.sheets({ version: 'v4', auth });
     const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
-    const range = 'Quiz Results!A:S'; // Updated to 19 columns
+    const range = 'Quiz Results!A:S'; // 18 columns (A through S)
 
-    // Prepare row data matching exactly 19 columns (A through S)
+    // Prepare row data matching exactly 18 columns
     const rowData = [
       timestamp,                                    // A: Timestamp
       '',                                          // B: Industry (empty)
