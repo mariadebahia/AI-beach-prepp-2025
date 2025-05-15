@@ -39,6 +39,8 @@ export const handler: Handler = async (event) => {
     const maxScore = Number(data.maxScore) || 1;
     const timestamp = data.timestamp || new Date().toISOString();
     const answers = data.answers || {};
+    const growthPotentialPercent = data.growthPotentialPercent || 0;
+    const aiReadinessPercent = data.aiReadinessPercent || 0;
 
     // 4) Beräkna nivå, beskrivning och rekommendationer enligt nya intervall
     let level: string;
@@ -105,9 +107,9 @@ export const handler: Handler = async (event) => {
 
     const sheets = google.sheets({ version: 'v4', auth });
     const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
-    const range = 'Quiz Results!A:Q'; // 17 columns
+    const range = 'Quiz Results!A:S'; // Updated to 19 columns
 
-    // Prepare row data matching exactly 17 columns (A through Q)
+    // Prepare row data matching exactly 19 columns (A through S)
     const rowData = [
       timestamp,                                    // A: Timestamp
       '',                                          // B: Industry (empty)
@@ -125,7 +127,9 @@ export const handler: Handler = async (event) => {
       score,                                       // N: Total Score
       level,                                       // O: Result Level
       strategicMaturityPercent,                    // P: Strategic Maturity %
-      kompetensgapPercent                         // Q: Competency Gap %
+      kompetensgapPercent,                        // Q: Competency Gap %
+      growthPotentialPercent,                     // R: Growth Potential %
+      aiReadinessPercent                          // S: AI Readiness %
     ];
 
     // Append to Google Sheet
@@ -146,7 +150,9 @@ export const handler: Handler = async (event) => {
       recommendations,
       comparative_statement: `Du ligger bättre till än ${Math.floor(Math.random() * 30) + 60}% av alla som tagit testet!`,
       strategicMaturityPercent,
-      kompetensgapPercent
+      kompetensgapPercent,
+      growthPotentialPercent,
+      aiReadinessPercent
     };
 
     return {
