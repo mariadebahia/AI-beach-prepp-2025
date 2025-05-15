@@ -393,22 +393,25 @@ const QuizSection: React.FC = () => {
                   )}
                 </div>
 
-                <div className="flex flex-col md:flex-row gap-4 mt-10">
+                <div className="flex flex-col sm:flex-row gap-4 mt-10">
                   <Button
-                    onClick={() => document.getElementById('intro-section')?.scrollIntoView({ behavior: 'smooth' })}
+                    as="a"
+                    href="#intro-section"
                     variant="purple"
-                    className="w-full md:w-auto"
+                    className="w-full sm:w-auto px-6 py-3"
                   >
                     Vinn en AI-workout för jobbet
                   </Button>
 
                   <Button
                     as="a"
-                    href={`mailto:?subject=Kolla vår AI-fitness!&body=Vi fick nivån ${quizResults.level}. Se resultatet: ${typeof window !== 'undefined' ? window.location.href : ''}`}
-                    variant="outline"
-                    className="w-full md:w-auto"
+                    variant="outline-purple"
+                    href={`mailto:?subject=Kolla%20min%20AI-fitness!&body=Hej!%0A%0AMitt%20företag%20fick%20nivån%20${encodeURIComponent(
+                      quizResults!.level
+                    )}%20i%20AI-fitness-testet.%0AKolla%20själv%20här:%20${window.location.href}`}
+                    className="w-full sm:w-auto px-6 py-3"
                   >
-                    Dela till din chef/kollega
+                    Dela till chef / kollega
                   </Button>
                 </div>
               </div>
