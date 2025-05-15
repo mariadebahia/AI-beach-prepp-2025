@@ -15,6 +15,7 @@ const HeroSection: React.FC = () => {
         </AnimatedSection>
         
         <AnimatedSection animation="fade-up" delay="200">
+          <p></p>
           <h1 className="font-['Bricolage_Grotesque'] font-extrabold mb-6 text-center">
             Fixa AI-formen till beach 2025!
           </h1>
