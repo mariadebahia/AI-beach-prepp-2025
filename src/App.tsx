@@ -14,7 +14,7 @@ function App() {
     <div className="min-h-screen bg-[#ffffff]">
       <HeroSection />
       <IntroSection />
-      <QuizSection />
+      <QuizSection id="quiz-section" />
       <Footer />
     </div>
   );
