@@ -69,7 +69,7 @@ const IntroSection: React.FC = () => {
                 <Check size={24} className="text-deep-purple flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Anmäl ditt företag</h3>
-                  <p className="text-gray-600">Berätta varför ni vill bli AI-fit – vi vill höra er story.</p>
+                  <p className="text-black">Berätta varför ni vill bli AI-fit – vi vill höra er story.</p>
                 </div>
               </div>
             </div>
@@ -79,7 +79,7 @@ const IntroSection: React.FC = () => {
                 <span className="text-2xl flex-shrink-0 mt-1">🏖️</span>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Vi väljer ut vinnare varje vecka</h3>
-                  <p className="text-gray-600">Vår jury plockar ut de mest AI-nyfikna och beach-prep-sugna.</p>
+                  <p className="text-black">Vår jury plockar ut de mest AI-nyfikna och beach-prep-sugna.</p>
                 </div>
               </div>
             </div>
@@ -89,7 +89,7 @@ const IntroSection: React.FC = () => {
                 <span className="text-2xl flex-shrink-0 mt-1">🚀</span>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Vi kommer till er och kör AI-workout</h3>
-                  <p className="text-gray-600">På plats hos er. Utan krångel. Med AI-svettgaranti.</p>
+                  <p className="text-black">På plats hos er. Utan krångel. Med AI-svettgaranti.</p>
                 </div>
               </div>
             </div>
