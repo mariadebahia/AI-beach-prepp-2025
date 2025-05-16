@@ -44,12 +44,8 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
     let level;
     let description;
     let recommendations;
->>>>>>> vodka-redbull
 
     // 4) Beräkna nivå, beskrivning och rekommendationer
-    let level: string;
-    let description: string;
-    let recommendations: string[];
     if (score <= 10) {
       level = "Pappskalle";
       description = "Du är som en nybörjare på gymmet som försöker lyfta de tyngsta vikterna direkt. Dags att börja med grunderna!";
@@ -78,8 +74,8 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
 
     // 5) Procentsatser
     const strategicMaturityPercent = Math.min(100, Math.max(0, Math.round((score / maxScore) * 100)));
-    const kompetensgapPercent       = Math.min(100, Math.max(0, Math.round(100 - ((score / maxScore) * 100))));
-    const aiReadinessPercent        = strategicMaturityPercent;
+    const kompetensgapPercent = Math.min(100, Math.max(0, Math.round(100 - ((score / maxScore) * 100))));
+    const aiReadinessPercent = strategicMaturityPercent;
 
     // 6) Google Sheets‐integration
     const auth = new google.auth.GoogleAuth({
@@ -89,13 +85,10 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
       },
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
-    const sheets = google.sheets({ version: "v4", auth });
-    const spreadsheetId = process.env.GOOGLE_SHEETS_ID!;
-    const range = "Quiz Results!A:T";
 
-    const sheets = google.sheets({ version: 'v4', auth });
+    const sheets = google.sheets({ version: "v4", auth });
     const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
-    const range = 'Quiz Results!A:T'; // Exact tab name and range
+    const range = "Quiz Results!A:T"; // Exact tab name and range
 
     // Prepare row data matching exactly 20 columns (A through T)
     const rowData = [
@@ -119,7 +112,6 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
       aiReadinessPercent,                         // R: AI-readiness %
       version,                                     // S: Quiz Version
       strangeQ                                     // T: Strange AI Question
->>>>>>> vodka-redbull
     ];
 
     // 7) Skriv till arket
