@@ -252,17 +252,17 @@ const QuizSection: React.FC = () => {
     <section className="py-16 md:py-32 px-4 md:px-8 bg-[#d8d355]" id="quiz-section">
       <div className="max-w-3xl mx-auto">
         <AnimatedSection animation="fade-up">
-          <h2 className="font-bold leading-tight text-fluid-h2 mb-8 text-left">
+          <h2 className="font-bold leading-tight text-fluid-h2 mb-4 md:mb-8 text-left">
             Hur är det med AI-formen? Ta vårt AI-fitnesstest!
           </h2>
         </AnimatedSection>
 
         <AnimatedSection animation="fade-up" delay="200">
-          <h5 className="text-fluid-body mb-8 text-left">
+          <div className="text-fluid-body mb-8 text-left">
             Vårt AI-fitnesstest är inte bara kul – det mäter er strategiska AI-mognad och visar på eventuellt kompetensgap samt levererar tre konkreta rekommendationer.
             <br /><br />
             På bara 2 minuter får ni koll på läget. Och nästa steg.
-          </h5>
+          </div>
         </AnimatedSection>
 
         {error && (
@@ -273,7 +273,7 @@ const QuizSection: React.FC = () => {
 
         {!showResults ? (
           <AnimatedSection animation="fade-up" delay="300">
-            <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl">
+            <div className="bg-white border border-gray-200 rounded-lg p-6 md:p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl">
               <ProgressBar
                 currentStep={currentQuestionIndex + 1}
                 totalSteps={quizQuestions.length}
@@ -281,7 +281,7 @@ const QuizSection: React.FC = () => {
 
               {currentQuestion && (
                 <>
-                  <h3 className="text-2xl font-semibold mb-6">
+                  <h3 className="text-xl md:text-2xl font-semibold mb-6">
                     {currentQuestion.question}
                   </h3>
 
@@ -305,22 +305,22 @@ const QuizSection: React.FC = () => {
           const qr = quizResults!;
           return (
             <AnimatedSection animation="fade-up" delay="300">
-              <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl text-center">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 md:p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl text-center">
                 {getResultIcon(qr.level)}
 
-                <h2 className="font-['Bricolage_Grotesque'] text-[3.75rem] mb-8 text-center leading-[1.2]">
+                <h2 className="font-['Bricolage_Grotesque'] text-2xl md:text-4xl lg:text-[3.75rem] mb-6 md:mb-8 text-center leading-[1.2]">
                   Din AI-fitness nivå: {qr.level}
                 </h2>
 
                 {qr.description && (
-                  <p className="quiz-body-text mb-6 text-xl font-bold">
+                  <p className="quiz-body-text mb-6">
                     {qr.description}
                   </p>
                 )}
 
                 {qr.recommendations && qr.recommendations.length > 0 && (
                   <div className="level-recommendations mt-8">
-                    <h6 className="text-[23px] font-medium mb-4">Rekommendationer för din nivå:</h6>
+                    <h6 className="text-lg md:text-[23px] font-medium mb-4">Rekommendationer för din nivå:</h6>
                     <ul className="quiz-recommendations">
                       {qr.recommendations.map((rec, index) => (
                         <li key={index} className="flex items-center gap-3 mb-4">
@@ -333,14 +333,14 @@ const QuizSection: React.FC = () => {
                 )}
 
                 {qr.comparative_statement && (
-                  <div className="bg-gray-50 rounded-lg p-6 mb-4">
+                  <div className="bg-gray-50 rounded-lg p-4 md:p-6 mb-4">
                     <p className="quiz-percentile">
                       {qr.comparative_statement}
                     </p>
                   </div>
                 )}
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-8">
                   {qr.strategicMaturityPercent !== undefined && (
                     <div className="quiz-metric-card">
                       <div className="flex justify-center mb-4">
@@ -394,7 +394,7 @@ const QuizSection: React.FC = () => {
                   )}
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 mt-10">
+                <div className="flex flex-col sm:flex-row gap-4 mt-8 md:mt-10">
                   <Button
                     as="a"
                     href="#intro-section"
@@ -417,7 +417,11 @@ Ah, och glöm inte att man kan vinna en gratis AI-workshop! Kolla in AIbeachprep
 
 Allt gott!`
                     )}`}
-                    className="w-full md:w-auto inline-flex items-center justify-center px-6 py-3 border-2 border-beach-purple text-beach-purple rounded-lg font-medium hover:bg-beach-purple/10 transition"
+                    className="w-full md:w-auto inline-flex items-center justify-center px-6 py-3 
+                             border-2 border-beach-purple text-beach-purple rounded-lg font-medium 
+                             hover:bg-beach-purple/10 transition focus-visible:border-beach-purple 
+                             focus-visible:text-beach-purple focus-visible:ring-2 
+                             focus-visible:ring-beach-purple/40 focus:ring-4"
                   >
                     Dela till chefen / kollegan
                   </a>
