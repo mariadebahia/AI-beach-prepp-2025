@@ -249,16 +249,16 @@ const QuizSection: React.FC = () => {
   };
 
   return (
-    <section className="py-32 px-8 bg-[#d8d355]" id="quiz-section">
+    <section className="py-16 md:py-32 px-4 md:px-8 bg-[#d8d355]" id="quiz-section">
       <div className="max-w-3xl mx-auto">
         <AnimatedSection animation="fade-up">
-          <h2 className="h2-quiz-outline mb-8 text-left leading-[1.2]">
+          <h2 className="font-bold leading-tight text-fluid-h2 mb-8 text-left">
             Hur är det med AI-formen? Ta vårt AI-fitnesstest!
           </h2>
         </AnimatedSection>
 
         <AnimatedSection animation="fade-up" delay="200">
-          <h5 className="text-[1.4375rem] leading-relaxed mb-8 text-left">
+          <h5 className="text-fluid-body mb-8 text-left">
             Vårt AI-fitnesstest är inte bara kul – det mäter er strategiska AI-mognad och visar på eventuellt kompetensgap samt levererar tre konkreta rekommendationer.
             <br /><br />
             På bara 2 minuter får ni koll på läget. Och nästa steg.
@@ -399,7 +399,7 @@ const QuizSection: React.FC = () => {
                     as="a"
                     href="#intro-section"
                     variant="purple"
-                    className="w-full sm:w-auto px-6 py-3"
+                    className="w-full md:w-auto px-6 py-3"
                   >
                     Vinn en AI-workout för jobbet
                   </Button>
@@ -417,7 +417,7 @@ Ah, och glöm inte att man kan vinna en gratis AI-workshop! Kolla in AIbeachprep
 
 Allt gott!`
                     )}`}
-                    className="inline-flex items-center justify-center px-6 py-3 border-2 border-beach-purple text-beach-purple rounded-lg font-medium hover:bg-beach-purple/10 transition"
+                    className="w-full md:w-auto inline-flex items-center justify-center px-6 py-3 border-2 border-beach-purple text-beach-purple rounded-lg font-medium hover:bg-beach-purple/10 transition"
                   >
                     Dela till chefen / kollegan
                   </a>
