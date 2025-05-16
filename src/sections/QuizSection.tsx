@@ -1,100 +1,43 @@
-[{
-	"resource": "/Users/mariadebahia/Documents/GitHub/AI-beach-prepp-2025/src/sections/QuizSection.tsx",
-	"owner": "typescript",
-	"code": "18047",
-	"severity": 8,
-	"message": "'quizResults' is possibly 'null'.",
-	"source": "ts",
-	"startLineNumber": 294,
-	"startColumn": 39,
-	"endLineNumber": 294,
-	"endColumn": 50
-},{
-	"resource": "/Users/mariadebahia/Documents/GitHub/AI-beach-prepp-2025/src/sections/QuizSection.tsx",
-	"owner": "typescript",
-	"code": "18047",
-	"severity": 8,
-	"message": "'quizResults' is possibly 'null'.",
-	"source": "ts",
-	"startLineNumber": 296,
-	"startColumn": 44,
-	"endLineNumber": 296,
-	"endColumn": 55
-},{
-	"resource": "/Users/mariadebahia/Documents/GitHub/AI-beach-prepp-2025/src/sections/QuizSection.tsx",
-	"owner": "typescript",
-	"code": "18047",
-	"severity": 8,
-	"message": "'quizResults' is possibly 'null'.",
-	"source": "ts",
-	"startLineNumber": 299,
-	"startColumn": 18,
-	"endLineNumber": 299,
-	"endColumn": 29
-},{
-	"resource": "/Users/mariadebahia/Documents/GitHub/AI-beach-prepp-2025/src/sections/QuizSection.tsx",
-	"owner": "typescript",
-	"code": "18047",
-	"severity": 8,
-	"message": "'quizResults' is possibly 'null'.",
-	"source": "ts",
-	"startLineNumber": 307,
-	"startColumn": 16,
-	"endLineNumber": 307,
-	"endColumn": 27
-},{
-	"resource": "/Users/mariadebahia/Documents/GitHub/AI-beach-prepp-2025/src/sections/QuizSection.tsx",
-	"owner": "typescript",
-	"code": "18047",
-	"severity": 8,
-	"message": "'quizResults' is possibly 'null'.",
-	"source": "ts",
-	"startLineNumber": 309,
-	"startColumn": 20,
-	"endLineNumber": 309,
-	"endColumn": 31
-},{
-	"resource": "/Users/mariadebahia/Documents/GitHub/AI-beach-prepp-2025/src/sections/QuizSection.tsx",
-	"owner": "typescript",
-	"code": "18047",
-	"severity": 8,
-	"message": "'quizResults' is possibly 'null'.",
-	"source": "ts",
-	"startLineNumber": 314,
-	"startColumn": 18,
-	"endLineNumber": 314,
-	"endColumn": 29
-},{
-	"resource": "/Users/mariadebahia/Documents/GitHub/AI-beach-prepp-2025/src/sections/QuizSection.tsx",
-	"owner": "typescript",
-	"code": "18047",
-	"severity": 8,
-	"message": "'quizResults' is possibly 'null'.",
-	"source": "ts",
-	"startLineNumber": 319,
-	"startColumn": 24,
-	"endLineNumber": 319,
-	"endColumn": 35
-},{
-	"resource": "/Users/mariadebahia/Documents/GitHub/AI-beach-prepp-2025/src/sections/QuizSection.tsx",
-	"owner": "typescript",
-	"code": "18047",
-	"severity": 8,
-	"message": "'quizResults' is possibly 'null'.",
-	"source": "ts",
-	"startLineNumber": 323,
-	"startColumn": 18,
-	"endLineNumber": 323,
-	"endColumn": 29
-},{
-	"resource": "/Users/mariadebahia/Documents/GitHub/AI-beach-prepp-2025/src/sections/QuizSection.tsx",
-	"owner": "typescript",
-	"code": "18047",
-	"severity": 8,
-	"message": "'quizResults' is possibly 'null'.",
-	"source": "ts",
-	"startLineNumber": 328,
-	"startColumn": 24,
-	"endLineNumber": 328,
-	"endColumn": 35
-}]
+import React, { useState, useEffect } from 'react';
+import { Button } from '../components/Button';
+import { QuizOption } from '../components/QuizOption';
+import { ProgressBar } from '../components/ProgressBar';
+import { ImageUploader } from '../components/ImageUploader';
+import { AnimatedSection } from '../components/AnimatedSection';
+
+interface QuizResults {
+  // Add your quiz results type definition here
+  // This is a placeholder - you should replace with actual properties
+  score?: number;
+  answers?: any[];
+  // ... other properties
+}
+
+const QuizSection: React.FC = () => {
+  const [quizResults, setQuizResults] = useState<QuizResults | null>(null);
+
+  // Safely handle quizResults being null with optional chaining
+  const handleQuizResults = () => {
+    if (!quizResults) return null;
+    
+    return (
+      <div>
+        <p>Score: {quizResults?.score ?? 0}</p>
+        {/* Add other quiz result rendering logic here */}
+      </div>
+    );
+  };
+
+  return (
+    <AnimatedSection className="quiz-section">
+      <div className="container mx-auto px-4 py-12">
+        <h2 className="text-3xl font-bold text-center mb-8">Quiz Section</h2>
+        {handleQuizResults()}
+        {/* Add your quiz content here */}
+      </div>
+    </AnimatedSection>
+  );
+};
+
+// Add the default export
+export default QuizSection;
