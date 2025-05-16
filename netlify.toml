@@ -3,14 +3,11 @@
   publish   = "dist"
   functions = "netlify/functions"
 
-<<<<<<< HEAD
 [dev]
   command    = "npm run dev"
   targetPort = 5173
 
 # Proxy all /api/quiz calls to your Netlify Function
-=======
->>>>>>> vodka-redbull
 [[redirects]]
   from   = "/api/quiz"
   to     = "/.netlify/functions/quiz"
