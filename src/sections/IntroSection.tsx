@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 import AnimatedSection from '../components/AnimatedSection';
 import { Check, Trophy, Dumbbell } from 'lucide-react';
@@ -200,7 +201,7 @@ const IntroSection: React.FC = () => {
                     className="mt-1.5 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                   />
                   <label htmlFor="gdpr" className="text-base text-gray-700">
-                    Jag godkänner att mina uppgifter sparas enligt <a href="#" className="underline">integritetspolicyn</a> *
+                    Jag godkänner att mina uppgifter sparas enligt <Link to="/integritetspolicy" className="underline hover:text-deep-purple transition-colors">integritetspolicyn</Link> *
                   </label>
                 </div>
               </div>
