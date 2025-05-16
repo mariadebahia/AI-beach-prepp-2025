@@ -8,8 +8,6 @@ import { Dumbbell, Brain, Rocket, TrendingUp, Users, LineChart, Zap, Check } fro
 
 const enc = encodeURIComponent;
 
-const QUIZ_ENDPOINT = '/api/quiz';
-
 const calculateKompetensgapPercent = (answers: Record<string | number, string>): number => {
   const kompetensQuestions = [1, 3, 5, 7, 9];
   let totalPoints = 0;
@@ -139,7 +137,7 @@ const QuizSection: React.FC = () => {
     };
 
     try {
-      const response = await fetch(QUIZ_ENDPOINT, {
+      const response = await fetch('/api/quiz', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
