@@ -1,5 +1,3 @@
-
-import QuizSection from "./sections/QuizSection";
 import { Handler } from "@netlify/functions";
 import { google } from "googleapis";
 
@@ -44,7 +42,7 @@ export const handler: Handler = async (event) => {
     const growthPotentialPercent = Number(data.growthPotentialPercent) || 0;
     const aiReadinessPercent = Number(data.aiReadinessPercent) || 0;
 
-    // 4) Beräkna nivå, beskrivning och rekommendationer enligt nya intervall
+    // Calculate level, description and recommendations based on new intervals
     let level: string;
     let description: string;
     let recommendations: string[];
