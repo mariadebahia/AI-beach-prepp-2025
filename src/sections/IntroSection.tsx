@@ -49,64 +49,64 @@ const IntroSection: React.FC = () => {
   };
 
   return (
-    <section className="py-32 px-8 bg-[#fbf9f9]" id="intro-section">
+    <section className="py-16 md:py-32 px-4 md:px-8 bg-[#fbf9f9]" id="intro-section">
       <div className="max-w-[860px] mx-auto">
         <AnimatedSection animation="fade-up">
-          <h2 className="mb-4 h2-quiz-outline">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl mb-4 h2-quiz-outline">
             Känner ni AI-FOMO på jobbet?<br />
             Ni är inte ensamma.
           </h2>
 
-          <h5 className="text-[2rem] leading-[1.2] mb-16">
+          <h5 className="text-xl md:text-2xl lg:text-[2rem] leading-[1.2] mb-8 md:mb-16">
             Alla snackar AI. Men hur kommer man igång på jobbet?<br />
             Vi hjälper er komma i bättre AI-form. Vi kommer till er, boostar med grunder, verktyg och knep som får er att känna er AI-ready till hösten. Vi kallar det AI Beach Prep - en dyr managementkonsult hade kallat det "get-AI-ready-or-die."
           </h5>
         </AnimatedSection>
 
         <AnimatedSection animation="fade-up" delay="200">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-deep-purple">
-            <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-16 text-deep-purple">
+            <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
               <div className="flex items-start gap-3">
                 <Check size={24} className="text-deep-purple flex-shrink-0 mt-1" />
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Anmäl ditt företag</h3>
-                  <p className="text-black">Berätta varför ni vill bli AI-fit – vi vill höra er story.</p>
+                  <h3 className="text-lg md:text-xl font-semibold mb-2">Anmäl ditt företag</h3>
+                  <p className="text-sm md:text-base text-black">Berätta varför ni vill bli AI-fit – vi vill höra er story.</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
               <div className="flex items-start gap-3">
                 <Trophy size={24} className="text-deep-purple flex-shrink-0 mt-1" />
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Vi väljer ut en vinnare varje vecka</h3>
-                  <p className="text-black">Vår jury väljer ett företag i veckan fram till vecka 27.</p>
+                  <h3 className="text-lg md:text-xl font-semibold mb-2">Vi väljer ut en vinnare varje vecka</h3>
+                  <p className="text-sm md:text-base text-black">Vår jury väljer ett företag i veckan fram till vecka 27.</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
               <div className="flex items-start gap-3">
                 <Dumbbell size={24} className="text-deep-purple flex-shrink-0 mt-1" />
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Vi kommer till er och kör AI-workout</h3>
-                  <p className="text-black">På plats hos er. Utan krångel. Med AI-svettgaranti.</p>
+                  <h3 className="text-lg md:text-xl font-semibold mb-2">Vi kommer till er och kör AI-workout</h3>
+                  <p className="text-sm md:text-base text-black">På plats hos er. Utan krångel. Med AI-svettgaranti.</p>
                 </div>
               </div>
             </div>
           </div>
         </AnimatedSection>
 
-        <h3 className="text-4xl font-semibold mb-4">Tävla om en AI-workout för ert företag! 🏖️</h3>
-        <h5 className="text-[1.25rem] leading-[1.2] mb-16">
+        <h3 className="text-2xl md:text-4xl font-semibold mb-4">Tävla om en AI-workout för ert företag! 🏖️</h3>
+        <h5 className="text-base md:text-[1.25rem] leading-[1.2] mb-8 md:mb-16">
           Pst - Alla som anmäler sig får vår AI-fitnessguide. En snabbstart till AI-form – med knepen, verktygen och peppen för att ta första steget direkt.
         </h5>
 
         {isSubmitted ? (
           <AnimatedSection animation="fade-up" delay="200">
-            <div className="bg-white p-8 rounded-xl shadow-lg">
-              <h2 className="text-4xl font-bold text-deep-purple mb-6">Tack – ni är med i AI Beach Prep! 🏋️</h2>
-              <p className="text-2xl text-gray-700 mb-8">
+            <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+              <h2 className="text-2xl md:text-4xl font-bold text-deep-purple mb-4 md:mb-6">Tack – ni är med i AI Beach Prep! 🏋️</h2>
+              <p className="text-lg md:text-2xl text-gray-700 mb-6 md:mb-8">
                 Vi har registrerat er anmälan och hör snart av oss om ni går vidare till nästa steg. Urvalet görs av vår jury och baseras på er motivering, er nyfikenhet och potential att komma igång med AI. Vi bedömer alla ansökningar individuellt – bransch eller storlek spelar ingen roll. Redan nu kan ni börja AI-värma upp med vår guide!
               </p>
               <Button 
@@ -119,9 +119,9 @@ const IntroSection: React.FC = () => {
           </AnimatedSection>
         ) : (
           <AnimatedSection animation="fade-up" delay="200">
-            <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-lg transition-shadow duration-300 hover:shadow-xl">
+            <form onSubmit={handleSubmit} className="bg-white p-6 md:p-8 rounded-xl shadow-lg transition-shadow duration-300 hover:shadow-xl">
               <div className="mb-6">
-                <label htmlFor="company_name" className="block text-lg font-medium text-gray-900 mb-2">
+                <label htmlFor="company_name" className="block text-base md:text-lg font-medium text-gray-900 mb-2">
                   Företagsnamn *
                 </label>
                 <input
@@ -130,12 +130,12 @@ const IntroSection: React.FC = () => {
                   name="company_name"
                   placeholder="Ditt företag"
                   required
-                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg text-center"
+                  className="w-full p-3 md:p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base md:text-lg text-center"
                 />
               </div>
               
               <div className="mb-6">
-                <label htmlFor="contact_name" className="block text-lg font-medium text-gray-900 mb-2">
+                <label htmlFor="contact_name" className="block text-base md:text-lg font-medium text-gray-900 mb-2">
                   Kontaktperson (Namn) *
                 </label>
                 <input
@@ -144,13 +144,13 @@ const IntroSection: React.FC = () => {
                   name="contact_name"
                   placeholder="Förnamn Efternamn"
                   required
-                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg text-center"
+                  className="w-full p-3 md:p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base md:text-lg text-center"
                 />
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
                 <div>
-                  <label htmlFor="email" className="block text-lg font-medium text-gray-900 mb-2">
+                  <label htmlFor="email" className="block text-base md:text-lg font-medium text-gray-900 mb-2">
                     E-post *
                   </label>
                   <input
@@ -159,12 +159,12 @@ const IntroSection: React.FC = () => {
                     name="email"
                     placeholder="din@email.se"
                     required
-                    className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg text-center"
+                    className="w-full p-3 md:p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base md:text-lg text-center"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="phone" className="block text-lg font-medium text-gray-900 mb-2">
+                  <label htmlFor="phone" className="block text-base md:text-lg font-medium text-gray-900 mb-2">
                     Telefon
                   </label>
                   <input
@@ -172,13 +172,13 @@ const IntroSection: React.FC = () => {
                     id="phone"
                     name="phone"
                     placeholder="070-123 45 67"
-                    className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg text-center"
+                    className="w-full p-3 md:p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base md:text-lg text-center"
                   />
                 </div>
               </div>
               
               <div className="mb-6">
-                <label htmlFor="motivation" className="block text-lg font-medium text-gray-900 mb-2">
+                <label htmlFor="motivation" className="block text-base md:text-lg font-medium text-gray-900 mb-2">
                   Motivering *
                 </label>
                 <textarea
@@ -187,7 +187,7 @@ const IntroSection: React.FC = () => {
                   placeholder="Berätta för oss varför just ditt företag skulle gynnas av AI-träning"
                   required
                   rows={4}
-                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg text-center"
+                  className="w-full p-3 md:p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base md:text-lg text-center"
                 />
               </div>
 
@@ -200,7 +200,7 @@ const IntroSection: React.FC = () => {
                     required
                     className="mt-1.5 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                   />
-                  <label htmlFor="gdpr" className="text-base text-gray-700">
+                  <label htmlFor="gdpr" className="text-sm md:text-base text-gray-700">
                     Jag godkänner att mina uppgifter sparas enligt <Link to="/integritetspolicy" className="underline hover:text-deep-purple transition-colors">integritetspolicyn</Link> *
                   </label>
                 </div>
@@ -217,7 +217,7 @@ const IntroSection: React.FC = () => {
                   type="submit" 
                   variant="purple" 
                   disabled={isSubmitting}
-                  className="w-full md:w-auto bg-black text-white text-xl py-6 px-12"
+                  className="w-full md:w-auto bg-black text-white text-base md:text-xl py-4 md:py-6 px-8 md:px-12"
                 >
                   {isSubmitting ? 'Skickar...' : 'Vi behöver AI Beach Prepp!!'}
                 </Button>
