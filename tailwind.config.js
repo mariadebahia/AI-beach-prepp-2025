@@ -19,7 +19,11 @@ export default {
         'beach-purple': '#2D1B69',
         'deep-purple': '#2D1B69',
         'neon-green': '#ADFF00'
-      }
+      },
+      fontSize: {
+        'fluid-h2': 'clamp(1.75rem, 5vw + 1rem, 3rem)',
+        'fluid-body': 'clamp(1rem, 2.2vw + .5rem, 1.125rem)',
+      },
     },
   },
   plugins: [],
