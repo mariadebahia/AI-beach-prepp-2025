@@ -17,7 +17,7 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
     };
   }
 
-  // 2) Endast POST tillåtet
+  // 2) Only POST allowed
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
@@ -27,7 +27,7 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
   }
 
   try {
-    // 3) Läs in payload
+    // 3) Parse payload
     const data = JSON.parse(event.body || "{}");
     const answers: Record<string, number> = data.numericAnswers ?? data.answers ?? {};
 
@@ -40,13 +40,7 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
     const version = data.quiz_version || "";
     const timestamp = data.timestamp || new Date().toISOString();
 
-    // Calculate result level based on total score
-    let level;
-    let description;
-    let recommendations;
->>>>>>> vodka-redbull
-
-    // 4) Beräkna nivå, beskrivning och rekommendationer
+    // 4) Calculate level, description and recommendations
     let level: string;
     let description: string;
     let recommendations: string[];
@@ -76,12 +70,12 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
       ];
     }
 
-    // 5) Procentsatser
+    // 5) Calculate percentages
     const strategicMaturityPercent = Math.min(100, Math.max(0, Math.round((score / maxScore) * 100)));
-    const kompetensgapPercent       = Math.min(100, Math.max(0, Math.round(100 - ((score / maxScore) * 100))));
-    const aiReadinessPercent        = strategicMaturityPercent;
+    const kompetensgapPercent = Math.min(100, Math.max(0, Math.round(100 - ((score / maxScore) * 100))));
+    const aiReadinessPercent = strategicMaturityPercent;
 
-    // 6) Google Sheets‐integration
+    // 6) Google Sheets integration
     const auth = new google.auth.GoogleAuth({
       credentials: {
         client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
@@ -89,40 +83,36 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
       },
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
-    const sheets = google.sheets({ version: "v4", auth });
-    const spreadsheetId = process.env.GOOGLE_SHEETS_ID!;
-    const range = "Quiz Results!A:T";
 
-    const sheets = google.sheets({ version: 'v4', auth });
+    const sheets = google.sheets({ version: "v4", auth });
     const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
-    const range = 'Quiz Results!A:T'; // Exact tab name and range
+    const range = "Quiz Results!A:T";
 
     // Prepare row data matching exactly 20 columns (A through T)
     const rowData = [
-      timestamp,                                    // A: Timestamp
-      industry,                                     // B: Industry
-      companySize,                                 // C: Company Size
-      Number(answers[1]) || 0,                     // D: Q1 Score
-      Number(answers[2]) || 0,                     // E: Q2 Score
-      Number(answers[3]) || 0,                     // F: Q3 Score
-      Number(answers[4]) || 0,                     // G: Q4 Score
-      Number(answers[5]) || 0,                     // H: Q5 Score
-      Number(answers[6]) || 0,                     // I: Q6 Score
-      Number(answers[7]) || 0,                     // J: Q7 Score
-      Number(answers[8]) || 0,                     // K: Q8 Score
-      Number(answers[9]) || 0,                     // L: Q9 Score
-      Number(answers[10]) || 0,                    // M: Q10 Score
-      score,                                       // N: Total Score
-      level,                                       // O: Result Level
-      strategicMaturityPercent,                    // P: Strategic Maturity %
-      kompetensgapPercent,                        // Q: Competency Gap %
-      aiReadinessPercent,                         // R: AI-readiness %
-      version,                                     // S: Quiz Version
-      strangeQ                                     // T: Strange AI Question
->>>>>>> vodka-redbull
+      timestamp,                    // A: Timestamp
+      industry,                     // B: Industry
+      companySize,                  // C: Company Size
+      Number(answers[1]) || 0,      // D: Q1 Score
+      Number(answers[2]) || 0,      // E: Q2 Score
+      Number(answers[3]) || 0,      // F: Q3 Score
+      Number(answers[4]) || 0,      // G: Q4 Score
+      Number(answers[5]) || 0,      // H: Q5 Score
+      Number(answers[6]) || 0,      // I: Q6 Score
+      Number(answers[7]) || 0,      // J: Q7 Score
+      Number(answers[8]) || 0,      // K: Q8 Score
+      Number(answers[9]) || 0,      // L: Q9 Score
+      Number(answers[10]) || 0,     // M: Q10 Score
+      score,                        // N: Total Score
+      level,                        // O: Result Level
+      strategicMaturityPercent,     // P: Strategic Maturity %
+      kompetensgapPercent,         // Q: Competency Gap %
+      aiReadinessPercent,          // R: AI-readiness %
+      version,                      // S: Quiz Version
+      strangeQ                      // T: Strange AI Question
     ];
 
-    // 7) Skriv till arket
+    // 7) Write to sheet
     await sheets.spreadsheets.values.append({
       spreadsheetId,
       range,
@@ -131,7 +121,7 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
       requestBody: { values: [rowData] },
     });
 
-    // 8) Skicka tillbaka resultatet
+    // 8) Return result
     const responsePayload = {
       success: true,
       level,
