@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from '../components/Button';
-import { QuizOption } from '../components/QuizOption';
-import { ProgressBar } from '../components/ProgressBar';
-import { ImageUploader } from '../components/ImageUploader';
-import { AnimatedSection } from '../components/AnimatedSection';
+import React, { useState } from 'react';
+import Button from '../components/Button';
+import QuizOption from '../components/QuizOption';
+import ProgressBar from '../components/ProgressBar';
+import AnimatedSection from '../components/AnimatedSection';
 
 interface QuizResults {
   // Add your quiz results type definition here
@@ -39,5 +38,4 @@ const QuizSection: React.FC = () => {
   );
 };
 
-// Add the default export
 export default QuizSection;
