@@ -52,15 +52,15 @@ const IntroSection: React.FC = () => {
     <section className="py-16 md:py-32 px-4 md:px-8 bg-[#fbf9f9]" id="intro-section">
       <div className="max-w-[860px] mx-auto">
         <AnimatedSection animation="fade-up">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl mb-4 h2-quiz-outline">
+          <h2 className="font-bold leading-tight text-fluid-h2 mb-4">
             Känner ni AI-FOMO på jobbet?<br />
             Ni är inte ensamma.
           </h2>
 
-          <h5 className="text-xl md:text-2xl lg:text-[2rem] leading-[1.2] mb-8 md:mb-16">
+          <div className="text-fluid-body mb-8 md:mb-16">
             Alla snackar AI. Men hur kommer man igång på jobbet?<br />
             Vi hjälper er komma i bättre AI-form. Vi kommer till er, boostar med grunder, verktyg och knep som får er att känna er AI-ready till hösten. Vi kallar det AI Beach Prep - en dyr managementkonsult hade kallat det "get-AI-ready-or-die."
-          </h5>
+          </div>
         </AnimatedSection>
 
         <AnimatedSection animation="fade-up" delay="200">
