@@ -79,8 +79,8 @@ const IntroSection: React.FC = () => {
               <div className="flex items-start gap-3">
                 <Trophy size={24} className="text-deep-purple flex-shrink-0 mt-1" />
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Vi väljer ut vinnare varje vecka</h3>
-                  <p className="text-black">Vår jury plockar ut de mest AI-nyfikna och beach-prep-sugna.</p>
+                  <h3 className="text-xl font-semibold mb-2">Vi väljer ut en vinnare varje vecka</h3>
+                  <p className="text-black">Vår jury väljer ett företag i veckan fram till vecka 27.</p>
                 </div>
               </div>
             </div>
