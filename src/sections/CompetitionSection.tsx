@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../components/Button';
 import AnimatedHeader from '../components/AnimatedHeader';
 import { Trophy } from 'lucide-react';
