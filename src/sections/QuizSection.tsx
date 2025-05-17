@@ -36,7 +36,7 @@ const QuizSection: React.FC = () => {
         </AnimatedSection>
 
         <AnimatedSection animation="fade-up" delay="200">
-          <div className="bg-white rounded-2xl p-8 text-left">
+          <div className="bg-white rounded-2xl p-12 text-left">
             {!showResults ? (
               <>
                 <ProgressBar 
