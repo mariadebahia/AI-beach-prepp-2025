@@ -3,6 +3,8 @@ import Button from './Button';
 import type { FormData } from '../types';
 import { Loader2 } from 'lucide-react';
 
+const MAKE_WEBHOOK = 'https://hook.eu2.make.com/abhs8xzl3ssmsqjeglpldt8aj84hihfo';
+
 const FormCompetition: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     companyName: '',
@@ -36,7 +38,7 @@ const FormCompetition: React.FC = () => {
     setError(null);
     
     try {
-      const response = await fetch('YOUR_MAKE_WEBHOOK_URL', {
+      const response = await fetch(MAKE_WEBHOOK, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,6 +66,9 @@ const FormCompetition: React.FC = () => {
         motivation: '',
         gdprConsent: false
       });
+
+      // Scroll to quiz section after successful submission
+      document.getElementById('quiz-section')?.scrollIntoView({ behavior: 'smooth' });
     } catch (err) {
       console.error('Error submitting form:', err);
       setError('Det gick tyvärr inte att skicka formuläret. Försök igen senare.');
