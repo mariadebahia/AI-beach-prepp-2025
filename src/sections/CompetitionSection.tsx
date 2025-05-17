@@ -14,9 +14,8 @@ const CompetitionSection: React.FC = () => {
             </div>
             
             <div className="mb-12">
-              <h2 className="text-[2.75rem] font-bold leading-tight mb-8">
-                HAR NI FASTNAT I EN AI-FOMO LOOP PÅ JOBBET?!
-                LUGN, VI HJÄLPER ER ATT KOMMA IGÅNG!
+              <h2 className="text-[2.75rem] font-black leading-tight mb-8">
+                AI-FOMO PÅ JOBBET?! LUGN, VI HJÄLPER ER ATT KOMMA IGÅNG!
               </h2>
               
               <p className="text-lg">
