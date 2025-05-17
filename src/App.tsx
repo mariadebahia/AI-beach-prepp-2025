@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
 import HeroSection from './sections/HeroSection';
-import IntroSection from './sections/IntroSection';
+import CompetitionSection from './sections/CompetitionSection';
 import QuizSection from './sections/QuizSection';
 import Footer from './components/Footer';
 import './styles/text-mask.css';
 
 function App() {
   useEffect(() => {
-    document.title = 'Fixa AI-formen till beach 2025!';
+    document.title = 'Vinn en AI-workout till jobbet!';
   }, []);
 
   return (
     <div className="min-h-screen bg-[#ffffff]">
       <HeroSection />
-      <IntroSection />
+      <CompetitionSection />
       <QuizSection />
       <Footer />
     </div>

@@ -16,7 +16,8 @@ export default {
       colors: {
         'beach-yellow': '#FFE664',
         'beach-pink': '#FFF5F5',
-        'beach-purple': '#2D1B69',
+        'beach-purple': '#201258',
+        'beach-mint': '#dcfce7',
         'deep-purple': '#2D1B69',
         'neon-green': '#ADFF00'
       }
