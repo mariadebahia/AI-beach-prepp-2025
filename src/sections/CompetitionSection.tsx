@@ -5,7 +5,7 @@ import FormCompetition from '../components/FormCompetition';
 
 const CompetitionSection: React.FC = () => {
   return (
-    <section className="py-30 px-8 bg-white" id="competition-section">
+    <section className="py-60 px-8 bg-white" id="competition-section">
       <div className="max-w-[1024px] mx-auto">
         <AnimatedSection animation="fade-down">
           <div className="relative bg-beach-mint rounded-3xl p-12">
