@@ -12,7 +12,8 @@ export default {
         'outfit': ['Outfit', 'sans-serif'],
         'gloock': ['Gloock', 'serif'],
         'bricolage': ['Bricolage Grotesque', 'sans-serif'],
-        'special-elite': ['"Special Elite"', 'cursive']
+        'special-elite': ['"Special Elite"', 'cursive'],
+        'roboto': ['Roboto', 'sans-serif']
       },
       colors: {
         'beach-yellow': '#FFE664',
