@@ -9,9 +9,12 @@ const CompetitionSection: React.FC = () => {
       <div className="max-w-[1024px] mx-auto">
         <AnimatedSection animation="fade-down">
           <div className="relative bg-beach-mint rounded-3xl p-12">
-            <div className="absolute top-4 right-4 bg-beach-purple text-white rounded-full px-4 py-2 text-sm">
+            <a 
+              href="#quiz-section"
+              className="absolute top-4 right-4 bg-beach-purple text-white px-6 py-2 rounded-full font-permanent-marker text-lg transform hover:scale-105 transition-transform duration-300 cursor-pointer"
+            >
               Testa jobbets AI-nivå
-            </div>
+            </a>
             
             <div className="mb-12 text-center">
               <h2 className="text-[2.75rem] font-black leading-tight mb-8">
@@ -22,7 +25,7 @@ const CompetitionSection: React.FC = () => {
               
               <p className="text-lg">
                 Vi kommer till din arbetsplats och AI-boostar teamet med grunderna, verktyg och tips för att 
-                komma i AI-form till sommaren (så att ni är redo för hösten).  Vi kallar det AI-beach prepp men en svindyr managementkonsult skulle nog kalla det för "get-AI-ready-or-die". Alla som anmäler sig får vårt AI-fitness program för att börja komma igång på egen hand.
+                komma i AI-form till sommaren (så att ni är redo för hösten). Vi kallar det AI-beach prepp men en svindyr managementkonsult skulle nog kalla det för "get-AI-ready-or-die". Alla som anmäler sig får vårt AI-fitness program för att börja komma igång på egen hand.
               </p>
             </div>
 

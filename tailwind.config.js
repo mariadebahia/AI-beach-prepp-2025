@@ -13,7 +13,8 @@ export default {
         'gloock': ['Gloock', 'serif'],
         'bricolage': ['Bricolage Grotesque', 'sans-serif'],
         'special-elite': ['"Special Elite"', 'cursive'],
-        'roboto': ['Roboto', 'sans-serif']
+        'roboto': ['Roboto', 'sans-serif'],
+        'permanent-marker': ['"Permanent Marker"', 'cursive']
       },
       colors: {
         'beach-yellow': '#FFE664',
