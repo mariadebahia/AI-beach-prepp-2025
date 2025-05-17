@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from './Button';
 import type { FormData } from '../types';
 import { supabase } from '../lib/supabase';
+import { Loader2 } from 'lucide-react';
 
 const FormCompetition: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -25,6 +26,9 @@ const FormCompetition: React.FC = () => {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
+    
+    // Clear error when user starts typing
+    if (error) setError(null);
   };
   
   const handleSubmit = async (e: React.FormEvent) => {
@@ -80,12 +84,12 @@ const FormCompetition: React.FC = () => {
     );
   }
   
-  const inputClasses = "w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-beach-purple focus:border-beach-purple placeholder-gray-400";
+  const inputClasses = "w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-beach-purple focus:border-beach-purple placeholder-gray-400 transition-all duration-200";
   
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {error && (
-        <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6">
+        <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6 animate-fade-in">
           {error}
         </div>
       )}
@@ -101,6 +105,7 @@ const FormCompetition: React.FC = () => {
             onChange={handleChange}
             required
             className={inputClasses}
+            aria-label="Företagsnamn"
           />
         </div>
         
@@ -114,6 +119,7 @@ const FormCompetition: React.FC = () => {
             onChange={handleChange}
             required
             className={inputClasses}
+            aria-label="Kontaktperson"
           />
         </div>
       </div>
@@ -129,6 +135,7 @@ const FormCompetition: React.FC = () => {
             onChange={handleChange}
             required
             className={inputClasses}
+            aria-label="E-post"
           />
         </div>
         
@@ -142,6 +149,7 @@ const FormCompetition: React.FC = () => {
             onChange={handleChange}
             required
             className={inputClasses}
+            aria-label="Telefon"
           />
         </div>
       </div>
@@ -156,6 +164,7 @@ const FormCompetition: React.FC = () => {
           required
           rows={4}
           className={inputClasses}
+          aria-label="Motivation"
         />
       </div>
       
@@ -168,9 +177,10 @@ const FormCompetition: React.FC = () => {
           onChange={handleChange}
           required
           className="mt-1.5 h-4 w-4 text-beach-purple border-gray-300 rounded focus:ring-beach-purple"
+          aria-label="GDPR samtycke"
         />
         <label htmlFor="gdprConsent" className="text-sm text-gray-700">
-          Jag godkänner att mina uppgifter sparas enligt <a href="#" className="text-beach-purple underline">integritetspolicyn</a> *
+          Jag godkänner att mina uppgifter sparas enligt <a href="#" className="text-beach-purple underline hover:text-opacity-80 transition-colors">integritetspolicyn</a> *
         </label>
       </div>
       
@@ -178,10 +188,17 @@ const FormCompetition: React.FC = () => {
         <Button
           type="submit"
           variant="purple"
-          className="w-full md:w-auto bg-beach-purple hover:bg-opacity-90 text-white font-medium py-4 px-8 rounded-lg"
+          className="w-full md:w-auto bg-beach-purple hover:bg-opacity-90 text-white font-medium py-4 px-8 rounded-lg transition-all duration-200 transform hover:scale-105"
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Skickar...' : 'Vi behöver AI Beach Prepp!!'}
+          {isSubmitting ? (
+            <span className="flex items-center justify-center">
+              <Loader2 className="animate-spin mr-2" />
+              Skickar...
+            </span>
+          ) : (
+            'Vi behöver AI Beach Prepp!!'
+          )}
         </Button>
       </div>
     </form>
