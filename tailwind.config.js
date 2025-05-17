@@ -11,7 +11,8 @@ export default {
         'display': ['Inter', 'system-ui', 'sans-serif'],
         'outfit': ['Outfit', 'sans-serif'],
         'gloock': ['Gloock', 'serif'],
-        'bricolage': ['Bricolage Grotesque', 'sans-serif']
+        'bricolage': ['Bricolage Grotesque', 'sans-serif'],
+        'special-elite': ['"Special Elite"', 'cursive']
       },
       colors: {
         'beach-yellow': '#FFE664',
