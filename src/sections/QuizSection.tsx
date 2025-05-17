@@ -54,8 +54,8 @@ const QuizSection: React.FC = () => {
           </h2>
           
           <p className="text-xl mb-12">
-            Kör vårt 2-minuters quiz och kolla vilket AI-nivå ni är på idag:
-            Pappskalle, Nyfiken Nybörjare eller Beach Ready?
+            
+Nyfiken på hur redo din organisation faktiskt är för AI-revolutionen? Vårt lättsamma och träffsäkra test avslöjar både dolda styrkor och utvecklingsområden med vetenskaplig precision – och du får direkta rekommendationer anpassade för just er mognadsnivå. 
           </p>
         </AnimatedSection>
 
