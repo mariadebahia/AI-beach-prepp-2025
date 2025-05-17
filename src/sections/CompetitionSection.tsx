@@ -13,9 +13,11 @@ const CompetitionSection: React.FC = () => {
               Testa jobbets AI-nivå
             </div>
             
-            <div className="mb-12">
+            <div className="mb-12 text-center">
               <h2 className="text-[2.75rem] font-black leading-tight mb-8">
-                AI-FOMO PÅ JOBBET?! LUGN, VI HJÄLPER ER ATT KOMMA IGÅNG!
+                AI-FOMO PÅ JOBBET?!<br />
+                LUGN, VI HJÄLPER ER ATT<br />
+                KOMMA IGÅNG!
               </h2>
               
               <p className="text-lg">
