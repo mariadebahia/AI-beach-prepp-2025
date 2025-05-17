@@ -11,7 +11,7 @@ const CompetitionSection: React.FC = () => {
           <div className="relative bg-beach-mint rounded-3xl p-12">
             <a 
               href="#quiz-section"
-              className="absolute top-4 right-4 bg-beach-purple text-white px-6 py-2 rounded-full font-permanent-marker text-lg transform hover:scale-105 transition-transform duration-300 cursor-pointer"
+              className="absolute top-4 right-4 bg-[#201258] text-white px-6 py-2.5 rounded-full font-permanent-marker text-[1.125rem] transform hover:scale-105 transition-transform duration-300 cursor-pointer"
             >
               Testa jobbets AI-nivå
             </a>
