@@ -177,7 +177,7 @@ const QuizSection: React.FC = () => {
           </h2>
           
           <p className="text-xl mb-12">
-            Nyfiken på hur redo din organisation faktiskt är för AI-revolutionen? Vårt lättsamma och träffsäkra test avslöjar både dolda styrkor och utvecklingsområden med vetenskaplig precision – och du får direkta rekommendationer anpassade för just er mognadsnivå.
+            Nyfiken på hur redo din organisation faktiskt är för AI-revolutionen? Vårt lättsamma och träffsäkra test avslöjar både dolda styrkor och utvecklingsområden med vetenskaplig precision (nåja) – och du får direkta rekommendationer anpassade för just er mognadsnivå.
           </p>
         </AnimatedSection>
 
