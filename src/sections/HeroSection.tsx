@@ -6,7 +6,7 @@ import { Hand } from 'lucide-react';
 const HeroSection: React.FC = () => {
   return (
     <section className="relative bg-white pt-8 pb-20 px-8">
-      <div className="max-w-[860px] mx-auto">
+      <div className="max-w-[1024px] mx-auto">
         <AnimatedSection animation="fade-down">
           <div className="flex items-center gap-2 mb-12">
             <Hand className="w-8 h-8" />

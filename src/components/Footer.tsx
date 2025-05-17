@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
   return (
     <footer>
       <div className="bg-white py-16">
-        <div className="max-w-[860px] mx-auto px-4">
+        <div className="max-w-[1024px] mx-auto px-4">
           <h2 className="font-['Bricolage_Grotesque'] text-[4rem] font-black mb-6 leading-[1.4] text-left">
             Hej, det är vi som är<br />Tres AImigos!
           </h2>
@@ -125,7 +125,7 @@ const Footer: React.FC = () => {
       </div>
       
       <div className="bg-[#ff6b6b] py-8">
-        <div className="max-w-[860px] mx-auto px-4 text-center">
+        <div className="max-w-[1024px] mx-auto px-4 text-center">
           <img 
             src={logoUrl}
             alt="3AImigos Logo - Hand with three fingers"

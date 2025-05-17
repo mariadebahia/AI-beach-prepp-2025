@@ -4,7 +4,7 @@ import FormCompetition from '../components/FormCompetition.tsx';
 const CompetitionSection: React.FC = () => {
   return (
     <section className="relative bg-white py-16 px-4">
-      <div className="max-w-[860px] mx-auto">
+      <div className="max-w-[1024px] mx-auto">
         <div className="relative bg-beach-mint rounded-2xl p-8 md:p-12">
           {/* Sticky label */}
           <div className="absolute -top-4 right-4 bg-beach-purple text-white px-4 py-2 rounded-full">
