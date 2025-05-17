@@ -49,33 +49,29 @@ const QuizSection: React.FC = () => {
         const responseText = await response.text();
         console.log('Server response:', responseText);
 
+        // Check if response text is empty
+        if (!responseText.trim()) {
+          throw new Error('Server returned an empty response');
+        }
+
+        let parsedResponse;
+        try {
+          parsedResponse = JSON.parse(responseText);
+        } catch (parseError) {
+          console.error('Error parsing response:', parseError);
+          throw new Error('Server returned invalid JSON response');
+        }
+
         if (!response.ok) {
-          let errorMessage = 'Failed to submit quiz';
-          
-          try {
-            const errorData = JSON.parse(responseText);
-            errorMessage = errorData.error || errorMessage;
-          } catch (parseError) {
-            console.error('Error parsing error response:', parseError);
-            errorMessage = responseText || errorMessage;
-          }
-          
+          const errorMessage = parsedResponse?.error || 'Failed to submit quiz';
           throw new Error(`Quiz submission failed: ${errorMessage}`);
         }
 
-        let results;
-        try {
-          results = JSON.parse(responseText);
-        } catch (parseError) {
-          console.error('Error parsing success response:', parseError);
-          throw new Error('Invalid response format from server');
-        }
-        
-        if (!results.success) {
-          throw new Error(results.error || 'Quiz submission failed');
+        if (!parsedResponse.success) {
+          throw new Error(parsedResponse.error || 'Quiz submission failed');
         }
 
-        setQuizResults(results);
+        setQuizResults(parsedResponse);
         setShowResults(true);
         setError(null);
       } catch (error) {
