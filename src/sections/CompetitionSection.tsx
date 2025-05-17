@@ -12,7 +12,7 @@ const CompetitionSection: React.FC = () => {
           </div>
 
           {/* Main content */}
-          <h1 className="text-[2.8125em] font-outfit font-extrabold text-center mb-8 leading-tight">
+          <h1 className="text-[3em] font-outfit font-extrabold text-center mb-8 leading-tight">
            FASTNAT I EN AI-FOMO LOOP PÅ JOBBET?! LUGN, VI HJÄLPER ER ATT
             KOMMA IGÅNG!
           </h1>
