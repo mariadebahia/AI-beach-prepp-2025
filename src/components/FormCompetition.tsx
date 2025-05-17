@@ -65,9 +65,6 @@ const FormCompetition: React.FC = () => {
         motivation: '',
         gdprConsent: false
       });
-
-      // Scroll to quiz section after successful submission
-      document.getElementById('quiz-section')?.scrollIntoView({ behavior: 'smooth' });
     } catch (err) {
       console.error('Error submitting form:', err);
       setError('Det gick tyvärr inte att skicka formuläret. Försök igen senare.');
@@ -95,12 +92,6 @@ const FormCompetition: React.FC = () => {
             /Tres AImigos
           </p>
         </div>
-        <Button 
-          variant="purple"
-          onClick={() => document.getElementById('quiz-section')?.scrollIntoView({ behavior: 'smooth' })}
-        >
-          Testa er AI-nivå nu
-        </Button>
       </div>
     );
   }
