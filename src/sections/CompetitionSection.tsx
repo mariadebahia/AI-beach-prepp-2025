@@ -1,5 +1,5 @@
 import React from 'react';
-import FormCompetition from '../components/FormCompetition';
+import FormCompetition from '../components/FormCompetition.tsx';
 
 const CompetitionSection: React.FC = () => {
   return (
