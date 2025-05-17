@@ -15,7 +15,8 @@ export default {
         'special-elite': ['"Special Elite"', 'cursive'],
         'roboto': ['Roboto', 'sans-serif'],
         'permanent-marker': ['"Permanent Marker"', 'cursive'],
-        'playfair': ['"Playfair Display"', 'serif']
+        'playfair': ['"Playfair Display"', 'serif'],
+        'merriweather': ['Merriweather', 'serif']
       },
       colors: {
         'beach-yellow': '#FFE664',

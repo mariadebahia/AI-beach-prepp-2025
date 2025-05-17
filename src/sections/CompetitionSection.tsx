@@ -31,17 +31,17 @@ const CompetitionSection: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="border-2 border-dashed border-gray-400 rounded-lg p-6 text-center">
-                <h3 className="font-playfair text-[1.125em] mb-4">Anmäl ditt företag</h3>
+                <h3 className="font-merriweather font-extrabold text-[1.125em] mb-4">Anmäl ditt företag</h3>
                 <p>Berätta varför ni vill bli AI-fit - vi vill höra er story.</p>
               </div>
               
               <div className="border-2 border-dashed border-gray-400 rounded-lg p-6 text-center">
-                <h3 className="font-playfair text-[1.125em] mb-4">En vinnare varje vecka</h3>
+                <h3 className="font-merriweather font-extrabold text-[1.125em] mb-4">En vinnare varje vecka</h3>
                 <p>Juryn väljer ett företag i veckan fram till vecka 27.</p>
               </div>
               
               <div className="border-2 border-dashed border-gray-400 rounded-lg p-6 text-center">
-                <h3 className="font-playfair text-[1.125em] mb-4">Vi kommer till er!</h3>
+                <h3 className="font-merriweather font-extrabold text-[1.125em] mb-4">Vi kommer till er!</h3>
                 <p>Och kör en anpassad AI-workshop.</p>
               </div>
             </div>
