@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import QuizOption from '../components/QuizOption';
 import ProgressBar from '../components/ProgressBar';
 import AnimatedSection from '../components/AnimatedSection';
-import { quizQuestions, getQuizResult } from '../utils/quizData';
+import { quizQuestions } from '../utils/quizData';
 import Button from '../components/Button';
-import { Share2 } from 'lucide-react';
+import { Share2, ArrowUp, Users, TrendingUp, Zap } from 'lucide-react';
 
 interface QuizResults {
   level: string;
@@ -12,7 +12,9 @@ interface QuizResults {
   recommendations: string[];
   strategicMaturityPercent: number;
   kompetensgapPercent: number;
+  growthPotentialPercent: number;
   aiReadinessPercent: number;
+  comparative_statement: string;
 }
 
 const QuizSection: React.FC = () => {
@@ -51,7 +53,6 @@ const QuizSection: React.FC = () => {
         setShowResults(true);
       } catch (error) {
         console.error('Error submitting quiz:', error);
-        // Still show results even if submission fails
         setShowResults(true);
       }
     } else {
@@ -76,30 +77,64 @@ const QuizSection: React.FC = () => {
       <section className="bg-beach-purple py-40 px-4" id="quiz-section">
         <div className="max-w-[1024px] mx-auto">
           <div className="bg-white rounded-2xl p-12">
-            <h3 className="text-4xl font-bold mb-8 text-beach-purple">
-              {quizResults.level}
-            </h3>
+            <h2 className="font-merriweather text-5xl font-bold mb-6 text-beach-purple">
+              Din AI-fitness nivå: {quizResults.level}
+            </h2>
             
             <p className="text-xl mb-12">{quizResults.description}</p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12">
               <div className="bg-beach-mint rounded-xl p-8 text-center">
-                <h4 className="text-2xl font-semibold mb-4">Strategisk mognad</h4>
-                <p className="text-5xl font-bold text-beach-purple mb-2">
+                <ArrowUp className="w-8 h-8 text-beach-purple mx-auto mb-4" />
+                <h4 className="text-xl font-semibold mb-2">AI-strategisk mognad</h4>
+                <p className="text-4xl font-bold text-beach-purple mb-2">
                   {quizResults.strategicMaturityPercent}%
+                </p>
+                <p className="text-sm text-gray-600">
+                  Bedömning av hur väl AI är integrerad i företagets övergripande strategi
                 </p>
               </div>
               
               <div className="bg-beach-mint rounded-xl p-8 text-center">
-                <h4 className="text-2xl font-semibold mb-4">Kompetensgap</h4>
-                <p className="text-5xl font-bold text-beach-purple mb-2">
+                <Users className="w-8 h-8 text-beach-purple mx-auto mb-4" />
+                <h4 className="text-xl font-semibold mb-2">Kompetensgap</h4>
+                <p className="text-4xl font-bold text-beach-purple mb-2">
                   {quizResults.kompetensgapPercent}%
+                </p>
+                <p className="text-sm text-gray-600">
+                  Skillnaden mellan nuvarande och önskad AI-kompetens i organisationen
+                </p>
+              </div>
+              
+              <div className="bg-beach-mint rounded-xl p-8 text-center">
+                <TrendingUp className="w-8 h-8 text-beach-purple mx-auto mb-4" />
+                <h4 className="text-xl font-semibold mb-2">AI-Tillväxtpotential</h4>
+                <p className="text-4xl font-bold text-beach-purple mb-2">
+                  {quizResults.growthPotentialPercent}%
+                </p>
+                <p className="text-sm text-gray-600">
+                  Potential för framtida AI-utveckling och expansion
+                </p>
+              </div>
+              
+              <div className="bg-beach-mint rounded-xl p-8 text-center">
+                <Zap className="w-8 h-8 text-beach-purple mx-auto mb-4" />
+                <h4 className="text-xl font-semibold mb-2">AI-Readiness</h4>
+                <p className="text-4xl font-bold text-beach-purple mb-2">
+                  {quizResults.aiReadinessPercent}%
+                </p>
+                <p className="text-sm text-gray-600">
+                  Organisationens beredskap för AI-implementation
                 </p>
               </div>
             </div>
+
+            <div className="bg-beach-purple text-white p-6 rounded-xl mb-12 text-center">
+              <p className="text-xl">{quizResults.comparative_statement}</p>
+            </div>
             
             <div className="mb-12">
-              <h4 className="text-2xl font-semibold mb-4">Rekommendationer</h4>
+              <h4 className="text-2xl font-semibold mb-6">Rekommendationer för din nivå:</h4>
               <ul className="space-y-4">
                 {quizResults.recommendations.map((rec, index) => (
                   <li key={index} className="flex items-start">
