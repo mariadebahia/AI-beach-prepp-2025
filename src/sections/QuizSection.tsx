@@ -30,33 +30,46 @@ const QuizSection: React.FC = () => {
       const totalScore = Object.values(newAnswers).reduce((sum, p) => sum + p, 0);
       
       try {
+        const requestBody = {
+          answers: newAnswers,
+          totalScore,
+          maxScore: 30,
+          quiz_version: '1.0',
+          timestamp: new Date().toISOString()
+        };
+
+        console.log('Submitting quiz with data:', requestBody);
+
         const response = await fetch('/.netlify/functions/quiz', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            answers: newAnswers,
-            totalScore,
-            maxScore: 30,
-            quiz_version: '1.0',
-            timestamp: new Date().toISOString()
-          })
+          body: JSON.stringify(requestBody)
         });
 
+        const responseText = await response.text();
+        console.log('Server response:', responseText);
+
         if (!response.ok) {
-          const errorText = await response.text();
           let errorMessage = 'Failed to submit quiz';
           
           try {
-            const errorData = JSON.parse(errorText);
+            const errorData = JSON.parse(responseText);
             errorMessage = errorData.error || errorMessage;
-          } catch {
-            errorMessage = errorText || errorMessage;
+          } catch (parseError) {
+            console.error('Error parsing error response:', parseError);
+            errorMessage = responseText || errorMessage;
           }
           
-          throw new Error(errorMessage);
+          throw new Error(`Quiz submission failed: ${errorMessage}`);
         }
 
-        const results = await response.json();
+        let results;
+        try {
+          results = JSON.parse(responseText);
+        } catch (parseError) {
+          console.error('Error parsing success response:', parseError);
+          throw new Error('Invalid response format from server');
+        }
         
         if (!results.success) {
           throw new Error(results.error || 'Quiz submission failed');
@@ -68,6 +81,7 @@ const QuizSection: React.FC = () => {
       } catch (error) {
         console.error('Error submitting quiz:', error);
         setError(error instanceof Error ? error.message : 'An unexpected error occurred');
+        setCurrentQuestion(9); // Stay on last question if submission fails
       }
     } else {
       setCurrentQuestion(prev => prev + 1);
