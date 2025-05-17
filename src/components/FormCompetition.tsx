@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from './Button';
 import type { FormData } from '../types';
+import { supabase } from '../lib/supabase';
 
 const FormCompetition: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -14,6 +15,7 @@ const FormCompetition: React.FC = () => {
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -28,10 +30,21 @@ const FormCompetition: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
     
     try {
-      // Add your form submission logic here
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const { error: submitError } = await supabase
+        .from('submissions')
+        .insert([{
+          company_name: formData.companyName,
+          contact_name: formData.contactName,
+          email: formData.email,
+          phone: formData.phone,
+          motivation: formData.motivation
+        }]);
+
+      if (submitError) throw submitError;
+      
       setIsSubmitted(true);
       setFormData({
         companyName: '',
@@ -41,17 +54,42 @@ const FormCompetition: React.FC = () => {
         motivation: '',
         gdprConsent: false
       });
-    } catch (error) {
-      console.error('Error submitting form:', error);
+    } catch (err) {
+      console.error('Error submitting form:', err);
+      setError('Det gick tyvärr inte att skicka formuläret. Försök igen senare.');
     } finally {
       setIsSubmitting(false);
     }
   };
   
+  if (isSubmitted) {
+    return (
+      <div className="text-center py-8">
+        <h3 className="text-2xl font-bold text-beach-purple mb-4">Tack för din anmälan!</h3>
+        <p className="text-lg mb-6">
+          Vi har mottagit din intresseanmälan och återkommer inom kort om ni blir utvalda.
+          Under tiden kan du testa er AI-nivå!
+        </p>
+        <a 
+          href="#quiz-section"
+          className="inline-block bg-beach-purple text-white px-8 py-4 rounded-lg hover:bg-opacity-90 transition-colors"
+        >
+          Testa er AI-nivå
+        </a>
+      </div>
+    );
+  }
+  
   const inputClasses = "w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-beach-purple focus:border-beach-purple placeholder-gray-400";
   
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {error && (
+        <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6">
+          {error}
+        </div>
+      )}
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <input
