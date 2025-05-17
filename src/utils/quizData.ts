@@ -110,42 +110,6 @@ export const quizQuestions: QuizQuestion[] = [
       { id: '10c', text: 'Vi har hyfsat organiserade datamappar och system', points: 2 },
       { id: '10d', text: 'Vår data är mer välorganiserad än Marie Kondos garderob', points: 3 }
     ]
-  },
-  {
-    id: 'industry',
-    question: 'Vilken bransch är ni verksamma inom?',
-    type: 'dropdown',
-    options: [
-      { id: 'industry-eget', text: 'Eget företag' },
-      { id: 'industry-tech', text: 'Teknik / IT' },
-      { id: 'industry-finance', text: 'Finans / Försäkring' },
-      { id: 'industry-healthcare', text: 'Hälsovård / Medicin' },
-      { id: 'industry-retail', text: 'Handel / E-handel' },
-      { id: 'industry-education', text: 'Utbildning' },
-      { id: 'industry-marketing', text: 'Marknadsföring / Media' },
-      { id: 'industry-consulting', text: 'Konsultverksamhet' },
-      { id: 'industry-manufacturing', text: 'Tillverkning / Industri' },
-      { id: 'industry-public', text: 'Offentlig sektor' },
-      { id: 'industry-other', text: 'Annan' }
-    ]
-  },
-  {
-    id: 'companySize',
-    question: 'Hur många anställda har ert företag?',
-    type: 'dropdown',
-    options: [
-      { id: 'size-1-10', text: '1-10' },
-      { id: 'size-11-50', text: '11-50' },
-      { id: 'size-51-200', text: '51-200' },
-      { id: 'size-201-500', text: '201-500' },
-      { id: 'size-501-plus', text: '501+' }
-    ]
-  },
-  {
-    id: 'strangeAIQuestion',
-    question: 'Om er AI var en superhjälte i arbetslivet, vilken kraft skulle vara mest användbar för att lösa era största utmaningar?',
-    type: 'text',
-    placeholder: 'T.ex. "Superstyrka för att lyfta tunga datamängder" eller "Osynlighet för att arbeta i bakgrunden"'
   }
 ];
 
@@ -155,29 +119,29 @@ export const getQuizResult = (score: number): QuizResult => {
       level: 'Pappskalle',
       description: 'Du är som en nybörjare på gymmet som försöker lyfta de tyngsta vikterna direkt. Dags att börja med grunderna!',
       recommendations: [
-        'Börja med en AI-introduktionskurs (tänk personlig tränare för nybörjare)',
-        'Experimentera med ChatGPT (som att lära sig grundläggande övningar)',
-        'Hitta ett litet projekt där AI kan hjälpa er (som att sätta upp ett enkelt träningsschema)'
+        'Börja med en AI-introduktionskurs',
+        'Experimentera med ChatGPT',
+        'Hitta ett litet AI-projekt'
       ]
     };
   } else if (score <= 20) {
     return {
       level: 'Nyfiken',
-      description: 'Du har börjat din AI-resa, ungefär som någon som precis upptäckt att det finns mer på gymmet än löpbandet!',
+      description: 'Du har börjat din AI-resa, ungefär som någon som upptäckt att det finns mer på gymmet än löpbandet!',
       recommendations: [
-        'Utveckla en AI-strategi (som en personlig träningsplan)',
-        'Utbilda teamet i AI-användning (gruppträning är alltid roligare)',
-        'Testa mer avancerade verktyg (dags att prova den där nya maskinen på gymmet)'
+        'Utveckla en AI-strategi',
+        'Utbilda teamet i AI-användning',
+        'Testa nya AI-verktyg'
       ]
     };
   } else {
     return {
       level: 'Beach Ready',
-      description: 'Wow! Du är AI-fit och redo för stranden! Din organisation flexar sina AI-muskler som en erfaren bodybuilder!',
+      description: 'Wow! Du är AI-fit och redo för stranden!',
       recommendations: [
-        'Förfina er AI-strategi (även proffs behöver justera sin träningsplan)',
-        'Utforska cutting-edge AI-implementeringar (som att testa nya träningsmetoder)',
-        'Bli en AI-influencer i er bransch (dela med er av era gains!)'
+        'Förfina er AI-strategi',
+        'Utforska cutting-edge AI',
+        'Bli en AI-influencer'
       ]
     };
   }
