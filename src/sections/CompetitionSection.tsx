@@ -18,7 +18,7 @@ const CompetitionSection: React.FC = () => {
           </h1>
 
           <div className="space-y-4 mb-12">
-            <p className="text-[1.25em]">Vi kommer till din arbetsplats och AI-boostar teamet med grunderna, verktyg och tips för att komma i AI-form till sommaren (så att ni är redo för hösten). Vi kallar det AI-beach prepp men en svindyr managementkonsult skulle nog kalla det för "get-AI-ready-or-die". Alla som anmäler sig får vårt AI-fitness program för att börja komma igång på egen hand.</p>
+            <h7 className="text-[1.125em] block">Vi kommer till din arbetsplats och AI-boostar teamet med grunderna, verktyg och tips för att komma i AI-form till sommaren (så att ni är redo för hösten). Vi kallar det AI-beach prepp men en svindyr managementkonsult skulle nog kalla det för "get-AI-ready-or-die". Alla som anmäler sig får vårt AI-fitness program för att börja komma igång på egen hand.</h7>
           </div>
 
           {/* Feature boxes */}
