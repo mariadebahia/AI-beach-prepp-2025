@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Button from './Button';
 import type { FormData } from '../types';
-import { supabase } from '../lib/supabase';
 import { Loader2 } from 'lucide-react';
 
 const FormCompetition: React.FC = () => {
@@ -37,17 +36,24 @@ const FormCompetition: React.FC = () => {
     setError(null);
     
     try {
-      const { error: submitError } = await supabase
-        .from('submissions')
-        .insert([{
+      const response = await fetch('YOUR_MAKE_WEBHOOK_URL', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           company_name: formData.companyName,
           contact_name: formData.contactName,
           email: formData.email,
           phone: formData.phone,
-          motivation: formData.motivation
-        }]);
+          motivation: formData.motivation,
+          timestamp: new Date().toISOString()
+        })
+      });
 
-      if (submitError) throw submitError;
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
       
       setIsSubmitted(true);
       setFormData({
