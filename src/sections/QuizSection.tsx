@@ -20,7 +20,7 @@ const QuizSection: React.FC = () => {
   const currentQ = quizQuestions[currentQuestion];
 
   return (
-    <section className="bg-beach-purple py-60 my-15 px-4" id="quiz-section">
+    <section className="bg-beach-purple py-40 my-15 px-4" id="quiz-section">
       <div className="max-w-[1024px] mx-auto text-center text-white">
         <AnimatedSection animation="fade-down">
           <h2 className="text-[3.125em] font-permanent-marker text-[#dafef1] mb-8 leading-tight">
