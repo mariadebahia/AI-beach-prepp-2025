@@ -4,6 +4,7 @@ const HEADERS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "Content-Type",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Content-Type": "application/json"
 };
 
 export const handler: Handler = async (event): Promise<HandlerResponse> => {
@@ -15,13 +16,24 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
     return {
       statusCode: 405,
       headers: HEADERS,
-      body: JSON.stringify({ error: "Method not allowed" }),
+      body: JSON.stringify({ success: false, error: "Method not allowed" }),
     };
   }
 
   try {
-    const data = JSON.parse(event.body || "{}");
-    const answers: Record<string, number> = data.answers ?? {};
+    // Validate request body
+    if (!event.body) {
+      throw new Error("Request body is required");
+    }
+
+    const data = JSON.parse(event.body);
+    
+    // Validate answers object
+    if (!data.answers || typeof data.answers !== 'object') {
+      throw new Error("Invalid answers format");
+    }
+
+    const answers: Record<string, number> = data.answers;
     const maxPerQuestion = 3;
 
     // Calculate scores
@@ -105,7 +117,10 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
     return {
       statusCode: 500,
       headers: HEADERS,
-      body: JSON.stringify({ success: false, error: error.message }),
+      body: JSON.stringify({ 
+        success: false, 
+        error: error.message || "An unexpected error occurred" 
+      }),
     };
   }
 };

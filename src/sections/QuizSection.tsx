@@ -22,6 +22,7 @@ const QuizSection: React.FC = () => {
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [showResults, setShowResults] = useState(false);
   const [quizResults, setQuizResults] = useState<QuizResults | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleOptionSelect = async (questionId: number, points: number) => {
     const newAnswers = { ...answers, [questionId]: points };
@@ -44,16 +45,39 @@ const QuizSection: React.FC = () => {
         });
 
         if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || 'Failed to submit quiz');
+          // First try to get error message from response
+          const errorText = await response.text();
+          let errorMessage = 'Failed to submit quiz';
+          
+          try {
+            const errorData = JSON.parse(errorText);
+            errorMessage = errorData.error || errorMessage;
+          } catch {
+            errorMessage = errorText || errorMessage;
+          }
+          
+          throw new Error(errorMessage);
         }
 
-        const results = await response.json();
+        const responseText = await response.text();
+        
+        if (!responseText) {
+          throw new Error('Empty response received from server');
+        }
+
+        const results = JSON.parse(responseText);
+        
+        if (!results.success) {
+          throw new Error(results.error || 'Quiz submission failed');
+        }
+
         setQuizResults(results);
         setShowResults(true);
+        setError(null);
       } catch (error) {
         console.error('Error submitting quiz:', error);
-        setShowResults(true);
+        setError(error instanceof Error ? error.message : 'An unexpected error occurred');
+        // Don't show results if there was an error
       }
     } else {
       setCurrentQuestion(prev => prev + 1);
@@ -183,6 +207,19 @@ const QuizSection: React.FC = () => {
 
         <AnimatedSection animation="fade-up" delay="200">
           <div className="bg-white rounded-2xl p-12 text-left">
+            {error && (
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+                <p>{error}</p>
+                <Button
+                  variant="outline"
+                  onClick={() => setCurrentQuestion(0)}
+                  className="mt-4"
+                >
+                  Försök igen
+                </Button>
+              </div>
+            )}
+            
             <ProgressBar 
               currentStep={currentQuestion + 1} 
               totalSteps={10} 
