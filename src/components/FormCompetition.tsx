@@ -28,7 +28,6 @@ const FormCompetition: React.FC = () => {
       [name]: type === 'checkbox' ? checked : value
     }));
     
-    // Clear error when user starts typing
     if (error) setError(null);
   };
   
@@ -80,17 +79,28 @@ const FormCompetition: React.FC = () => {
   if (isSubmitted) {
     return (
       <div className="text-center py-8">
-        <h3 className="text-2xl font-bold text-beach-purple mb-4">Tack för din anmälan!</h3>
-        <p className="text-lg mb-6">
-          Vi har mottagit din intresseanmälan och återkommer inom kort om ni blir utvalda.
-          Under tiden kan du testa er AI-nivå!
-        </p>
-        <a 
-          href="#quiz-section"
-          className="inline-block bg-beach-purple text-white px-8 py-4 rounded-lg hover:bg-opacity-90 transition-colors"
+        <h3 className="text-2xl font-bold text-beach-purple mb-4">
+          Japp, nu är ni med i AI-Beach Prep 2025!
+        </h3>
+        <div className="space-y-4 text-lg mb-8">
+          <p>
+            Varje vecka fram till vecka 27 väljer juryn ut 1–2 företag baserat på motivering och potential för AI-utveckling. 
+            Vi förbehåller oss rätten att göra en helhetsbedömning bland inkomna bidrag.
+          </p>
+          <p>
+            Vi har skickat vår AI-fitnessguide till kontaktpersonen så att du/ni kan komma igång direkt med att implementera AI på jobbet.
+          </p>
+          <p className="font-medium">
+            Allt gott!<br />
+            /Tres AImigos
+          </p>
+        </div>
+        <Button 
+          variant="purple"
+          onClick={() => document.getElementById('quiz-section')?.scrollIntoView({ behavior: 'smooth' })}
         >
-          Testa er AI-nivå
-        </a>
+          Testa er AI-nivå nu
+        </Button>
       </div>
     );
   }
