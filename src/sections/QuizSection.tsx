@@ -24,13 +24,13 @@ const QuizSection: React.FC = () => {
       <div className="max-w-[1024px] mx-auto text-center text-white">
         <AnimatedSection animation="fade-down">
           <h2 className="text-[3.125em] font-permanent-marker text-[#dafef1] mb-8 leading-tight">
-            Hur är det med AI-formen<br />
-            egentligen? Gör vårt AI-<br />
+            Hur är det med AI-formen
+            egentligen? Gör vårt AI-
             fitnessnivå!
           </h2>
           
           <p className="text-xl mb-12">
-            Kör vårt 2-minuters quiz och kolla vilket AI-nivå ni är på idag:<br />
+            Kör vårt 2-minuters quiz och kolla vilket AI-nivå ni är på idag:
             Pappskalle, Nyfiken Nybörjare eller Beach Ready?
           </p>
         </AnimatedSection>
