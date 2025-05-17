@@ -14,7 +14,8 @@ export default {
         'bricolage': ['Bricolage Grotesque', 'sans-serif'],
         'special-elite': ['"Special Elite"', 'cursive'],
         'roboto': ['Roboto', 'sans-serif'],
-        'permanent-marker': ['"Permanent Marker"', 'cursive']
+        'permanent-marker': ['"Permanent Marker"', 'cursive'],
+        'playfair': ['"Playfair Display"', 'serif']
       },
       colors: {
         'beach-yellow': '#FFE664',
