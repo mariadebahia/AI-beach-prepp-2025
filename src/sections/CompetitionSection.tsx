@@ -9,7 +9,7 @@ const CompetitionSection: React.FC = () => {
     <section className="py-12 sm:py-20 md:py-32 px-4 sm:px-8 bg-white" id="competition-section">
       <div className="max-w-[1024px] mx-auto">
         <AnimatedSection animation="fade-down">
-          <div className="relative bg-beach-mint rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+          <div className="relative bg-beach-mint rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
             <a 
               href="#quiz-section"
               className="absolute -top-3 right-4 sm:right-6 z-10 bg-[#201258] text-white px-3 sm:px-4 py-2 rounded-full font-permanent-marker text-sm sm:text-base transform hover:scale-105 transition-transform duration-300 cursor-pointer whitespace-nowrap"
