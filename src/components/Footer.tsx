@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
     <footer>
       <div className="bg-white py-16">
         <div className="max-w-[1024px] mx-auto px-4">
-          <h2 className="font-playfair text-[4.5rem] font-bold italic mb-6 leading-[1.4] text-center">
+          <h2 className="font-special-elite text-[4.5rem] mb-6 leading-[1.4] text-center">
             Hej, det är vi som är<br />Tres AImigos!
           </h2>
           <p className="text-2xl mb-12">
