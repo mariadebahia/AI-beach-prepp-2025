@@ -17,7 +17,7 @@ const Button: React.FC<ButtonProps> = ({
   className = '',
   disabled = false
 }) => {
-  const baseStyles = 'px-8 py-4 rounded-lg font-medium transition-all duration-300 text-[1.125rem] focus:outline-none';
+  const baseStyles = 'min-h-[44px] px-4 sm:px-6 py-3 rounded-lg font-medium transition-all duration-300 text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-beach-purple w-full sm:w-auto';
   
   const variantStyles = {
     neon: 'bg-neon-green text-deep-purple hover:bg-opacity-90',

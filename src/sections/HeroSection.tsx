@@ -5,17 +5,17 @@ import { Hand } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative bg-white pt-8 sm:pt-12 md:pt-16 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-8">
+    <section className="relative bg-white pt-6 sm:pt-8 md:pt-12 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-8">
       <div className="max-w-[1024px] mx-auto flex flex-col items-center">
         <AnimatedSection animation="fade-down">
-          <div className="flex items-center gap-2 mb-6 sm:mb-8 md:mb-12">
-            <Hand className="w-6 h-6 sm:w-8 sm:h-8 text-beach-purple" />
-            <span className="font-special-elite text-lg sm:text-xl md:text-2xl">Tres AImigos</span>
+          <div className="flex items-center gap-2 mb-4 sm:mb-6 md:mb-8">
+            <Hand className="w-5 h-5 sm:w-6 sm:h-6 text-beach-purple" />
+            <span className="font-special-elite text-base sm:text-lg md:text-xl">Tres AImigos</span>
           </div>
         </AnimatedSection>
         
         <AnimatedSection animation="fade-up" delay="200" className="text-center">
-          <h1 className="font-special-elite text-[2rem] sm:text-[2.75rem] md:text-[3.75rem] leading-[1.2] mb-6 sm:mb-8 md:mb-12 max-w-[18ch] mx-auto">
+          <h1 className="font-special-elite text-2xl sm:text-3xl md:text-4xl leading-snug sm:leading-tight md:leading-tight mb-4 sm:mb-6 md:mb-8 max-w-[18ch] mx-auto">
             Vinn en AI-workout till jobbet!
           </h1>
         </AnimatedSection>

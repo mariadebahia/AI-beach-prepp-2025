@@ -11,7 +11,7 @@ type QuizOptionProps = {
 const QuizOption: React.FC<QuizOptionProps> = ({ id, text, isSelected, onSelect, name }) => {
   return (
     <div
-      className={`p-3 sm:p-4 min-h-[44px] border-2 rounded-lg cursor-pointer transition-all duration-300 ${
+      className={`p-3 min-h-[44px] border-2 rounded-lg cursor-pointer transition-all duration-300 ${
         isSelected
           ? 'border-beach-purple bg-beach-mint'
           : 'border-gray-200 hover:border-beach-purple'
