@@ -4,7 +4,7 @@ import ProgressBar from '../components/ProgressBar';
 import AnimatedSection from '../components/AnimatedSection';
 import { quizQuestions } from '../utils/quizData';
 import Button from '../components/Button';
-import { Share2, ArrowUp, Users, TrendingUp, Brain } from 'lucide-react';
+import { Share2, ArrowUp, Users, TrendingUp, Brain, Mail } from 'lucide-react';
 
 interface QuizResults {
   level: string;
@@ -100,7 +100,26 @@ const QuizSection: React.FC = () => {
     }
   };
 
-  const currentQ = quizQuestions[currentQuestion];
+  const getEmailShareUrl = () => {
+    if (!quizResults) return '';
+
+    const subject = encodeURIComponent('!! Jag gjorde just ett AI-fittnestest för jobbet. Du kan inte gissa vad det blev...');
+    
+    const body = encodeURIComponent(
+      `Hej,\n\n` +
+      `${window.location.hostname} är ${quizResults.comparative_statement} och fick AI-nivån ${quizResults.level}.\n` +
+      `Den AI-strategiska mognaden är ${quizResults.strategicMaturityPercent}% och kompetensgapet ${quizResults.kompetensgapPercent}%.\n\n` +
+      `Här är rekommendationerna att fokusera på:\n` +
+      `• ${quizResults.recommendations[0]}\n` +
+      `• ${quizResults.recommendations[1]}\n` +
+      `• ${quizResults.recommendations[2]}\n` +
+      `• ${quizResults.recommendations[3]}\n\n` +
+      `Gör testet du också och få reda på tillväxtpotential med AI och hur rustat vi är att implementera AI-lösningar. Dessutom kan man vinna en AI-workshop!\n\n` +
+      `Gå till: https://aibeachprep.se/`
+    );
+
+    return `mailto:?subject=${subject}&body=${body}`;
+  };
 
   if (showResults && quizResults) {
     return (
@@ -199,6 +218,14 @@ const QuizSection: React.FC = () => {
                 <Share2 size={20} />
                 Dela till chef/kollega
               </Button>
+
+              <a
+                href={getEmailShareUrl()}
+                className="inline-flex items-center justify-center gap-2 px-4 py-3 border-2 border-beach-purple text-beach-purple hover:bg-beach-purple hover:text-white transition-colors duration-300 rounded-lg font-medium w-full sm:w-auto"
+              >
+                <Mail size={20} />
+                Dela via e-post
+              </a>
             </div>
           </div>
         </div>
@@ -243,18 +270,18 @@ const QuizSection: React.FC = () => {
             />
             
             <h3 className="text-beach-purple text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">
-              {currentQ.question}
+              {quizQuestions[currentQuestion].question}
             </h3>
 
             <div className="space-y-3 sm:space-y-4">
-              {currentQ.options?.map((option) => (
+              {quizQuestions[currentQuestion].options?.map((option) => (
                 <QuizOption
                   key={option.id}
                   id={option.id}
                   text={option.text}
-                  isSelected={answers[currentQ.id] === option.points}
-                  onSelect={() => handleOptionSelect(currentQ.id, option.points || 0)}
-                  name={`question-${currentQ.id}`}
+                  isSelected={answers[quizQuestions[currentQuestion].id] === option.points}
+                  onSelect={() => handleOptionSelect(quizQuestions[currentQuestion].id, option.points || 0)}
+                  name={`question-${quizQuestions[currentQuestion].id}`}
                 />
               ))}
             </div>
