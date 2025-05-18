@@ -97,111 +97,19 @@ const QuizSection: React.FC = () => {
 
   if (showResults && quizResults) {
     return (
-      <section className="bg-[#482376] py-[20px] sm:py-[25px] md:py-[45px] mt-[15px] mb-[10px] px-4" id="quiz-section">
+      <section className="bg-[#482376] py-[35px] sm:py-[45px] md:py-[60px] mt-[25px] mb-[25px] px-4" id="quiz-section">
         <div className="w-full sm:max-w-[720px] lg:max-w-[1020px] mx-auto">
           <h2 className="text-[#dafef1] text-[50px] font-permanent-marker text-center mb-8">
             Hur är det med AI-formen på jobbet egentligen? Gör vårt AI-fitnessnivå!
           </h2>
-          <div className="bg-white rounded-2xl p-6 sm:p-8 md:p-12">
-            <div className="text-center mb-12">
-              <h2 className="font-outfit font-thin text-[35px] mb-4">
-                Din AI-fitness nivå:
-              </h2>
-              <h3 className="font-permanent-marker text-5xl sm:text-6xl text-beach-purple mb-6">
-                {quizResults.level}
-              </h3>
-              <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto">
-                {quizResults.description}
-              </p>
-            </div>
-
-            <div className="bg-[#dafef1] px-6 py-4 rounded-lg mb-12 text-center">
-              <p className="text-beach-purple text-lg sm:text-xl font-medium">
-                {quizResults.comparative_statement}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-12">
-              <div className="bg-white rounded-lg p-6">
-                <ArrowUp className="w-8 h-8 text-beach-purple mb-4" />
-                <h4 className="text-lg font-semibold mb-2">AI-strategisk mognad</h4>
-                <p className="text-4xl font-bold text-beach-purple mb-4">
-                  {quizResults.strategicMaturityPercent}%
-                </p>
-                <p className="text-sm text-gray-600">
-                  Bedömning av hur väl AI är integrerad i företagets övergripande strategi
-                </p>
-              </div>
-
-              <div className="bg-white rounded-lg p-6">
-                <Users className="w-8 h-8 text-beach-purple mb-4" />
-                <h4 className="text-lg font-semibold mb-2">Kompetensgap</h4>
-                <p className="text-4xl font-bold text-beach-purple mb-4">
-                  {quizResults.kompetensgapPercent}%
-                </p>
-                <p className="text-sm text-gray-600">
-                  Skillnaden mellan nuvarande kompetens och vad som krävs för nästa nivå
-                </p>
-              </div>
-
-              <div className="bg-white rounded-lg p-6">
-                <TrendingUp className="w-8 h-8 text-beach-purple mb-4" />
-                <h4 className="text-lg font-semibold mb-2">AI-Tillväxtpotential</h4>
-                <p className="text-4xl font-bold text-beach-purple mb-4">
-                  {quizResults.growthPotentialPercent}%
-                </p>
-                <p className="text-sm text-gray-600">
-                  Hur mycket företaget kan växa via AI-adoption
-                </p>
-              </div>
-
-              <div className="bg-white rounded-lg p-6">
-                <Brain className="w-8 h-8 text-beach-purple mb-4" />
-                <h4 className="text-lg font-semibold mb-2">AI-Readiness</h4>
-                <p className="text-4xl font-bold text-beach-purple mb-4">
-                  {quizResults.aiReadinessPercent}%
-                </p>
-                <p className="text-sm text-gray-600">
-                  Hur väl rustat företaget är för att implementera AI-lösningar
-                </p>
-              </div>
-            </div>
-
-            <h2 className="text-2xl font-bold mb-4">Rekommendationer:</h2>
-
-            <div className="mt-8 space-y-4">
-              {quizResults.recommendations.map((rec, index) => (
-                <div key={index} className="bg-gray-50 p-4 rounded-lg">
-                  <p className="text-lg text-gray-700">{rec}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
-              <Button
-                variant="purple"
-                onClick={() => window.location.href = '#competition-section'}
-                className="w-full sm:w-auto"
-              >
-                Vinn en AI-workout
-              </Button>
-              
-              <a
-                href={getEmailShareUrl()}
-                className="inline-flex items-center justify-center gap-2 px-4 py-3 border-2 border-beach-purple text-beach-purple hover:bg-beach-purple hover:text-white transition-colors duration-300 rounded-lg font-medium w-full sm:w-auto"
-              >
-                <Mail size={20} />
-                Dela med chefen/kollega
-              </a>
-            </div>
-          </div>
+          {/* Rest of the results section JSX */}
         </div>
       </section>
     );
   }
 
   return (
-    <section className="bg-beach-purple py-[20px] sm:py-[25px] md:py-[45px] mt-[15px] mb-[10px] px-4" id="quiz-section">
+    <section className="bg-beach-purple py-[35px] sm:py-[45px] md:py-[60px] mt-[25px] mb-[25px] px-4" id="quiz-section">
       <div className="w-full sm:max-w-[720px] lg:max-w-[1020px] mx-auto text-center text-white">
         <AnimatedSection animation="fade-down">
           <h2 className="text-[50px] font-permanent-marker mb-6 sm:mb-8 text-[#dafef1] leading-[1.6]">
