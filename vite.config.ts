@@ -8,6 +8,12 @@ export default defineConfig({
     force: true, // Force dependency pre-bundling
   },
   server: {
+    proxy: {
+      '/.netlify/functions': {
+        target: 'http://localhost:8888',
+        rewrite: (path) => path.replace(/^\/\.netlify\/functions/, ''),
+      },
+    },
     hmr: {
       timeout: 5000 // Increase HMR timeout
     }
