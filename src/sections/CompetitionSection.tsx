@@ -6,8 +6,8 @@ import { Trophy, Rocket, Users } from 'lucide-react';
 
 const CompetitionSection: React.FC = () => {
   return (
-    <section className="py-12 sm:py-20 md:py-32 px-4 sm:px-8 bg-white" id="competition-section">
-      <div className="max-w-[1024px] mx-auto">
+    <section className="py-12 sm:py-20 md:py-32 px-4 bg-white" id="competition-section">
+      <div className="w-full sm:max-w-[720px] lg:max-w-[1020px] mx-auto">
         <AnimatedSection animation="fade-down">
           <div className="relative bg-beach-mint rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
             <a 
