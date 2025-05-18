@@ -104,8 +104,11 @@ const QuizSection: React.FC = () => {
 
   if (showResults && quizResults) {
     return (
-      <section className="bg-beach-mint py-12 sm:py-16 md:py-20 px-4 sm:px-8" id="quiz-section">
+      <section className="bg-[#4B0082] py-12 sm:py-16 md:py-20 px-4 sm:px-8" id="quiz-section">
         <div className="max-w-[1024px] mx-auto">
+          <h2 className="text-white text-2xl font-semibold text-center mb-8">
+            Resultatnivåer och rekommendationer
+          </h2>
           <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 md:p-12">
             <div className="text-center mb-12">
               <h2 className="font-outfit font-thin text-[35px] mb-4">
@@ -169,12 +172,6 @@ const QuizSection: React.FC = () => {
                   Hur väl rustat företaget är för att implementera AI-lösningar
                 </p>
               </div>
-            </div>
-
-            <div className="bg-[#3B1360] py-4 px-6 -mx-6 sm:-mx-8 md:-mx-12">
-              <h3 className="text-white text-2xl font-semibold text-center">
-                Resultatnivåer och rekommendationer
-              </h3>
             </div>
 
             <div className="mt-8 space-y-4">
