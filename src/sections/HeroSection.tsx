@@ -12,7 +12,7 @@ const HeroSection: React.FC = () => {
             <img 
               src={logoUrl}
               alt="3AImigos Logo - Hand with three fingers"
-              className="h-[100px] w-auto"
+              className="h-[90px] w-auto"
             />
           </div>
         </AnimatedSection>
