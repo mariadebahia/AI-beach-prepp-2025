@@ -123,7 +123,7 @@ const QuizSection: React.FC = () => {
 
   if (showResults && quizResults) {
     return (
-      <section className="bg-[#4B0082] py-12 sm:py-16 md:py-20 px-4 sm:px-8" id="quiz-section">
+      <section className="bg-[#482376] py-12 sm:py-16 md:py-20 px-4 sm:px-8" id="quiz-section">
         <div className="max-w-[1024px] mx-auto">
           <h2 className="text-white text-4xl font-permanent-marker text-center mb-8">
             Hur är det med AI-formen egentligen? Gör vårt AI-fitnessnivå!
