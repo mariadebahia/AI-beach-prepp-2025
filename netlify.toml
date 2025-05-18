@@ -1,24 +1,17 @@
 [build]
-  command   = "npm run build"
-  publish   = "dist"
+  command = "npm run build"
+  publish = "dist"
   functions = "netlify/functions"
 
-# ─────── Lokal utveckling ───────
 [dev]
-  command   = "npm run dev"
-  publish   = "dist"
-  functions = "netlify/functions"
+  command = "npm run dev"
+  port = 8888
+  targetPort = 5173
+  publish = "dist"
+  framework = "#custom"
+  autoLaunch = true
 
-# ─────── API-proxy ───────
 [[redirects]]
-  from    = "/api/quiz"
-  to      = "/.netlify/functions/quiz"
-  status  = 200
-  force   = true
-  headers = { Access-Control-Allow-Origin = "*" }
-
-# ─────── SPA-fallback ───────
-[[redirects]]
-  from   = "/*"
-  to     = "/index.html"
+  from = "/.netlify/functions/*"
+  to = "/.netlify/functions/:splat"
   status = 200
