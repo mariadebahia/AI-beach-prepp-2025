@@ -51,7 +51,6 @@ const QuizSection: React.FC = () => {
         const responseText = await response.text();
         console.log('Server response:', responseText);
 
-        // Check if response text is empty
         if (!responseText.trim()) {
           throw new Error('Server returned an empty response');
         }
@@ -79,7 +78,7 @@ const QuizSection: React.FC = () => {
       } catch (error) {
         console.error('Error submitting quiz:', error);
         setError(error instanceof Error ? error.message : 'An unexpected error occurred');
-        setCurrentQuestion(9); // Stay on last question if submission fails
+        setCurrentQuestion(9);
       }
     } else {
       setCurrentQuestion(prev => prev + 1);
@@ -128,7 +127,6 @@ const QuizSection: React.FC = () => {
                 <p className="text-4xl font-bold text-beach-purple mb-2">
                   {quizResults.strategicMaturityPercent}%
                 </p>
-                <p className="text-sm text-gray-500">(Medelviktig)</p>
               </div>
 
               <div className="bg-white rounded-xl shadow-soft p-6 flex-1 min-w-[200px]">
@@ -137,7 +135,6 @@ const QuizSection: React.FC = () => {
                 <p className="text-4xl font-bold text-beach-purple mb-2">
                   {quizResults.kompetensgapPercent}%
                 </p>
-                <p className="text-sm text-gray-500">(Medelviktig)</p>
               </div>
 
               <div className="bg-white rounded-xl shadow-soft p-6 flex-1 min-w-[200px]">
@@ -146,7 +143,6 @@ const QuizSection: React.FC = () => {
                 <p className="text-4xl font-bold text-beach-purple mb-2">
                   {quizResults.growthPotentialPercent}%
                 </p>
-                <p className="text-sm text-gray-500">(Medelviktig)</p>
               </div>
 
               <div className="bg-white rounded-xl shadow-soft p-6 flex-1 min-w-[200px]">
@@ -155,22 +151,24 @@ const QuizSection: React.FC = () => {
                 <p className="text-4xl font-bold text-beach-purple mb-2">
                   {quizResults.aiReadinessPercent}%
                 </p>
-                <p className="text-sm text-gray-500">(Mycket viktig)</p>
               </div>
             </div>
 
-            <div className="mb-12">
-              <h3 className="text-2xl font-semibold mb-6">Resultatnivåer och rekommendationer</h3>
-              <div className="space-y-4">
-                {quizResults.recommendations.map((rec, index) => (
-                  <div key={index} className="bg-gray-50 p-4 rounded-lg">
-                    <p className="text-lg text-gray-700">{rec}</p>
-                  </div>
-                ))}
-              </div>
+            <div className="bg-[#3B1360] py-4 px-6 -mx-6 sm:-mx-8 md:-mx-12">
+              <h3 className="text-white text-2xl font-semibold text-center">
+                Resultatnivåer och rekommendationer
+              </h3>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="mt-8 space-y-4">
+              {quizResults.recommendations.map((rec, index) => (
+                <div key={index} className="bg-gray-50 p-4 rounded-lg">
+                  <p className="text-lg text-gray-700">{rec}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
               <Button
                 variant="purple"
                 onClick={() => window.location.href = '#competition-section'}
