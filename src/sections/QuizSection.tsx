@@ -217,7 +217,7 @@ const QuizSection: React.FC = () => {
             Hur är det med AI-formen egentligen? Gör vårt AI-fitnessnivå!
           </h2>
           
-          <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12">
+          <p className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 font-roboto font-bold">
             Nyfiken på hur redo din organisation faktiskt är för AI-revolutionen? Vårt lättsamma men träffsäkra test avslöjar både dolda styrkor och utvecklingsområden med vetenskaplig precision – och du får direkta rekommendationer anpassade för just er mognadsnivå.
           </p>
         </AnimatedSection>
