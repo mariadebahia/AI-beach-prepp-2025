@@ -100,7 +100,7 @@ const QuizSection: React.FC = () => {
       <section className="bg-[#482376] py-12 sm:py-16 md:py-20 px-4" id="quiz-section">
         <div className="w-full sm:max-w-[720px] lg:max-w-[1020px] mx-auto">
           <h2 className="text-[#dafef1] text-[50px] font-permanent-marker text-center mb-8">
-            Hur är det med AI-formen egentligen? Gör vårt AI-fitnessnivå!
+            Hur är det med AI-formen på jobbet egentligen? Gör vårt AI-fitnessnivå!
           </h2>
           <div className="bg-white rounded-2xl p-6 sm:p-8 md:p-12">
             <div className="text-center mb-12">
@@ -209,7 +209,7 @@ const QuizSection: React.FC = () => {
           </h2>
           
           <p className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 font-roboto font-bold">
-            Nyfiken på hur redo din organisation faktiskt är för AI-revolutionen? Vårt lättsamma men träffsäkra test avslöjar både dolda styrkor och utvecklingsområden med vetenskaplig precision – och du får direkta rekommendationer anpassade för just er mognadsnivå.
+            Nyfiken på hur redo din organisation faktiskt är för AI-revolutionen? Vårt lättsamma men träffsäkra test ger dig en indiaktion på er AI-nivå m.m. Du får dessutom några träffsäkra rekommendationer anpassade för just er mognadsnivå.
           </p>
         </AnimatedSection>
 
