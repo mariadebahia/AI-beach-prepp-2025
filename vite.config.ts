@@ -5,18 +5,31 @@ export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
     exclude: ['lucide-react'],
-    force: true, // Force dependency pre-bundling
+    force: true,
   },
   server: {
     proxy: {
       '/.netlify/functions': {
-        target: 'http://localhost:8888',
+        target: 'http://localhost:9999',
+        changeOrigin: true,
+        secure: false,
         rewrite: (path) => path.replace(/^\/\.netlify\/functions/, ''),
+        configure: (proxy, _options) => {
+          proxy.on('error', (err, _req, _res) => {
+            console.log('proxy error', err);
+          });
+          proxy.on('proxyReq', (proxyReq, req, _res) => {
+            console.log('Sending Request to the Target:', req.method, req.url);
+          });
+          proxy.on('proxyRes', (proxyRes, req, _res) => {
+            console.log('Received Response from the Target:', proxyRes.statusCode, req.url);
+          });
+        },
       },
     },
     hmr: {
-      timeout: 5000 // Increase HMR timeout
+      timeout: 10000
     }
   },
-  clearScreen: false, // Helps with debugging by preserving error logs
+  clearScreen: false,
 });
