@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "netlify dev",
-    "build": "tsc && vite build",
+    "dev": "NODE_OPTIONS='--max-old-space-size=4096' netlify dev",
+    "build": "NODE_OPTIONS='--max-old-space-size=4096' tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
