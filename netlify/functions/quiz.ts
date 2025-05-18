@@ -88,6 +88,7 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
     // In production, these would come from a database
     const historicalScores = [15, 18, 22, 25, 28, 20, 19, 24, 21, 23];
     const percentile = percentileRank(historicalScores, score);
+    const timestamp = new Date().toISOString();
 
     // Determine level and recommendations
     let level, description, recommendations;
@@ -136,7 +137,7 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
       recommendations,
       comparative_statement: `Du ligger bättre till än ${percentile}% av alla som tagit testet!`,
       ...metrics,
-      timestamp: new Date().toISOString()
+      timestamp
     };
 
     console.log('Sending response:', responsePayload);
