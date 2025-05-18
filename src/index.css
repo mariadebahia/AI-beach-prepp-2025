@@ -36,3 +36,13 @@
     transform: none !important;
   }
 }
+
+@keyframes pulse-slow {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.pulse-animation {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
