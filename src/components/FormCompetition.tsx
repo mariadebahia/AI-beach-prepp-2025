@@ -192,7 +192,16 @@ const FormCompetition: React.FC = () => {
           aria-label="GDPR samtycke"
         />
         <label htmlFor="gdprConsent" className="text-sm text-gray-700">
-          Jag godkänner att mina uppgifter sparas enligt <a href="#" className="text-beach-purple underline hover:text-opacity-80 transition-colors">integritetspolicyn</a> *
+          Jag godkänner att mina uppgifter sparas enligt{' '}
+          <a
+            href="/integritetspolicy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-beach-purple hover:text-opacity-80 underline"
+          >
+            integritetspolicyn
+          </a>{' '}
+          *
         </label>
       </div>
       
