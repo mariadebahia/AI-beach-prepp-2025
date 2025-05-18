@@ -107,14 +107,14 @@ const QuizSection: React.FC = () => {
     
     const body = encodeURIComponent(
       `Hej,\n\n` +
-      `${window.location.hostname} är ${quizResults.comparative_statement} och fick AI-nivån ${quizResults.level}.\n` +
+      `${window.location.hostname} är ${quizResults.comparative_statement} bättre än alla andra som har tagit AI-fitnesstestet och fick AI-nivån ${quizResults.level}.\n` +
       `Den AI-strategiska mognaden är ${quizResults.strategicMaturityPercent}% och kompetensgapet ${quizResults.kompetensgapPercent}%.\n\n` +
       `Här är rekommendationerna att fokusera på:\n` +
       `• ${quizResults.recommendations[0]}\n` +
       `• ${quizResults.recommendations[1]}\n` +
       `• ${quizResults.recommendations[2]}\n` +
       `• ${quizResults.recommendations[3]}\n\n` +
-      `Gör testet du också och få reda på tillväxtpotential med AI och hur rustat vi är att implementera AI-lösningar. Dessutom kan man vinna en AI-workshop!\n\n` +
+      `Gör testet du också och få reda på tillväxtpotential med AI och hur rustade man är att implementera AI-lösningar. Dessutom kan man vinna en AI-workshop! Bara en sån sak!\n\n` +
       `Gå till: https://aibeachprep.se/`
     );
 
@@ -125,8 +125,8 @@ const QuizSection: React.FC = () => {
     return (
       <section className="bg-[#4B0082] py-12 sm:py-16 md:py-20 px-4 sm:px-8" id="quiz-section">
         <div className="max-w-[1024px] mx-auto">
-          <h2 className="text-white text-2xl font-semibold text-center mb-8">
-            Resultatnivåer och rekommendationer
+          <h2 className="text-white text-4xl font-permanent-marker text-center mb-8">
+            Hur är det med AI-formen egentligen? Gör vårt AI-fitnessnivå!
           </h2>
           <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 md:p-12">
             <div className="text-center mb-12">
