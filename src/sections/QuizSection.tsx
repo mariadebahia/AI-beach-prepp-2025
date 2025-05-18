@@ -23,12 +23,16 @@ const QuizSection: React.FC = () => {
   const [showResults, setShowResults] = useState(false);
   const [quizResults, setQuizResults] = useState<QuizResults | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleOptionSelect = async (questionId: number, points: number) => {
     const newAnswers = { ...answers, [questionId]: points };
     setAnswers(newAnswers);
     
     if (currentQuestion === 9) {
+      if (isSubmitting) return;
+      setIsSubmitting(true);
+      
       const totalScore = Object.values(newAnswers).reduce((sum, p) => sum + p, 0);
       
       try {
@@ -42,11 +46,15 @@ const QuizSection: React.FC = () => {
 
         console.log('Submitting quiz with data:', requestBody);
 
-        const response = await fetch('/.netlify/functions/quiz', {
+        const response = await fetch('/api/quiz', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(requestBody)
         });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
         const responseText = await response.text();
         console.log('Server response:', responseText);
@@ -63,11 +71,6 @@ const QuizSection: React.FC = () => {
           throw new Error('Server returned invalid JSON response');
         }
 
-        if (!response.ok) {
-          const errorMessage = parsedResponse?.error || 'Failed to submit quiz';
-          throw new Error(`Quiz submission failed: ${errorMessage}`);
-        }
-
         if (!parsedResponse.success) {
           throw new Error(parsedResponse.error || 'Quiz submission failed');
         }
@@ -79,6 +82,8 @@ const QuizSection: React.FC = () => {
         console.error('Error submitting quiz:', error);
         setError(error instanceof Error ? error.message : 'An unexpected error occurred');
         setCurrentQuestion(9);
+      } finally {
+        setIsSubmitting(false);
       }
     } else {
       setCurrentQuestion(prev => prev + 1);
@@ -224,7 +229,10 @@ const QuizSection: React.FC = () => {
                 <p>{error}</p>
                 <Button
                   variant="outline"
-                  onClick={() => setCurrentQuestion(0)}
+                  onClick={() => {
+                    setError(null);
+                    setCurrentQuestion(0);
+                  }}
                   className="mt-4"
                 >
                   Försök igen
