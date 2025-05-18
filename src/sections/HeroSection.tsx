@@ -23,7 +23,7 @@ const HeroSection: React.FC = () => {
             <Button 
               variant="purple" 
               onClick={() => document.getElementById('competition-section')?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-base sm:text-lg md:text-xl"
+              className="text-base sm:text-lg md:text-xl font-permanent-marker bg-black hover:bg-black/90"
             >
               Tävla och vinn en<br className="hidden sm:block" />AI-workout för jobbet
             </Button>
