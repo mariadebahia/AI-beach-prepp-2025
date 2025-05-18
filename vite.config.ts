@@ -11,11 +11,10 @@ export default defineConfig({
   },
   server: {
     proxy: isDev ? {
-      '/.netlify/functions': {
+      '/api/quiz': {
         target: 'http://localhost:8888',
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path,
         configure: (proxy, _options) => {
           proxy.on('error', (err, _req, _res) => {
             console.log('Proxy error:', err);
