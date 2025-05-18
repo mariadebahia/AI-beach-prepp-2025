@@ -18,7 +18,7 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
     return { 
       statusCode: 200, 
       headers: HEADERS, 
-      body: "" 
+      body: JSON.stringify({ success: true }) 
     };
   }
 
@@ -137,8 +137,7 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
     
     const errorResponse = {
       success: false,
-      error: error.message || "An unexpected error occurred",
-      details: error.stack
+      error: error.message || "An unexpected error occurred"
     };
 
     console.log('Sending error response:', errorResponse);
