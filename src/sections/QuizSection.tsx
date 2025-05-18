@@ -178,7 +178,7 @@ const QuizSection: React.FC = () => {
     <section className="bg-beach-purple py-12 sm:py-16 md:py-20 px-4 sm:px-8" id="quiz-section">
       <div className="max-w-[1024px] mx-auto text-center text-white">
         <AnimatedSection animation="fade-down">
-          <h2 className="text-2xl sm:text-3xl md:text-[3.125em] font-permanent-marker mb-6 sm:mb-8 text-[#dafef1]">
+          <h2 className="text-2xl sm:text-3xl md:text-[3.125em] font-permanent-marker mb-6 sm:mb-8 text-[#dafef1] leading-[1.4] sm:leading-[1.3] md:leading-[1.2]">
             Hur är det med AI-formen egentligen? Gör vårt AI-fitnessnivå!
           </h2>
           
