@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@netlify/functions": "^2.6.0",
+    "ci-info": "^4.0.0",
     "lucide-react": "^0.363.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
