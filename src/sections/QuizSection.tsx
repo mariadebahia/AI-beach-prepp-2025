@@ -205,7 +205,7 @@ const QuizSection: React.FC = () => {
       <div className="w-full sm:max-w-[720px] lg:max-w-[1020px] mx-auto text-center text-white">
         <AnimatedSection animation="fade-down">
           <h2 className="text-[50px] font-permanent-marker mb-6 sm:mb-8 text-[#dafef1] leading-[1.6]">
-            Hur är det med AI-formen egentligen? Gör vårt AI-fitnessnivå!
+            Hur är det med AI-formen på jobbet egentligen? Gör vårt AI-fitnessnivå!
           </h2>
           
           <p className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 font-roboto font-bold">
