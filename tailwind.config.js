@@ -25,6 +25,9 @@ export default {
         'beach-mint': '#dcfce7',
         'deep-purple': '#2D1B69',
         'neon-green': '#ADFF00'
+      },
+      boxShadow: {
+        'soft': '0 2px 15px rgba(0, 0, 0, 0.08)',
       }
     },
   },
