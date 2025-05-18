@@ -14,6 +14,12 @@ interface Metrics {
   aiReadinessPercent: number;
 }
 
+function percentileRank(allScores: number[], yourScore: number): number {
+  const sorted = [...allScores].sort((a, b) => a - b);
+  const numBelow = sorted.filter(s => s <= yourScore).length;
+  return Math.round((numBelow / sorted.length) * 100);
+}
+
 export const handler: Handler = async (event): Promise<HandlerResponse> => {
   console.log('Received request:', {
     method: event.httpMethod,
@@ -78,6 +84,11 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
       )
     };
 
+    // Mock historical scores for percentile calculation
+    // In production, these would come from a database
+    const historicalScores = [15, 18, 22, 25, 28, 20, 19, 24, 21, 23];
+    const percentile = percentileRank(historicalScores, score);
+
     // Determine level and recommendations
     let level, description, recommendations;
     if (score <= 8) {
@@ -123,7 +134,7 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
       level,
       description,
       recommendations,
-      comparative_statement: `Du ligger bättre till än ${Math.floor(Math.random()*30)+60}% av alla som tagit testet!`,
+      comparative_statement: `Du ligger bättre till än ${percentile}% av alla som tagit testet!`,
       ...metrics,
       timestamp: new Date().toISOString()
     };
