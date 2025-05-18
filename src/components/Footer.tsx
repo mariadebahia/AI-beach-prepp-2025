@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
             Hej, det är vi som är<br />Tres AImigos!
           </h2>
           <p className="text-2xl mb-12">
-            Vi är världens första <a href="https://aicontentengineers.se/" target="window">AI Content Engineers, examinerade från Berghs SOC. </a> Med vår unika kompetens hjälper vi företag att komma igång med AI på ett 
+            Vi är världens första <a href="https://aicontentengineers.se/" target="window">AI Content Engineers, examinerade från Berghs SOC.</a> Med vår unika kompetens hjälper vi företag att komma igång med AI på ett 
             enkelt och konkret sätt. Och roligt!
           </p>
           
