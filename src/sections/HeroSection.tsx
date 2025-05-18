@@ -12,9 +12,8 @@ const HeroSection: React.FC = () => {
             <img 
               src={logoUrl}
               alt="3AImigos Logo - Hand with three fingers"
-              className="h-[150px] w-auto"
+              className="h-[100px] w-auto"
             />
-            <span className="font-special-elite text-base sm:text-lg md:text-xl">Tres AImigos</span>
           </div>
         </AnimatedSection>
         
