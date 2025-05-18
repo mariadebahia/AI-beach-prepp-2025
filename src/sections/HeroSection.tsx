@@ -22,17 +22,17 @@ const HeroSection: React.FC = () => {
 
         <AnimatedSection animation="fade-up" delay="300" className="w-full max-w-2xl">
           <div className="relative bg-beach-mint rounded-2xl p-6 sm:p-8 md:p-12 text-center">
-            <h2 className="font-outfit text-xl sm:text-2xl md:text-[2.5rem] font-bold leading-tight mb-4 sm:mb-6">
+            <h2 className="font-merriweather text-xl sm:text-2xl md:text-[2.5rem] font-black leading-tight mb-4 sm:mb-6 tracking-tight">
               AI-FOMO PÅ JOBBET?! VI HJÄLPER ER ATT KOMMA I AI-FORM INNAN SOMMAREN!
             </h2>
             
-            <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8">
+            <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-gray-700">
               Vi kommer till din arbetsplats och AI-boostar teamet med grunderna, verktyg och tips för att komma i AI-form till sommaren.
             </p>
 
             <a 
               href="#quiz-section"
-              className="inline-block bg-beach-purple text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-permanent-marker text-base sm:text-lg transform hover:scale-105 transition-transform duration-300"
+              className="inline-block bg-[#201258] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-special-elite text-base sm:text-lg transform hover:scale-105 transition-transform duration-300"
             >
               Testa jobbets AI-nivå
             </a>
