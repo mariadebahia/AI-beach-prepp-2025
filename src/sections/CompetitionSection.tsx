@@ -22,7 +22,7 @@ const CompetitionSection: React.FC = () => {
                 AI-FOMO PÅ JOBBET?! VI HJÄLPER ER ATT KOMMA I AI-FORM INNAN SOMMAREN!
               </h2>
               
-              <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto font-roboto">
+              <p className="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto font-roboto font-bold">
                 Vi kommer till din arbetsplats och AI-boostar teamet med grunderna, verktyg och tips för att 
                 komma i AI-form till sommaren (så att ni är redo för hösten). Vi kallar det AI-beach prepp men en svindyr managementkonsult skulle nog kalla det för "get-AI-ready-or-die". Alla som anmäler sig får vårt AI-fitness program för att börja komma igång på egen hand.
               </p>
@@ -33,24 +33,24 @@ const CompetitionSection: React.FC = () => {
                 <div className="flex justify-center mb-3">
                   <Users className="w-6 h-6 text-beach-purple" />
                 </div>
-                <h3 className="font-special-elite font-bold text-sm sm:text-base mb-2">Anmäl ditt företag</h3>
-                <p className="text-base sm:text-lg md:text-xl font-roboto">Berätta varför ni vill bli AI-fit - vi vill höra er story.</p>
+                <h3 className="font-special-elite font-bold text-base sm:text-lg md:text-xl mb-2">Anmäl ditt företag</h3>
+                <p className="text-lg sm:text-xl md:text-2xl font-roboto font-bold">Berätta varför ni vill bli AI-fit - vi vill höra er story.</p>
               </div>
               
               <div className="border-2 border-dashed border-gray-400 rounded-lg p-4 text-center">
                 <div className="flex justify-center mb-3">
                   <Trophy className="w-6 h-6 text-beach-purple" />
                 </div>
-                <h3 className="font-special-elite font-bold text-sm sm:text-base mb-2">En vinnare varje vecka</h3>
-                <p className="text-base sm:text-lg md:text-xl font-roboto">Juryn väljer ett företag i veckan fram till vecka 27.</p>
+                <h3 className="font-special-elite font-bold text-base sm:text-lg md:text-xl mb-2">En vinnare varje vecka</h3>
+                <p className="text-lg sm:text-xl md:text-2xl font-roboto font-bold">Juryn väljer ett företag i veckan fram till vecka 27.</p>
               </div>
               
               <div className="border-2 border-dashed border-gray-400 rounded-lg p-4 text-center">
                 <div className="flex justify-center mb-3">
                   <Rocket className="w-6 h-6 text-beach-purple" />
                 </div>
-                <h3 className="font-special-elite font-bold text-sm sm:text-base mb-2">Vi kommer till er!</h3>
-                <p className="text-base sm:text-lg md:text-xl font-roboto">Och kör en anpassad AI-workshop.</p>
+                <h3 className="font-special-elite font-bold text-base sm:text-lg md:text-xl mb-2">Vi kommer till er!</h3>
+                <p className="text-lg sm:text-xl md:text-2xl font-roboto font-bold">Och kör en anpassad AI-workshop.</p>
               </div>
             </div>
 
