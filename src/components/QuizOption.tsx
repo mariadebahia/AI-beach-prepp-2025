@@ -11,7 +11,7 @@ type QuizOptionProps = {
 const QuizOption: React.FC<QuizOptionProps> = ({ id, text, isSelected, onSelect, name }) => {
   return (
     <div
-      className={`p-3 min-h-[44px] border-2 rounded-lg cursor-pointer transition-all duration-300 ${
+      className={`p-3 sm:p-4 min-h-[44px] border-2 rounded-lg cursor-pointer transition-all duration-300 ${
         isSelected
           ? 'border-beach-purple bg-beach-mint'
           : 'border-gray-200 hover:border-beach-purple'
@@ -24,7 +24,7 @@ const QuizOption: React.FC<QuizOptionProps> = ({ id, text, isSelected, onSelect,
         }`}>
           {isSelected && <div className="w-3 h-3 rounded-full bg-beach-purple"></div>}
         </div>
-        <span className="text-sm sm:text-base text-gray-800">{text}</span>
+        <span className="text-sm sm:text-base md:text-lg text-gray-800">{text}</span>
       </label>
       <input
         type="radio"

@@ -21,8 +21,8 @@ const Button: React.FC<ButtonProps> = ({
   
   const variantStyles = {
     neon: 'bg-neon-green text-deep-purple hover:bg-opacity-90',
-    purple: 'bg-deep-purple text-white hover:bg-opacity-90',
-    outline: 'border-2 border-white text-white hover:bg-[#d8d355] hover:text-white'
+    purple: 'bg-beach-purple text-white hover:bg-opacity-90',
+    outline: 'border-2 border-beach-purple text-beach-purple hover:bg-beach-purple hover:text-white'
   };
   
   return (

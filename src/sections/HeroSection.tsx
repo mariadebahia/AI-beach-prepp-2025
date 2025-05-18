@@ -15,9 +15,26 @@ const HeroSection: React.FC = () => {
         </AnimatedSection>
         
         <AnimatedSection animation="fade-up" delay="200" className="text-center">
-          <h1 className="font-special-elite text-2xl sm:text-3xl md:text-4xl leading-snug sm:leading-tight md:leading-tight mb-4 sm:mb-6 md:mb-8 max-w-[18ch] mx-auto">
+          <h1 className="font-special-elite text-3xl sm:text-4xl md:text-[4.5rem] leading-snug sm:leading-tight md:leading-tight mb-4 sm:mb-6 md:mb-8 max-w-[18ch] mx-auto">
             Vinn en AI-workout till jobbet!
           </h1>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              variant="purple" 
+              onClick={() => document.getElementById('competition-section')?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-base sm:text-lg md:text-xl"
+            >
+              Tävla och vinn en<br className="hidden sm:block" />AI-workout för jobbet
+            </Button>
+            <Button 
+              variant="outline" 
+              onClick={() => document.getElementById('quiz-section')?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-base sm:text-lg md:text-xl"
+            >
+              Testa jobbets<br className="hidden sm:block" />AI-fitnessnivå
+            </Button>
+          </div>
         </AnimatedSection>
       </div>
     </section>
