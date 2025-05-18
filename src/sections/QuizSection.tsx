@@ -209,7 +209,7 @@ const QuizSection: React.FC = () => {
           </h2>
           
           <p className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 font-roboto font-bold">
-            Nyfiken på hur redo din organisation faktiskt är för AI-revolutionen? Vårt lättsamma men träffsäkra test ger dig en indiaktion på er AI-nivå m.m. Du får dessutom några träffsäkra rekommendationer anpassade för just er mognadsnivå.
+            Nyfiken på hur redo din organisation faktiskt är för AI-revolutionen? Vårt lättsamma AI-adoption test ger dig en indiaktion på er AI-nivå m.m. Du får dessutom några träffsäkra rekommendationer anpassade för just er mognadsnivå.
           </p>
         </AnimatedSection>
 
