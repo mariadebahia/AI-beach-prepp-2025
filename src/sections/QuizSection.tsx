@@ -97,7 +97,7 @@ const QuizSection: React.FC = () => {
 
   if (showResults && quizResults) {
     return (
-      <section className="bg-[#482376] py-[15px] sm:py-[19px] md:py-[23px] px-4" id="quiz-section">
+      <section className="bg-[#482376] py-[17px] sm:py-[21px] md:py-[25px] px-4" id="quiz-section">
         <div className="w-full sm:max-w-[720px] lg:max-w-[1020px] mx-auto">
           <h2 className="text-[#dafef1] text-[50px] font-permanent-marker text-center mb-8">
             Hur är det med AI-formen på jobbet egentligen? Gör vårt AI-fitnessnivå!
@@ -201,7 +201,7 @@ const QuizSection: React.FC = () => {
   }
 
   return (
-    <section className="bg-beach-purple py-[15px] sm:py-[19px] md:py-[23px] px-4" id="quiz-section">
+    <section className="bg-beach-purple py-[17px] sm:py-[21px] md:py-[25px] px-4" id="quiz-section">
       <div className="w-full sm:max-w-[720px] lg:max-w-[1020px] mx-auto text-center text-white">
         <AnimatedSection animation="fade-down">
           <h2 className="text-[50px] font-permanent-marker mb-6 sm:mb-8 text-[#dafef1] leading-[1.6]">
