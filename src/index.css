@@ -30,6 +30,10 @@
     @apply font-sans text-lg bg-gray-50;
   }
 
+  a {
+    @apply text-[#ff6b6b] visited:text-[#482376] transition-colors duration-200;
+  }
+
   /* Add no-js class to body when JavaScript is disabled */
   .no-js {
     opacity: 1 !important;
