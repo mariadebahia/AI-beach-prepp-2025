@@ -120,36 +120,48 @@ const QuizSection: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-              <div className="bg-white rounded-xl shadow-soft p-6 flex-1 min-w-[200px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-12">
+              <div className="bg-white rounded-lg shadow-md p-6">
                 <ArrowUp className="w-8 h-8 text-beach-purple mb-4" />
                 <h4 className="text-lg font-semibold mb-2">AI-strategisk mognad</h4>
-                <p className="text-4xl font-bold text-beach-purple mb-2">
+                <p className="text-4xl font-bold text-beach-purple mb-4">
                   {quizResults.strategicMaturityPercent}%
                 </p>
+                <p className="text-sm text-gray-600">
+                  Bedömning av hur väl AI är integrerad i företagets övergripande strategi
+                </p>
               </div>
 
-              <div className="bg-white rounded-xl shadow-soft p-6 flex-1 min-w-[200px]">
+              <div className="bg-white rounded-lg shadow-md p-6">
                 <Users className="w-8 h-8 text-beach-purple mb-4" />
                 <h4 className="text-lg font-semibold mb-2">Kompetensgap</h4>
-                <p className="text-4xl font-bold text-beach-purple mb-2">
+                <p className="text-4xl font-bold text-beach-purple mb-4">
                   {quizResults.kompetensgapPercent}%
                 </p>
-              </div>
-
-              <div className="bg-white rounded-xl shadow-soft p-6 flex-1 min-w-[200px]">
-                <TrendingUp className="w-8 h-8 text-beach-purple mb-4" />
-                <h4 className="text-lg font-semibold mb-2">AI-Tillväxtpotential</h4>
-                <p className="text-4xl font-bold text-beach-purple mb-2">
-                  {quizResults.growthPotentialPercent}%
+                <p className="text-sm text-gray-600">
+                  Skillnaden mellan nuvarande kompetens och vad som krävs för nästa nivå
                 </p>
               </div>
 
-              <div className="bg-white rounded-xl shadow-soft p-6 flex-1 min-w-[200px]">
+              <div className="bg-white rounded-lg shadow-md p-6">
+                <TrendingUp className="w-8 h-8 text-beach-purple mb-4" />
+                <h4 className="text-lg font-semibold mb-2">AI-Tillväxtpotential</h4>
+                <p className="text-4xl font-bold text-beach-purple mb-4">
+                  {quizResults.growthPotentialPercent}%
+                </p>
+                <p className="text-sm text-gray-600">
+                  Hur mycket företaget kan växa via AI-adoption
+                </p>
+              </div>
+
+              <div className="bg-white rounded-lg shadow-md p-6">
                 <Brain className="w-8 h-8 text-beach-purple mb-4" />
                 <h4 className="text-lg font-semibold mb-2">AI-Readiness</h4>
-                <p className="text-4xl font-bold text-beach-purple mb-2">
+                <p className="text-4xl font-bold text-beach-purple mb-4">
                   {quizResults.aiReadinessPercent}%
+                </p>
+                <p className="text-sm text-gray-600">
+                  Hur väl rustat företaget är för att implementera AI-lösningar
                 </p>
               </div>
             </div>
