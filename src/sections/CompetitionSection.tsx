@@ -18,7 +18,7 @@ const CompetitionSection: React.FC = () => {
             </a>
             
             <div className="mb-6 sm:mb-8 md:mb-12 text-center">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-outfit font-extrabold leading-tight mb-4 sm:mb-6">
+              <h2 className="text-[1.875em] sm:text-[2.5em] md:text-[3.125em] font-outfit font-extrabold leading-tight mb-4 sm:mb-6">
                 AI-FOMO PÅ JOBBET?! VI HJÄLPER ER ATT KOMMA I AI-FORM INNAN SOMMAREN!
               </h2>
               
