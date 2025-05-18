@@ -7,6 +7,13 @@ const HEADERS = {
   "Content-Type": "application/json"
 };
 
+interface Metrics {
+  strategicMaturityPercent: number;
+  kompetensgapPercent: number;
+  growthPotentialPercent: number;
+  aiReadinessPercent: number;
+}
+
 export const handler: Handler = async (event): Promise<HandlerResponse> => {
   console.log('Received request:', {
     method: event.httpMethod,
@@ -58,19 +65,18 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
 
     console.log('Calculated scores:', { score, maxScore });
 
-    // Calculate percentages
-    const strategicMaturityPercent = Math.round((score / maxScore) * 100);
-    const kompetensgapPercent = Math.round(100 - ((score / maxScore) * 100));
-    
-    // New metrics
-    const growthPotentialPercent = Math.round(
-      ((answers[6] + answers[8] + answers[2]) / (3 * maxPerQuestion)) * 100
-    );
-    
-    const aiReadinessPercent = Math.round(
-      ((answers[1] + answers[9] + answers[10] + answers[5] / 2) / 
-      ((3 * maxPerQuestion) + (maxPerQuestion / 2))) * 100
-    );
+    // Calculate metrics
+    const metrics: Metrics = {
+      strategicMaturityPercent: Math.round((score / maxScore) * 100),
+      kompetensgapPercent: Math.round(100 - ((score / maxScore) * 100)),
+      growthPotentialPercent: Math.round(
+        ((answers[6] + answers[8] + answers[2]) / (3 * maxPerQuestion)) * 100
+      ),
+      aiReadinessPercent: Math.round(
+        ((answers[1] + answers[9] + answers[10] + answers[5] / 2) / 
+        ((3 * maxPerQuestion) + (maxPerQuestion / 2))) * 100
+      )
+    };
 
     // Determine level and recommendations
     let level, description, recommendations;
@@ -118,10 +124,8 @@ export const handler: Handler = async (event): Promise<HandlerResponse> => {
       description,
       recommendations,
       comparative_statement: `Du ligger bättre till än ${Math.floor(Math.random()*30)+60}% av alla som tagit testet!`,
-      strategicMaturityPercent,
-      kompetensgapPercent,
-      growthPotentialPercent,
-      aiReadinessPercent
+      ...metrics,
+      timestamp: new Date().toISOString()
     };
 
     console.log('Sending response:', responsePayload);
