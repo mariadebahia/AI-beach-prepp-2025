@@ -99,7 +99,7 @@ const QuizSection: React.FC = () => {
     return (
       <section className="bg-[#482376] py-[45px] sm:py-[55px] md:py-[70px] mt-[25px] mb-[25px] px-4" id="quiz-section">
         <div className="w-full sm:max-w-[720px] lg:max-w-[1020px] mx-auto">
-          <h2 className="text-[#dafef1] text-[50px] font-permanent-marker text-center mb-8 leading-[1.1]">
+          <h2 className="text-white text-[50px] font-permanent-marker text-center mb-8 leading-[1.1]">
             Hur är det med AI-formen på jobbet egentligen? Gör vårt AI-fitnessnivå!
           </h2>
           <div className="bg-white rounded-2xl p-6 sm:p-8 md:p-12">
@@ -204,11 +204,11 @@ const QuizSection: React.FC = () => {
     <section className="bg-beach-purple py-[45px] sm:py-[55px] md:py-[70px] mt-[25px] mb-[25px] px-4" id="quiz-section">
       <div className="w-full sm:max-w-[720px] lg:max-w-[1020px] mx-auto text-center text-white">
         <AnimatedSection animation="fade-down">
-          <h2 className="text-[50px] font-permanent-marker mb-6 sm:mb-8 text-[#dafef1] leading-[1.1]">
+          <h2 className="text-white text-[50px] font-permanent-marker mb-6 sm:mb-8 leading-[1.1]">
             Hur är det med AI-formen på jobbet egentligen? Gör vårt AI-fitnessnivå!
           </h2>
           
-          <p className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 font-roboto font-bold">
+          <p className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 font-roboto font-bold text-white">
             Nyfiken på hur redo din organisation faktiskt är för AI-revolutionen? Vårt lättsamma AI-adoption test ger dig en indiaktion på er AI-nivå m.m. Du får dessutom några träffsäkra rekommendationer anpassade för just er mognadsnivå. Bäst av allt - det tar bara 2 min!
           </p>
         </AnimatedSection>
