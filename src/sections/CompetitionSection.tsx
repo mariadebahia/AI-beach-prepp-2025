@@ -23,7 +23,7 @@ const CompetitionSection: React.FC = () => {
               </h2>
               
               <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto font-roboto font-bold">
-                AI-kompetens direkt till er dörr! Vi gör det komplexa enkelt genom praktisk träning på plats hos er. Inget fluff, inga oändliga PowerPoints – bara konkreta verktyg och metoder som får ert team att säga 'Varför gjorde vi inte detta tidigare?'. När andra fortfarande funderar kommer ni redan skörda fördelarna. Enkelt, effektivt och exakt vad ni behöver just nu              </p>
+                AI-kompetens direkt till er dörr! Låt oss AI-boost teamet med grunderna, verktyg och tips för att komma i AI-form till sommaren (så att ni är redo för hösten)  I dagens läge handlar AI mindre om avancerad teknik och mer om att våga testa och implementera. Vi kallar det "AI-beach prepp" – din konkurrent kallar det nog "existentiell nödvändighet". Låter det intressant? Det borde det!</p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 sm:mb-8">
