@@ -24,7 +24,7 @@ const CompetitionSection: React.FC = () => {
               
               <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto font-roboto font-bold">
                 Vi kommer till din arbetsplats och AI-boostar teamet med grunderna, verktyg och tips för att 
-                komma igång med AI till sommaren. På så sätt är ni bättre redo för hösten. Vi kallar det AI-beach prepp men en svindyr managementkonsult skulle nog kalla det för "get-AI-ready-or-die". Dessutom, alla som anmäler sig får vårt AI-fitness program för att börja komma igång på egen hand.
+                komma igång med AI till sommaren. På så sätt är ni bättre redo för hösten. Vi kallar det AI-beach prepp men en svindyr managementkonsult skulle nog kalla det för "get-AI-ready-or-die". Låter det för bra för att vara sant?! Dessutom, alla som anmäler sig får vårt AI-fitness program för att börja komma igång på egen hand.
               </p>
             </div>
 
