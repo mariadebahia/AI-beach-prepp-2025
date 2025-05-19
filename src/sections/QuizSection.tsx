@@ -42,7 +42,8 @@ const QuizSection: React.FC = () => {
           timestamp: new Date().toISOString()
         };
 
-        const response = await fetch('/api/quiz', {
+        const apiUrl = `${import.meta.env.VITE_API_URL}/quiz`;
+        const response = await fetch(apiUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(requestBody)
