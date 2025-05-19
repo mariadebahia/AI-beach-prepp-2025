@@ -19,12 +19,12 @@ const CompetitionSection: React.FC = () => {
             
             <div className="mb-6 sm:mb-8 md:mb-12 text-center">
               <h2 className="text-[1.875em] sm:text-[2.5em] md:text-[3.125em] font-outfit font-extrabold leading-tight mb-4 sm:mb-6 mt-5 pt-5">
-                AI-FOMO PÅ JOBBET?! VI HJÄLPER ER ATT KOMMA I AI-FORM INNAN SOMMAREN!
+                AI-FOMO på jobbet?! Vi hjälper er att komma i bättre AI-form till semestern.
               </h2>
               
               <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto font-roboto font-bold">
                 Vi kommer till din arbetsplats och AI-boostar teamet med grunderna, verktyg och tips för att 
-                komma i AI-form till sommaren (så att ni är redo för hösten). Vi kallar det AI-beach prepp men en svindyr managementkonsult skulle nog kalla det för "get-AI-ready-or-die". Alla som anmäler sig får vårt AI-fitness program för att börja komma igång på egen hand.
+                komma igång med AI till sommaren. På så sätt är ni bättre redo för hösten. Vi kallar det AI-beach prepp men en svindyr managementkonsult skulle nog kalla det för "get-AI-ready-or-die". Dessutom, alla som anmäler sig får vårt AI-fitness program för att börja komma igång på egen hand.
               </p>
             </div>
 
