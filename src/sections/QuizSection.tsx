@@ -98,7 +98,9 @@ const QuizSection: React.FC = () => {
   if (showResults && quizResults) {
     return (
       <section className="bg-beach-purple py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8" id="quiz-section">
-
+        <div className="w-full max-w-[1020px] mx-auto">
+         <h2 className="text-[50px] sm:text-[60px] md:text-[70px] font-permanent-marker text-white text-center py-12">
+      </h2>
         
           <div className="bg-white rounded-2xl p-6 sm:p-8 md:p-12">
             <div className="text-center mb-12">
