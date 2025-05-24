@@ -11,14 +11,13 @@ const Footer: React.FC = () => {
   return (
     <footer>
       <div className="bg-white py-16">
-        <div className="max-w-[860px] mx-auto px-4">
-          <h2 className="font-['Bricolage_Grotesque'] text-[4rem] font-black mb-6 leading-[1.4] text-left">
+        <div className="w-full sm:max-w-[720px] lg:max-w-[1020px] mx-auto px-4">
+          <h2 className="font-special-elite text-[4.5rem] mb-6 leading-[1.4] text-center">
             Hej, det är vi som är<br />Tres AImigos!
           </h2>
           <p className="text-2xl mb-12">
-            Vi är världens första AI Content Engineers, examinerade från Berghs SOC. 
-            Med vår unika kompetens hjälper vi företag att komma igång med AI på ett 
-            enkelt och konkret sätt.
+            Vi är världens första <a href="https://aicontentengineers.se/" target="window">AI Content Engineers, examinerade från Berghs SOC.</a> Med vår unika kompetens hjälper vi företag att komma igång med AI på ett 
+            enkelt och konkret sätt. Och roligt!
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
@@ -125,7 +124,7 @@ const Footer: React.FC = () => {
       </div>
       
       <div className="bg-[#ff6b6b] py-8">
-        <div className="max-w-[860px] mx-auto px-4 text-center">
+        <div className="w-full sm:max-w-[720px] lg:max-w-[1020px] mx-auto px-4 text-center">
           <img 
             src={logoUrl}
             alt="3AImigos Logo - Hand with three fingers"

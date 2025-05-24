@@ -1,187 +1,61 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '../components/Button';
-import AnimatedHeader from '../components/AnimatedHeader';
-import { Trophy } from 'lucide-react';
-import type { FormData } from '../types';
+import AnimatedSection from '../components/AnimatedSection';
+import FormCompetition from '../components/FormCompetition';
+import { Trophy, Rocket, Users } from 'lucide-react';
 
 const CompetitionSection: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    companyName: '',
-    contactName: '',
-    email: '',
-    phone: '',
-    motivation: '',
-    gdprConsent: false
-  });
-  
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value, type } = e.target;
-    const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
-    
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-  };
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      
-      setFormData({
-        companyName: '',
-        contactName: '',
-        email: '',
-        phone: '',
-        motivation: '',
-        gdprConsent: false
-      });
-      
-      console.log('Form submitted:', formData);
-    }, 1500);
-  };
-  
   return (
-    <section className="py-20 px-8 bg-[#fffcf7]" id="competition-section">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex items-center justify-center mb-8">
-          <Trophy className="text-yellow-500 mr-3" size={32} />
-          <AnimatedHeader
-            text="Vinn AI-träning för ditt företag"
-            className="text-3xl md:text-4xl font-bold text-center"
-          />
-        </div>
-        
-        <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12">
-          Tävla om en personlig AI-träningssession för dig och ditt team. Vi hjälper er att 
-          hitta de bästa sätten att implementera AI i just er verksamhet.
-        </p>
-        
-        {isSubmitted ? (
-          <div className="bg-white p-8 rounded-xl shadow-sm text-center">
-            <h3 className="text-2xl font-bold text-green-600 mb-4">Tack för din anmälan!</h3>
-            <p className="text-gray-700 mb-6">
-              Vi har mottagit din intresseanmälan och kommer att kontakta dig om ni väljs ut som vinnare.
-            </p>
-            <Button 
-              variant="outline" 
-              onClick={() => document.getElementById('quiz-section')?.scrollIntoView({ behavior: 'smooth' })}
+    <section className="py-12 sm:py-20 md:py-32 px-4 bg-white" id="competition-section">
+      <div className="w-full sm:max-w-[720px] lg:max-w-[1020px] mx-auto">
+        <AnimatedSection animation="fade-down">
+          <div className="relative bg-beach-mint rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
+            <a 
+              href="#quiz-section"
+              className="absolute -top-3 right-4 sm:right-6 z-10 bg-[#201258] text-white px-4 sm:px-5 py-2.5 rounded-full font-permanent-marker text-lg sm:text-xl transform hover:scale-105 transition-transform duration-300 cursor-pointer whitespace-nowrap pulse-animation"
             >
-              Testa din AI-Fitness nu
-            </Button>
+              Testa jobbets AI-nivå
+            </a>
+            
+            <div className="mb-6 sm:mb-8 md:mb-12 text-center">
+              <h2 className="text-[1.875em] sm:text-[2.5em] md:text-[3.125em] font-outfit font-extrabold leading-tight mb-4 sm:mb-6 mt-5 pt-5">
+                AI-FOMO på jobbet?! Vi hjälper er att komma i bättre AI-form till semestern.
+              </h2>
+              
+              <p className="text-base sm:text-lg md:text-xl max-w-4xl mx-auto font-roboto font-bold leading-relaxed">
+                Vi kommer till er arbetsplats och ger teamet en praktisk AI-boost med grunderna, konkreta verktyg och beprövade metoder. Målet? Att ni ska vara mer AI-redo när hösten kommer. För idag handlar AI-implementering mer sällan om avancerad teknik – utan om att systematiskt våga testa, lära och anpassa. Vi kallar det "AI-beach prep", medan en dyr managementkonsult skulle kalla det för "avgörande konkurrensfördel". Nyfiken på vad det skulle betyda för er?
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 sm:mb-8">
+              <div className="border-2 border-dashed border-gray-400 rounded-lg p-4 text-center">
+                <div className="flex justify-center mb-3">
+                  <Users className="w-6 h-6 text-beach-purple" />
+                </div>
+                <h3 className="font-special-elite font-bold text-base sm:text-lg md:text-xl mb-2">Anmäl ditt företag</h3>
+                <p className="text-base sm:text-lg md:text-xl font-roboto font-bold">Berätta varför ni vill bli AI-fit - vi vill höra er story.</p>
+              </div>
+              
+              <div className="border-2 border-dashed border-gray-400 rounded-lg p-4 text-center">
+                <div className="flex justify-center mb-3">
+                  <Trophy className="w-6 h-6 text-beach-purple" />
+                </div>
+                <h3 className="font-special-elite font-bold text-base sm:text-lg md:text-xl mb-2">En vinnare varje vecka</h3>
+                <p className="text-base sm:text-lg md:text-xl font-roboto font-bold">Juryn väljer ett företag i veckan fram till vecka 27.</p>
+              </div>
+              
+              <div className="border-2 border-dashed border-gray-400 rounded-lg p-4 text-center">
+                <div className="flex justify-center mb-3">
+                  <Rocket className="w-6 h-6 text-beach-purple" />
+                </div>
+                <h3 className="font-special-elite font-bold text-base sm:text-lg md:text-xl mb-2">Vi kommer till er!</h3>
+                <p className="text-base sm:text-lg md:text-xl font-roboto font-bold">Och kör en anpassad AI-workshop.</p>
+              </div>
+            </div>
+
+            <FormCompetition />
           </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-sm">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label htmlFor="companyName" className="block text-sm font-medium text-gray-700 mb-1">
-                  Företagsnamn *
-                </label>
-                <input
-                  type="text"
-                  id="companyName"
-                  name="companyName"
-                  value={formData.companyName}
-                  onChange={handleChange}
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="contactName" className="block text-sm font-medium text-gray-700 mb-1">
-                  Kontaktperson *
-                </label>
-                <input
-                  type="text"
-                  id="contactName"
-                  name="contactName"
-                  value={formData.contactName}
-                  onChange={handleChange}
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                  E-post *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                  Telefon *
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
-            </div>
-            
-            <div className="mb-6">
-              <label htmlFor="motivation" className="block text-sm font-medium text-gray-700 mb-1">
-                Motivera varför just ert företag borde vinna *
-              </label>
-              <textarea
-                id="motivation"
-                name="motivation"
-                value={formData.motivation}
-                onChange={handleChange}
-                required
-                rows={4}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            
-            <div className="mb-8">
-              <div className="flex items-start">
-                <input
-                  type="checkbox"
-                  id="gdprConsent"
-                  name="gdprConsent"
-                  checked={formData.gdprConsent}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                />
-                <label htmlFor="gdprConsent" className="ml-2 block text-sm text-gray-700">
-                  Jag godkänner att mina uppgifter sparas enligt <a href="#" className="text-blue-600 underline">integritetspolicyn</a> *
-                </label>
-              </div>
-            </div>
-            
-            <div className="text-center">
-              <Button type="submit" variant="secondary" disabled={isSubmitting}>
-                {isSubmitting ? 'Skickar in...' : 'Anmäl till tävlingen'}
-              </Button>
-            </div>
-          </form>
-        )}
+        </AnimatedSection>
       </div>
     </section>
   );

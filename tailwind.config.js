@@ -11,14 +11,23 @@ export default {
         'display': ['Inter', 'system-ui', 'sans-serif'],
         'outfit': ['Outfit', 'sans-serif'],
         'gloock': ['Gloock', 'serif'],
-        'bricolage': ['Bricolage Grotesque', 'sans-serif']
+        'bricolage': ['Bricolage Grotesque', 'sans-serif'],
+        'special-elite': ['"Special Elite"', 'cursive'],
+        'roboto': ['Roboto', 'sans-serif'],
+        'permanent-marker': ['"Permanent Marker"', 'cursive'],
+        'playfair': ['"Playfair Display"', 'serif'],
+        'merriweather': ['Merriweather', 'serif']
       },
       colors: {
         'beach-yellow': '#FFE664',
         'beach-pink': '#FFF5F5',
-        'beach-purple': '#2D1B69',
+        'beach-purple': '#201258',
+        'beach-mint': '#dcfce7',
         'deep-purple': '#2D1B69',
         'neon-green': '#ADFF00'
+      },
+      boxShadow: {
+        'soft': '0 2px 15px rgba(0, 0, 0, 0.08)',
       }
     },
   },

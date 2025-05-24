@@ -1,22 +1,24 @@
 [build]
-  command   = "npm run build"
-  publish   = "dist"
+  command = "npm run build"
+  publish = "dist"
   functions = "netlify/functions"
 
 [dev]
-  command    = "npm run dev"
+  command = "npm run dev"
+  port = 8888
   targetPort = 5173
+  publish = "dist"
+  framework = "#custom"
+  autoLaunch = true
 
-# Proxy all /api/quiz calls to your Netlify Function
 [[redirects]]
-  from   = "/api/quiz"
-  to     = "/.netlify/functions/quiz"
+  from = "/api/quiz"
+  to = "/.netlify/functions/quiz"
   status = 200
-  force  = true
+  force = true
   headers = { "Access-Control-Allow-Origin" = "*" }
 
-# Single‐page‐app fallback
 [[redirects]]
-  from   = "/*"
-  to     = "/index.html"
+  from = "/*"
+  to = "/index.html"
   status = 200

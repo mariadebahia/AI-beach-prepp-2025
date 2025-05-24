@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Allow: /*.js$
+Allow: /*.css$
+
+# Block internal API endpoints
+Disallow: /api/
+Disallow: /.netlify/functions/
+
+# Sitemap location
+Sitemap: https://aibeachprep.se/sitemap.xml
