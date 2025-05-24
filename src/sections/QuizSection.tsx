@@ -211,7 +211,7 @@ const QuizSection: React.FC = () => {
 
   return (
     <div className="bg-beach-purple">
-      <h2 className="text-3xl lg:text-4xl font-bold text-white text-center py-8">
+      <h2 className="text-[3.75rem] font-permanent-marker text-white text-center py-12">
         AI-fitness test
       </h2>
       
