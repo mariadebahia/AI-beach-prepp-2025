@@ -16,7 +16,8 @@ export default {
         'roboto': ['Roboto', 'sans-serif'],
         'permanent-marker': ['"Permanent Marker"', 'cursive'],
         'playfair': ['"Playfair Display"', 'serif'],
-        'merriweather': ['Merriweather', 'serif']
+        'merriweather': ['Merriweather', 'serif'],
+        'bungee': ['"Bungee Inline"', 'cursive']
       },
       colors: {
         'beach-yellow': '#FFE664',

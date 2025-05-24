@@ -99,15 +99,16 @@ const QuizSection: React.FC = () => {
     return (
       <section className="bg-beach-purple py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8" id="quiz-section">
         <div className="w-full max-w-[1020px] mx-auto">
-         <h2 className="text-[50px] sm:text-[60px] md:text-[70px] font-permanent-marker text-white text-center py-12">
-      </h2>
+          <h2 className="text-[50px] sm:text-[60px] md:text-[70px] font-bungee text-white text-center py-12">
+            Hur är AI-formen på jobbet?
+          </h2>
         
           <div className="bg-white rounded-2xl p-6 sm:p-8 md:p-12">
             <div className="text-center mb-12">
               <h2 className="font-outfit font-thin text-[35px] mb-4">
                 Din AI-fitness nivå:
               </h2>
-              <h3 className="font-permanent-marker text-5xl sm:text-6xl text-beach-purple mb-6">
+              <h3 className="font-bungee text-5xl sm:text-6xl text-beach-purple mb-6">
                 {quizResults.level}
               </h3>
               <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto">
@@ -211,13 +212,14 @@ const QuizSection: React.FC = () => {
 
   return (
     <div className="bg-beach-purple">
-      <h2 className="text-[50px] font-permanent-marker text-white text-center py-12">
+      <h2 className="text-[50px] font-bungee text-white text-center py-12">
+        Hur är AI-formen på jobbet?
       </h2>
       
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8" id="quiz-section">
         <div className="w-full max-w-[1020px] mx-auto text-center text-white">
           <AnimatedSection animation="fade-down">
-            <h2 className="text-white text-[50px] font-permanent-marker mb-6 sm:mb-8 leading-[1.1]">
+            <h2 className="text-white text-[50px] font-bungee mb-6 sm:mb-8 leading-[1.1]">
               Hur är det med AI-formen på jobbet egentligen? Gör vårt AI-fitnessnivå!
             </h2>
             
