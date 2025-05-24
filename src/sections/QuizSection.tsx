@@ -213,14 +213,15 @@ const QuizSection: React.FC = () => {
   return (
     <div className="bg-beach-purple">
       <h2 className="text-[50px] sm:text-[60px] md:text-[70px] font-permanent-marker text-white text-center py-12">
-        Hur är AI-formen på jobbet?
+      ?
       </h2>
       
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8" id="quiz-section">
         <div className="w-full max-w-[1020px] mx-auto text-center text-white">
           <AnimatedSection animation="fade-down">
             <h2 className="text-white text-[50px] font-permanent-marker mb-6 sm:mb-8 leading-[1.1]">
-?            </h2>
+Hur är det med AI-formen på jobbet egentligen? Gör vårt AI-fitnessnivå!
+        </h2>
             
             <p className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 font-roboto font-bold text-white">
               Nyfiken på hur redo din organisation faktiskt är för AI-revolutionen? Vårt lättsamma AI-adoption test ger dig en indiaktion på er AI-nivå m.m. Du får dessutom några träffsäkra rekommendationer anpassade för just er mognadsnivå. Bäst av allt - det tar bara 2 min!
