@@ -229,6 +229,10 @@ const QuizSection: React.FC = () => {
 
           <AnimatedSection animation="fade-up" delay="200">
             <div className="bg-white rounded-2xl p-6 sm:p-8 md:p-12 text-left">
+              <h3 className="text-2xl md:text-3xl font-bold text-beach-purple text-center mb-6">
+                AI-fitness
+              </h3>
+              
               {error && (
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
                   <p>{error}</p>
