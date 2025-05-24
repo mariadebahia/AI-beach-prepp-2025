@@ -42,7 +42,6 @@ const QuizSection: React.FC = () => {
           timestamp: new Date().toISOString()
         };
 
-        // Use the direct Netlify Functions URL path
         const response = await fetch('/.netlify/functions/quiz', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -98,7 +97,7 @@ const QuizSection: React.FC = () => {
 
   if (showResults && quizResults) {
     return (
-      <section className="bg-[#482376] py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8" id="quiz-section">
+      <section className="bg-beach-purple py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8" id="quiz-section">
         <div className="w-full max-w-[1020px] mx-auto">
           <h2 className="text-white text-[50px] font-permanent-marker text-center mb-8 leading-[1.1]">
             Hur är det med AI-formen på jobbet egentligen? Gör vårt AI-fitnessnivå!
@@ -211,10 +210,10 @@ const QuizSection: React.FC = () => {
   }
 
   return (
-    <div className="bg-[#482376]">
-      <div className="sticky top-0 z-50 bg-white shadow-md">
-        <h2 className="text-3xl font-bold text-center py-4">AI-Fitness-Testet</h2>
-      </div>
+    <div className="bg-beach-purple">
+      <h2 className="text-3xl lg:text-4xl font-bold text-white text-center py-8">
+        AI-fitness test
+      </h2>
       
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8" id="quiz-section">
         <div className="w-full max-w-[1020px] mx-auto text-center text-white">
@@ -229,7 +228,7 @@ const QuizSection: React.FC = () => {
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay="200">
-            <div className="relative z-10 bg-white rounded-xl shadow-xl max-w-lg mx-auto p-8">
+            <div className="bg-white rounded-2xl p-6 sm:p-8 md:p-12 text-left">
               {error && (
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
                   <p>{error}</p>
@@ -246,7 +245,7 @@ const QuizSection: React.FC = () => {
                 </div>
               )}
               
-              <h3 className="text-xl lg:text-2xl font-semibold text-center mb-4">
+              <h3 className="text-xl lg:text-2xl font-semibold text-center mb-4 text-beach-purple">
                 Fråga {currentQuestion + 1} av {quizQuestions.length}
               </h3>
               
@@ -254,31 +253,22 @@ const QuizSection: React.FC = () => {
                 currentStep={currentQuestion + 1} 
                 totalSteps={quizQuestions.length} 
               />
-
-              <div className="mt-8 transition-all duration-300 transform">
-                <h3 className="text-xl lg:text-2xl font-medium text-center text-beach-purple mb-4">
+              
+              <div className="mt-8">
+                <h3 className="text-beach-purple text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">
                   {quizQuestions[currentQuestion].question}
                 </h3>
-                
-                <p className="text-sm text-gray-500 mb-6 text-center">
-                  Berätta för oss vad ni gör idag!
-                </p>
 
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {quizQuestions[currentQuestion].options?.map((option) => (
-                    <button
+                    <QuizOption
                       key={option.id}
-                      className="block w-full rounded-lg p-6 shadow-lg transition-transform hover:scale-105 focus:scale-105 bg-white"
-                      onClick={() => handleOptionSelect(quizQuestions[currentQuestion].id, option.points || 0)}
-                    >
-                      <QuizOption
-                        id={option.id}
-                        text={option.text}
-                        isSelected={answers[quizQuestions[currentQuestion].id] === option.points}
-                        onSelect={() => handleOptionSelect(quizQuestions[currentQuestion].id, option.points || 0)}
-                        name={`question-${quizQuestions[currentQuestion].id}`}
-                      />
-                    </button>
+                      id={option.id}
+                      text={option.text}
+                      isSelected={answers[quizQuestions[currentQuestion].id] === option.points}
+                      onSelect={() => handleOptionSelect(quizQuestions[currentQuestion].id, option.points || 0)}
+                      name={`question-${quizQuestions[currentQuestion].id}`}
+                    />
                   ))}
                 </div>
               </div>
