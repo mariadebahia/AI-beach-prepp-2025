@@ -98,8 +98,8 @@ const QuizSection: React.FC = () => {
 
   if (showResults && quizResults) {
     return (
-      <section className="bg-[#482376] py-[45px] sm:py-[55px] md:py-[70px] mt-[25px] mb-[25px] px-4" id="quiz-section">
-        <div className="w-full sm:max-w-[720px] lg:max-w-[1020px] mx-auto">
+      <section className="bg-[#482376] py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8" id="quiz-section">
+        <div className="w-full max-w-[1020px] mx-auto">
           <h2 className="text-white text-[50px] font-permanent-marker text-center mb-8 leading-[1.1]">
             Hur är det med AI-formen på jobbet egentligen? Gör vårt AI-fitnessnivå!
           </h2>
@@ -211,13 +211,13 @@ const QuizSection: React.FC = () => {
   }
 
   return (
-    <>
+    <div className="bg-[#482376]">
       <div className="sticky top-0 z-50 bg-white shadow-md">
         <h2 className="text-3xl font-bold text-center py-4">AI-Fitness-Testet</h2>
       </div>
       
-      <section className="bg-beach-purple py-[45px] sm:py-[55px] md:py-[70px] mt-[25px] mb-[25px] px-4" id="quiz-section">
-        <div className="w-full sm:max-w-[720px] lg:max-w-[1020px] mx-auto text-center text-white">
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8" id="quiz-section">
+        <div className="w-full max-w-[1020px] mx-auto text-center text-white">
           <AnimatedSection animation="fade-down">
             <h2 className="text-white text-[50px] font-permanent-marker mb-6 sm:mb-8 leading-[1.1]">
               Hur är det med AI-formen på jobbet egentligen? Gör vårt AI-fitnessnivå!
@@ -229,7 +229,6 @@ const QuizSection: React.FC = () => {
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay="200">
-            <div className="fixed inset-0 bg-black/50 z-0"></div>
             <div className="relative z-10 bg-white rounded-xl shadow-xl max-w-lg mx-auto p-8">
               {error && (
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
@@ -247,16 +246,16 @@ const QuizSection: React.FC = () => {
                 </div>
               )}
               
+              <h3 className="text-xl lg:text-2xl font-semibold text-center mb-4">
+                Fråga {currentQuestion + 1} av {quizQuestions.length}
+              </h3>
+              
               <ProgressBar 
                 currentStep={currentQuestion + 1} 
                 totalSteps={quizQuestions.length} 
               />
-              
-              <div className="text-lg font-semibold text-center mt-4 mb-8">
-                Fråga {currentQuestion + 1} av {quizQuestions.length}
-              </div>
 
-              <div className="transition-all duration-300 transform">
+              <div className="mt-8 transition-all duration-300 transform">
                 <h3 className="text-xl lg:text-2xl font-medium text-center text-beach-purple mb-4">
                   {quizQuestions[currentQuestion].question}
                 </h3>
@@ -287,7 +286,7 @@ const QuizSection: React.FC = () => {
           </AnimatedSection>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
