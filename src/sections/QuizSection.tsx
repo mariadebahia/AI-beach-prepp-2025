@@ -98,10 +98,8 @@ const QuizSection: React.FC = () => {
   if (showResults && quizResults) {
     return (
       <section className="bg-beach-purple py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8" id="quiz-section">
-        <div className="w-full max-w-[1020px] mx-auto">
-          <h2 className="text-white text-[50px] font-permanent-marker text-center mb-8 leading-[1.1]">
-            Hur är det med AI-formen på jobbet egentligen? Gör vårt AI-fitnessnivå!
-          </h2>
+
+        
           <div className="bg-white rounded-2xl p-6 sm:p-8 md:p-12">
             <div className="text-center mb-12">
               <h2 className="font-outfit font-thin text-[35px] mb-4">
