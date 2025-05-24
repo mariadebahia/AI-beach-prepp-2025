@@ -211,7 +211,7 @@ const QuizSection: React.FC = () => {
 
   return (
     <div className="bg-beach-purple">
-      <h2 className="text-[3.75rem] font-permanent-marker text-white text-center py-12">
+      <h2 className="text-[50px] sm:text-[60px] md:text-[70px] font-permanent-marker text-white text-center py-12">
         Hur är AI-formen på jobbet?
       </h2>
       
