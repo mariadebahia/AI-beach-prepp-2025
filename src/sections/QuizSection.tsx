@@ -29,7 +29,7 @@ const QuizSection: React.FC = () => {
     const newAnswers = { ...answers, [questionId]: points };
     setAnswers(newAnswers);
     
-    if (currentQuestion === 9) {
+    if (currentQuestion === quizQuestions.length - 1) {
       if (isSubmitting) return;
       setIsSubmitting(true);
       
@@ -66,7 +66,7 @@ const QuizSection: React.FC = () => {
       } catch (error) {
         console.error('Error submitting quiz:', error);
         setError(error instanceof Error ? error.message : 'An unexpected error occurred');
-        setCurrentQuestion(9);
+        setCurrentQuestion(quizQuestions.length - 1);
       } finally {
         setIsSubmitting(false);
       }
@@ -201,6 +201,15 @@ const QuizSection: React.FC = () => {
     );
   }
 
+  // Add bounds checking for quizQuestions array
+  if (!quizQuestions || currentQuestion >= quizQuestions.length) {
+    return (
+      <div className="text-center p-8">
+        <p className="text-red-600">Error: Quiz questions not available.</p>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="sticky top-0 z-50 bg-white shadow-md">
@@ -240,11 +249,11 @@ const QuizSection: React.FC = () => {
               
               <ProgressBar 
                 currentStep={currentQuestion + 1} 
-                totalSteps={10} 
+                totalSteps={quizQuestions.length} 
               />
               
               <div className="text-lg font-semibold text-center mt-4 mb-8">
-                Fråga {currentQuestion + 1} av 10
+                Fråga {currentQuestion + 1} av {quizQuestions.length}
               </div>
 
               <div className="transition-all duration-300 transform">
