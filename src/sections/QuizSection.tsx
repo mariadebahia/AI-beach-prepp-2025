@@ -211,7 +211,9 @@ const QuizSection: React.FC = () => {
 
   return (
     <div className="bg-beach-purple">
-   
+      <h2 className="text-[50px] font-permanent-marker text-white text-center py-12">
+        Hur är AI-formen på jobbet?
+      </h2>
       
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8" id="quiz-section">
         <div className="w-full max-w-[1020px] mx-auto text-center text-white">
@@ -227,26 +229,6 @@ const QuizSection: React.FC = () => {
 
           <AnimatedSection animation="fade-up" delay="200">
             <div className="bg-white rounded-2xl p-6 sm:p-8 md:p-12 text-left">
-              <h3 className="text-2xl md:text-3xl font-bold text-beach-purple text-center mb-6">
-                AI-fitness
-              </h3>
-              
-              {error && (
-                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
-                  <p>{error}</p>
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      setError(null);
-                      setCurrentQuestion(0);
-                    }}
-                    className="mt-4"
-                  >
-                    Försök igen
-                  </Button>
-                </div>
-              )}
-              
               <h3 className="text-xl lg:text-2xl font-semibold text-center mb-4 text-beach-purple">
                 Fråga {currentQuestion + 1} av {quizQuestions.length}
               </h3>
