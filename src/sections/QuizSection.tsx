@@ -238,7 +238,7 @@ const QuizSection: React.FC = () => {
               />
               
               <div className="mt-8">
-                <h3 className="text-beach-purple text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">
+                <h3 className="text-beach-purple text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 sm:mb-6">
                   {quizQuestions[currentQuestion].question}
                 </h3>
 
