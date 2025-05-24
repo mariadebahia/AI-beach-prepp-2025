@@ -202,61 +202,83 @@ const QuizSection: React.FC = () => {
   }
 
   return (
-    <section className="bg-beach-purple py-[45px] sm:py-[55px] md:py-[70px] mt-[25px] mb-[25px] px-4" id="quiz-section">
-      <div className="w-full sm:max-w-[720px] lg:max-w-[1020px] mx-auto text-center text-white">
-        <AnimatedSection animation="fade-down">
-          <h2 className="text-white text-[50px] font-permanent-marker mb-6 sm:mb-8 leading-[1.1]">
-            Hur är det med AI-formen på jobbet egentligen? Gör vårt AI-fitnessnivå!
-          </h2>
-          
-          <p className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 font-roboto font-bold text-white">
-            Nyfiken på hur redo din organisation faktiskt är för AI-revolutionen? Vårt lättsamma AI-adoption test ger dig en indiaktion på er AI-nivå m.m. Du får dessutom några träffsäkra rekommendationer anpassade för just er mognadsnivå. Bäst av allt - det tar bara 2 min!
-          </p>
-        </AnimatedSection>
-
-        <AnimatedSection animation="fade-up" delay="200">
-          <div className="bg-white rounded-2xl p-6 sm:p-8 md:p-12 text-left">
-            {error && (
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
-                <p>{error}</p>
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setError(null);
-                    setCurrentQuestion(0);
-                  }}
-                  className="mt-4"
-                >
-                  Försök igen
-                </Button>
-              </div>
-            )}
-            
-            <ProgressBar 
-              currentStep={currentQuestion + 1} 
-              totalSteps={10} 
-            />
-            
-            <h3 className="text-beach-purple text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">
-              {quizQuestions[currentQuestion].question}
-            </h3>
-
-            <div className="space-y-3 sm:space-y-4">
-              {quizQuestions[currentQuestion].options?.map((option) => (
-                <QuizOption
-                  key={option.id}
-                  id={option.id}
-                  text={option.text}
-                  isSelected={answers[quizQuestions[currentQuestion].id] === option.points}
-                  onSelect={() => handleOptionSelect(quizQuestions[currentQuestion].id, option.points || 0)}
-                  name={`question-${quizQuestions[currentQuestion].id}`}
-                />
-              ))}
-            </div>
-          </div>
-        </AnimatedSection>
+    <>
+      <div className="sticky top-0 z-50 bg-white shadow-md">
+        <h2 className="text-3xl font-bold text-center py-4">AI-Fitness-Testet</h2>
       </div>
-    </section>
+      
+      <section className="bg-beach-purple py-[45px] sm:py-[55px] md:py-[70px] mt-[25px] mb-[25px] px-4" id="quiz-section">
+        <div className="w-full sm:max-w-[720px] lg:max-w-[1020px] mx-auto text-center text-white">
+          <AnimatedSection animation="fade-down">
+            <h2 className="text-white text-[50px] font-permanent-marker mb-6 sm:mb-8 leading-[1.1]">
+              Hur är det med AI-formen på jobbet egentligen? Gör vårt AI-fitnessnivå!
+            </h2>
+            
+            <p className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 font-roboto font-bold text-white">
+              Nyfiken på hur redo din organisation faktiskt är för AI-revolutionen? Vårt lättsamma AI-adoption test ger dig en indiaktion på er AI-nivå m.m. Du får dessutom några träffsäkra rekommendationer anpassade för just er mognadsnivå. Bäst av allt - det tar bara 2 min!
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay="200">
+            <div className="fixed inset-0 bg-black/50 z-0"></div>
+            <div className="relative z-10 bg-white rounded-xl shadow-xl max-w-lg mx-auto p-8">
+              {error && (
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+                  <p>{error}</p>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setError(null);
+                      setCurrentQuestion(0);
+                    }}
+                    className="mt-4"
+                  >
+                    Försök igen
+                  </Button>
+                </div>
+              )}
+              
+              <ProgressBar 
+                currentStep={currentQuestion + 1} 
+                totalSteps={10} 
+              />
+              
+              <div className="text-lg font-semibold text-center mt-4 mb-8">
+                Fråga {currentQuestion + 1} av 10
+              </div>
+
+              <div className="transition-all duration-300 transform">
+                <h3 className="text-xl lg:text-2xl font-medium text-center text-beach-purple mb-4">
+                  {quizQuestions[currentQuestion].question}
+                </h3>
+                
+                <p className="text-sm text-gray-500 mb-6 text-center">
+                  Berätta för oss vad ni gör idag!
+                </p>
+
+                <div className="space-y-4">
+                  {quizQuestions[currentQuestion].options?.map((option) => (
+                    <button
+                      key={option.id}
+                      className="block w-full rounded-lg p-6 shadow-lg transition-transform hover:scale-105 focus:scale-105 bg-white"
+                      onClick={() => handleOptionSelect(quizQuestions[currentQuestion].id, option.points || 0)}
+                    >
+                      <QuizOption
+                        id={option.id}
+                        text={option.text}
+                        isSelected={answers[quizQuestions[currentQuestion].id] === option.points}
+                        onSelect={() => handleOptionSelect(quizQuestions[currentQuestion].id, option.points || 0)}
+                        name={`question-${quizQuestions[currentQuestion].id}`}
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+    </>
   );
 };
 
